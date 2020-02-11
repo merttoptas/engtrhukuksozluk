@@ -50,7 +50,7 @@ class AboutUs extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Hakkımızda', style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.w600),),
+                      Text('Hakkımızda', style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.w600, letterSpacing: 1.4),),
                       SizedBox(height: 15.0,),
                       Text('Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. '
                           'Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere'
@@ -58,7 +58,12 @@ class AboutUs extends StatelessWidget {
                           ' olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pe'
                           'k değişmeden elektronik dizgiye de sıçramıştır. 1960\'larda Lorem Ipsum pasajları da içeren Letraset y'
                           'apraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masa'
-                          'üstü yayıncılık yazılımları ile popüler olmuştur.', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500, letterSpacing: 1.2),),
+                          'üstü yayıncılık yazılımları ile popüler olmuştur.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 1.2),),
                       SizedBox(height: 15.0,),
                       Container(
                         height: 150.0,
