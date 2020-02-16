@@ -50,15 +50,12 @@ class AboutUs extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Hakkımızda', style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.w600, letterSpacing: 1.4),),
+                      Text('Hakkımızda', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600, letterSpacing: 1.4),),
                       SizedBox(height: 15.0,),
                       Text('Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. '
                           'Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere'
                           ' bir yazı galerisini alarak karıştırdığı 1500\'lerden beri endüstri standardı sahte metinler'
-                          ' olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pe'
-                          'k değişmeden elektronik dizgiye de sıçramıştır. 1960\'larda Lorem Ipsum pasajları da içeren Letraset y'
-                          'apraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masa'
-                          'üstü yayıncılık yazılımları ile popüler olmuştur.',
+                          ' olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pe.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 15.0,
@@ -66,9 +63,7 @@ class AboutUs extends StatelessWidget {
                             letterSpacing: 1.2),),
                       SizedBox(height: 15.0,),
                       Container(
-                        height: 150.0,
-                        width: 350.0,
-
+                        height: 100.0,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
                           color: Color(0XFF2A2E43),

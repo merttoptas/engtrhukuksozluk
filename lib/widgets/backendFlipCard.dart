@@ -1,21 +1,22 @@
+import 'package:engtrhukuksozluk/screens/wordsLearn.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:engtrhukuksozluk/service/cloud_service.dart';
 
 class backendFlipCard extends StatelessWidget {
-  const backendFlipCard({
-    Key key,
-    @required this.cardKey,
-  }) : super(key: key);
-
+  backendFlipCard({@required this.cardKey,this.text, this.func});
+  String text;
+  final Function func;
   final GlobalKey<FlipCardState> cardKey;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:100.0, left: 30.0,right: 30.0, bottom: 20.0),
+      padding: const EdgeInsets.only(top:80.0, left: 30.0,right: 30.0, bottom: 20.0),
       child: GestureDetector(
         child: InkWell(
           onTap: (){
+
             cardKey.currentState.toggleCard();
           },
           child: Card(
@@ -37,10 +38,10 @@ class backendFlipCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 30.0),
-                          child: Text('Backend Textview',
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Text(text,
                             style: TextStyle(
-                                fontSize: 35.0,
+                                fontSize: 25.0,
                                 fontWeight: FontWeight.w900
                             ),
                           ),
@@ -59,7 +60,9 @@ class backendFlipCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           FlatButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              print('bilmiyorum');
+                            },
                             child: Text('BİLMİYORUM'),
                           ),
                           FlatButton(

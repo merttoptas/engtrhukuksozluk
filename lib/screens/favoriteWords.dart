@@ -5,7 +5,9 @@ import 'package:like_button/like_button.dart';
 
 class FavoriteWords extends StatelessWidget {
 
-  List<String> favoriteList =['favorite', 'favorite2'];
+  List<String> favoriteList = ['deneme,','deneme2'];
+  String text = 'deneme';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,12 +15,11 @@ class FavoriteWords extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Expanded(
-                child: ListView.builder(
-                  itemCount: favoriteList.length,
-                  itemBuilder: (BuildContext context, int index){
-                    return wordsRowWidget(wordList: favoriteList,text: index,);
-                  },
-                ),
+                child: ListView(
+                  children: <Widget>[
+                    Text('deneme'),
+                  ],
+                 ),
               ),
             ],
           ),

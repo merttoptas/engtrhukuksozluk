@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
 class frontFlipCard extends StatelessWidget {
-  const frontFlipCard({
-    Key key,
-    @required this.cardKey,
-  }) : super(key: key);
+  frontFlipCard({this.text, this.cardKey});
+  String text;
+
 
   final GlobalKey<FlipCardState> cardKey;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:100.0, left: 30.0,right: 30.0, bottom: 20.0),
+      padding: const EdgeInsets.only(top:80.0, left: 30.0,right: 30.0, bottom: 20.0),
       child: GestureDetector(
         child: InkWell(
           onTap: (){
@@ -36,9 +35,9 @@ class frontFlipCard extends StatelessWidget {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(top: 20.0),
-                          child: Text('Front Textview',
+                          child: Text(text,
                             style: TextStyle(
-                                fontSize: 35.0,
+                                fontSize: 25.0,
                                 fontWeight: FontWeight.w900,letterSpacing: 1.2
                             ),
                           ),

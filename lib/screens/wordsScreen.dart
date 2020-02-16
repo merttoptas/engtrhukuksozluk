@@ -3,7 +3,6 @@ import 'package:engtrhukuksozluk/screens/aboutus.dart';
 import 'package:engtrhukuksozluk/screens/wordsPage.dart';
 import 'package:engtrhukuksozluk/screens/searchWords.dart';
 import 'package:engtrhukuksozluk/screens/favoriteWords.dart';
-import 'package:engtrhukuksozluk/screens/wordsLearn.dart';
 
 // ignore: must_be_immutable
 class WordsScreen extends StatefulWidget {
@@ -28,7 +27,7 @@ class _WordsScreenState extends State<WordsScreen> {
       case 2: return FavoriteWords();
       case 3: return AboutUs();
 
-        break;
+      break;
       default :return WordsScreen(selectIndexId);
     }
   }

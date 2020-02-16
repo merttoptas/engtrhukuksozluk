@@ -6,6 +6,7 @@ import 'package:engtrhukuksozluk/screens/wordsScreen.dart';
 class HomeScreen extends StatelessWidget {
 
   int selectIndexId;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,8 +55,8 @@ class HomeScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: (){
                         selectIndexId =1;
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => WordsScreen(selectIndexId)));
-
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
                         },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF376DF6),
@@ -80,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
-                         },
+                      },
                       child: HomeContainerWidget(
                         startColour: Color(0XFFFFC92B),
                         endColour: Color(0XFFFF416C),
@@ -99,6 +100,7 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: FittedBox(
                     child: InkWell(
+
                       onTap: (){
                         selectIndexId = 3;
                         Navigator.push(
@@ -122,3 +124,4 @@ class HomeScreen extends StatelessWidget {
       );
   }
 }
+

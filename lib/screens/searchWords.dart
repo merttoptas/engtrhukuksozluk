@@ -45,7 +45,7 @@ class SearchWords extends StatelessWidget {
                                   children: <Widget>[
                                     Padding(
                                       padding: EdgeInsets.only(top: 10.0, left: 10.0, bottom: 5.0),
-                                      child: Text('Main English Title', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),),
+                                      child: Text('Main English Title', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),),
                                     ),
                                   ],
                                 ),
@@ -53,8 +53,8 @@ class SearchWords extends StatelessWidget {
                                 Row(
                                   children: <Widget>[
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
-                                      child: Text('Sub Turkish Title', style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),),
+                                      padding: const EdgeInsets.only(left: 10.0, bottom: 5.0),
+                                      child: Text('Sub Turkish Title', style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),),
                                     ),
                                   ],
                                 ),
