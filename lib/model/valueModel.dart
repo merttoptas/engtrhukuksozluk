@@ -17,7 +17,7 @@ class ValueModel{
     onValue2Change.value = _value2 =value;
   }
   int get value1 => _value1;
-
+    //
   set value1(int value){
     onValue1Change.value = _value1 =value;
   }
