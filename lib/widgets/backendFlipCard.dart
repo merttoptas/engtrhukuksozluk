@@ -1,12 +1,10 @@
-import 'package:engtrhukuksozluk/screens/wordsLearn.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
-import 'package:engtrhukuksozluk/service/cloud_service.dart';
 
 class backendFlipCard extends StatelessWidget {
-  backendFlipCard({@required this.cardKey,this.text, this.func});
+  final Function onButton2Press,onButton3Press;
+  backendFlipCard({@required this.cardKey,this.text,this.onButton2Press,this.onButton3Press});
   String text;
-  final Function func;
   final GlobalKey<FlipCardState> cardKey;
 
   @override
@@ -16,7 +14,6 @@ class backendFlipCard extends StatelessWidget {
       child: GestureDetector(
         child: InkWell(
           onTap: (){
-
             cardKey.currentState.toggleCard();
           },
           child: Card(
@@ -59,16 +56,10 @@ class backendFlipCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          FlatButton(
-                            onPressed: (){
-                              print('bilmiyorum');
-                            },
-                            child: Text('BİLMİYORUM'),
-                          ),
-                          FlatButton(
-                            onPressed: (){},
-                            child: Text('BİLİYORUM'),
-                          ),
+                          addButton('Biliyorum', onButton3Press),
+                          Spacer(),
+                          addButton('Bilmiyorum', onButton2Press),
+
                         ],
                       ),
                     ),
@@ -81,4 +72,11 @@ class backendFlipCard extends StatelessWidget {
       ),
     );
   }
+}
+
+addButton(String label, Function onPressed){
+  return FlatButton(
+    onPressed: onPressed,
+    child: Text(label, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500, color: Colors.black,) ),
+  );
 }

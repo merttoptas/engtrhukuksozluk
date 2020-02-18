@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
-import 'package:provider/provider.dart';
 
 final _firestore = Firestore.instance;
 class GetWordsCloud{
@@ -10,32 +8,31 @@ class GetWordsCloud{
   Future<List<Words>> getAllWords() async {
     QuerySnapshot querySnapshot =
     await _firestore.collection('words').orderBy('english').getDocuments();
-    List<Words> wordslist = [];
+    List<Words> wordsList = [];
 
     for(DocumentSnapshot words in querySnapshot.documents){
-      Words _wordslist = Words.fromMap(words.data);
-      wordslist.add(_wordslist);
+      Words _wordsList = Words.fromMap(words.data);
+      wordsList.add(_wordsList);
     }
-    print('list' + wordslist.toString());
-    return wordslist;
+    print('list' + wordsList.toString());
+    return wordsList;
 
   }
   Future<List<Words>> getRandomWords() async {
     QuerySnapshot querySnapshot =
     await _firestore.collection('words').orderBy('english').getDocuments();
-    List<Words> wordslist = [];
+    List<Words> wordsList = [];
     List<Words> randomList = [];
     for(DocumentSnapshot words in querySnapshot.documents) {
-      Words _wordslist = Words.fromMap(words.data);
-      wordslist.add(_wordslist);
+      Words _wordsList = Words.fromMap(words.data);
+      wordsList.add(_wordsList);
     }
 
-    var wordsListSize = wordslist.length;
+    var wordsListSize = wordsList.length;
     for(int i =0; i<wordsListSize; i++){
-      var randomWords = wordslist[Random().nextInt(wordsListSize)];
+      var randomWords = wordsList[Random().nextInt(wordsListSize)];
       if(!randomList.contains(randomWords)){
         randomList.add(randomWords);
-        String text = randomWords.english;
       }
     }
     print('deneme' + randomList.toString());
