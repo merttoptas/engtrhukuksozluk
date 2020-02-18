@@ -9,7 +9,7 @@ class HomeContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150.0,
+      height: 160.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         gradient: LinearGradient(
@@ -18,11 +18,11 @@ class HomeContainerWidget extends StatelessWidget {
             colors: [startColour, endColour]),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: 10.0, top:30.0,right: 20.0, bottom: 30.0),
+            padding: EdgeInsets.only(left: 10.0, top:35.0,right: 30.0),
             child: Column(
               children: <Widget>[
                 Text( titleText,
@@ -33,22 +33,19 @@ class HomeContainerWidget extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-              height: 100,
-              width:160,
-              padding: EdgeInsets.only(top: 10.0, bottom: 15.0,right: 10.0),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Image(
+           Padding(
+             padding: const EdgeInsets.only( right: 20.0),
+             child: Container(
+                  width:180,
+                  foregroundDecoration: BoxDecoration(
+                    image: DecorationImage(
                       fit: BoxFit.contain,
-                      alignment: Alignment.center,
                       image: assetImage,
-                    ),
+                      alignment: Alignment.centerRight
+                    )
                   ),
-                ],
-              )
-          )
+              ),
+           ),
         ],
       ),
     );

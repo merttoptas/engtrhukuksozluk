@@ -1,9 +1,12 @@
+import 'package:engtrhukuksozluk/screens/wordsLearn.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/widgets/HomeContainerWidget.dart';
-import 'package:engtrhukuksozluk/screens/aboutus.dart';
-import 'package:engtrhukuksozluk/screens/wordsscreen.dart';
+import 'package:engtrhukuksozluk/widgets/homeContainer.dart';
+import 'package:engtrhukuksozluk/screens/wordsScreen.dart';
 
 class HomeScreen extends StatelessWidget {
+
+  int selectIndexId;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +30,11 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: FittedBox(
                     child: InkWell(
-                      onTap: (){print('kelime öğrenme');},
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => WordsLearn()));
+                      },
                       child: HomeContainerWidget(
                         startColour: Color(0XFFFF416C),
                         endColour: Color(0xFF8A52E9),
@@ -46,7 +53,11 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: FittedBox(
                     child: InkWell(
-                      onTap: (){print('kelime aramaa');},
+                      onTap: (){
+                        selectIndexId =1;
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                        },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF376DF6),
                         endColour: Color(0xFF8A52E9),
@@ -65,14 +76,18 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: FittedBox(
                     child: InkWell(
-                      onTap: (){print('favorilerim ');},
+                      onTap: (){
+                        selectIndexId = 2;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                      },
                       child: HomeContainerWidget(
                         startColour: Color(0XFFFFC92B),
                         endColour: Color(0XFFFF416C),
                         titleText: 'Favorilerim           ',
                         subtitleText: 'Favorilerine eklediğin  \nkelimeleri burada bulabilirsin',
                         assetImage: AssetImage('images/home_ic_biology.png'),
-
                       ),
                     ),
                   ),
@@ -87,9 +102,9 @@ class HomeScreen extends StatelessWidget {
                     child: InkWell(
 
                       onTap: (){
+                        selectIndexId = 3;
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => WordsScreen()));
+                            context, MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
                       },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF21E8AC),
@@ -103,10 +118,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ),
         ),
       );
   }
 }
+
