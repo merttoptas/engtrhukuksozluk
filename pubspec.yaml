@@ -30,11 +30,18 @@ dependencies:
   flip_card: ^0.4.4
   cloud_firestore: ^0.13.1+1
   provider: ^4.0.4
+  algolia: ^0.1.7
+  floor: ^0.11.0
+  sqflite: any
+  animated_text_kit: ^2.0.0
+  flutter_staggered_animations: ^0.1.2
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  floor_generator: ^0.11.0
+  build_runner: ^1.7.3
 
 
 # For information on the generic Dart part of this file, see the

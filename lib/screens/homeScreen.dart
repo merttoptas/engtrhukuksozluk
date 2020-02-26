@@ -1,3 +1,4 @@
+import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/screens/wordsLearn.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/widgets/homeContainer.dart';
@@ -6,6 +7,8 @@ import 'package:engtrhukuksozluk/screens/wordsScreen.dart';
 class HomeScreen extends StatelessWidget {
 
   int selectIndexId;
+  final FavoriteDao favoriteDao;
+  HomeScreen(this.favoriteDao);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                       onTap: (){
                         selectIndexId =1;
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId,favoriteDao)));
                         },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF376DF6),
@@ -80,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                         selectIndexId = 2;
                         Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                            MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId,favoriteDao)));
                       },
                       child: HomeContainerWidget(
                         startColour: Color(0XFFFFC92B),
@@ -100,11 +103,10 @@ class HomeScreen extends StatelessWidget {
                 child: Center(
                   child: FittedBox(
                     child: InkWell(
-
                       onTap: (){
                         selectIndexId = 3;
                         Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                            context, MaterialPageRoute(builder: (context) => WordsScreen(selectIndexId,favoriteDao)));
                       },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF21E8AC),

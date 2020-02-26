@@ -14,7 +14,10 @@ class GetWordsCloud{
       Words _wordsList = Words.fromMap(words.data);
       wordsList.add(_wordsList);
     }
-    print('list' + wordsList.toString());
+    for(int i=0; i<querySnapshot.documents.length; i++){
+      DocumentSnapshot doc = querySnapshot.documents.elementAt(i);
+      print(doc.metadata.isFromCache ? "not from network" : "from network");
+    }
     return wordsList;
 
   }
@@ -35,7 +38,6 @@ class GetWordsCloud{
         randomList.add(randomWords);
       }
     }
-    print('deneme' + randomList.toString());
       return randomList;
 
     }

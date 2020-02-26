@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
 class wordsRowWidget extends StatelessWidget {
-  wordsRowWidget({this.text});
+  wordsRowWidget({this.text,this.onButtonPress});
 
   String text;
+  Function onButtonPress;
+  bool isLiked=false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class wordsRowWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 10.0,top: 5.0),
                           child: Container(
                             child:LikeButton(
+                              onTap: onButtonPress,
                               likeBuilder: (bool isLiked) {
                                 return Icon(
                                   Icons.favorite,

@@ -56,9 +56,9 @@ class backendFlipCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          addButton('Biliyorum', onButton3Press),
+                          addButton('BİLİYORUM', onButton3Press),
                           Spacer(),
-                          addButton('Bilmiyorum', onButton2Press),
+                          addButton('BİLMİYORUM', onButton2Press),
 
                         ],
                       ),
@@ -77,6 +77,7 @@ class backendFlipCard extends StatelessWidget {
 addButton(String label, Function onPressed){
   return FlatButton(
     onPressed: onPressed,
-    child: Text(label, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500, color: Colors.black,) ),
+    child: Text(label, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500, color: Colors.black, letterSpacing: 1.2
+    ) ),
   );
 }

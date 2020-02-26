@@ -1,13 +1,16 @@
+import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/screens/aboutus.dart';
 import 'package:engtrhukuksozluk/screens/wordsPage.dart';
 import 'package:engtrhukuksozluk/screens/searchWords.dart';
 import 'package:engtrhukuksozluk/screens/favoriteWords.dart';
 
-// ignore: must_be_immutable
 class WordsScreen extends StatefulWidget {
   final int selectIndexId;
-  WordsScreen(this.selectIndexId);
+  WordsScreen(this.selectIndexId,this.favoriteDao);
+  final FavoriteDao favoriteDao;
+
+
 
   @override
   _WordsScreenState createState() => _WordsScreenState(selectIndexId);
@@ -16,6 +19,8 @@ class WordsScreen extends StatefulWidget {
 class _WordsScreenState extends State<WordsScreen> {
   int selectIndexId;
   int currentIndex  = 0;
+  FavoriteDao favoriteDao;
+
 
   _WordsScreenState(this.selectIndexId);
 
@@ -24,11 +29,11 @@ class _WordsScreenState extends State<WordsScreen> {
     switch(selectIndexId){
       case 0: return WordsPage();
       case 1: return SearchWords();
-      case 2: return FavoriteWords();
+      case 2: return FavoriteWords(favoriteDao);
       case 3: return AboutUs();
 
       break;
-      default :return WordsScreen(selectIndexId);
+      default :return WordsScreen(selectIndexId, favoriteDao);
     }
   }
   @override
@@ -56,7 +61,7 @@ class _WordsScreenState extends State<WordsScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
             title: Text('Favoriler'),
-            activeIcon: Icon(Icons.favorite, color: Colors.red,),
+            activeIcon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),

@@ -11,6 +11,9 @@ class Constants{
   static Color timeBG = Color(0xff5563ff);
   static Color transparent = Colors.transparent;
 
+  static String applicationId = "WZFSBELAA6";
+  static String apiKey = '4c14584cc213e038c3cd6a24650bda91';
+
   static ThemeData lightTheme = ThemeData(
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
