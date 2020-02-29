@@ -43,8 +43,10 @@ class _WordsLearnState extends State<WordsLearn> {
             future: GetWordsCloud().getRandomWords(),
             builder: (context, wordsList){
               if(!wordsList.hasData){
-                return Center(
-                  child:CircularProgressIndicator(backgroundColor: Color(0XFF2A2E43),),);
+                return FlipCard(key: cardKey,
+                  back: backendFlipCard(cardKey: cardKey,text: "",),
+                  front: frontFlipCard(cardKey: cardKey,text: "",),
+                );
               }
               else{
                 var allWordsList= wordsList.data;

@@ -8,8 +8,6 @@ import 'package:engtrhukuksozluk/data/database/database.dart';
 import 'package:like_button/like_button.dart';
 
 class FavoriteWords extends StatefulWidget {
-  final FavoriteDao favoriteDao;
-  FavoriteWords(this.favoriteDao);
 
   @override
   _FavoriteWordsState createState() => _FavoriteWordsState();
@@ -20,22 +18,12 @@ class _FavoriteWordsState extends State<FavoriteWords> {
   FavoriteDatabase favoriteDatabase;
   FavoriteDao favoriteDao;
   Stream stream;
-
-  Future<void> main()async{
-    WidgetsFlutterBinding.ensureInitialized();
-    final favoriteDatabase = await $FloorFavoriteDatabase
-        .databaseBuilder('favorite.db')
-        .build();
-
-    var favoriteDao = favoriteDatabase.favoriteDao;
-
-  }
+  List<Favorite> favoriteList;
 
   @override
   void initState() {
     super.initState();
     builder();
-    main();
   }
 
   builder() async{
@@ -48,23 +36,33 @@ class _FavoriteWordsState extends State<FavoriteWords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<List<Favorite>>(
-          stream: favoriteDao.findAllFavoriteStream(),
-           builder: (_, snapshot){
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: StreamBuilder<List<Favorite>>(
+                stream: favoriteDao?.findAllFavoriteStream(),
+                 builder: (_, snapshot){
 
-            if(!snapshot.hasData) return Container();
+                  if(!snapshot.hasData){
+                    return Container();
+                  }else
+                    {
+                    final favorite = snapshot.data;
+                    return ListView.builder(
+                        itemCount: favorite.length,
+                        itemBuilder: (_, index) {
+                          return ListFavorite(
+                            dao: favoriteDao,
+                            favorite: favorite[index],
+                          );
+                        }
+                    );
+                  }
 
-            final favorite = snapshot.data;
-           return ListView.builder(
-            itemCount: favorite.length,
-                itemBuilder: (_, index) {
-                return ListFavorite(
-                  dao: favoriteDao,
-                  favorite: favorite[index],
-                );
-      }
-      );
-      }),
+            }),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -97,7 +95,7 @@ class ListFavorite extends StatelessWidget{
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(top: 5.0, left: 10.0, bottom: 3.0),
-                      child: Text(favorite.english, style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),),
+                      child: Text(favorite.english, style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),),
                     ),
                   ],
                 ),
@@ -106,7 +104,7 @@ class ListFavorite extends StatelessWidget{
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0,bottom: 10.0),
-                      child: Text(favorite.turkish, style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),),
+                      child: Text(favorite.turkish, style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500),),
                     ),
                   ],
                 ),

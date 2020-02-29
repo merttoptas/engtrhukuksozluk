@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:engtrhukuksozluk/utils/const.dart';
+import 'package:engtrhukuksozluk/widgets/listTileCard.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:engtrhukuksozluk/utils/const.dart';
 
-class AboutUs extends StatelessWidget {
+class AboutUs extends StatefulWidget {
+
+  @override
+  _AboutUsState createState() => _AboutUsState();
+}
+
+class _AboutUsState extends State<AboutUs> {
+
+  _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,38 +71,44 @@ class AboutUs extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Hakkımızda', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600, letterSpacing: 1.4),),
+                      Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
                       SizedBox(height: 15.0,),
-                      Text('Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. '
-                          'Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere'
-                          ' bir yazı galerisini alarak karıştırdığı 1500\'lerden beri endüstri standardı sahte metinler'
-                          ' olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pe.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1.2),),
-                      SizedBox(height: 15.0,),
+                      Text(Constants.aboutText,
+                        textAlign: TextAlign.justify,
+                        style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
+                      ),
                       Container(
-                        height: 100.0,
+                        margin: EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.0),
-                          color: Color(0XFF2A2E43),
-                        ),
+                      ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(20.0),
-                              child: Text('deneme',style: TextStyle(color: Colors.white),),
-                            )
-                          ],
+                            ListTileCard(text: Constants.webSiteText,
+                              icon: Icon(Icons.home, color: Color(0XFF2A2E43), size: 20.0,),
+                              onPressed: (){
+                                _launchURL(Constants.webSite);
+                              },),
+                            ListTileCard(text: Constants.githubText,
+                              icon: Icon(Icons.star, color: Color(0XFF2A2E43), size: 20.0,),
+                              onPressed: (){
+                                _launchURL(Constants.github);
+                              },),
+                            ListTileCard(text: Constants.mailText,
+                              icon: Icon(Icons.alternate_email, color:Color(0XFF2A2E43), size: 20.0,),
+                              onPressed: (){
+                                _launchURL(Constants.mail);
+                              },
+                            ),
+                      ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )
               ],
-            )
+            ),
           ],
         ),
       ),

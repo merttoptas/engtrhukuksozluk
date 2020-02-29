@@ -133,21 +133,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.2+3"
+    version: "0.13.4"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0+3"
+    version: "0.1.1"
   code_builder:
     dependency: transitive
     description:
@@ -217,14 +217,14 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.4"
+    version: "0.4.4+2"
   firebase_core_platform_interface:
     dependency: transitive
     description:
       name: firebase_core_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.4"
   firebase_core_web:
     dependency: transitive
     description:
@@ -303,6 +303,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.9"
   graphs:
     dependency: transitive
     description:
@@ -428,7 +435,7 @@ packages:
       name: package_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.9.1"
   package_resolver:
     dependency: transitive
     description:
@@ -443,6 +450,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
+  path_provider:
+    dependency: transitive
+    description:
+      name: path_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.6.1"
   pedantic:
     dependency: transitive
     description:
@@ -457,13 +471,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  platform:
+    dependency: transitive
+    description:
+      name: platform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.1"
   plugin_platform_interface:
     dependency: transitive
     description:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   pool:
     dependency: transitive
     description:
@@ -524,7 +545,7 @@ packages:
       name: source_gen
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.4+7"
+    version: "0.9.5"
   source_span:
     dependency: transitive
     description:
@@ -559,7 +580,7 @@ packages:
       name: stream_transform
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   string_scanner:
     dependency: transitive
     description:
@@ -602,6 +623,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  url_launcher:
+    dependency: "direct main"
+    description:
+      name: url_launcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.4.2"
+  url_launcher_macos:
+    dependency: transitive
+    description:
+      name: url_launcher_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+4"
+  url_launcher_platform_interface:
+    dependency: transitive
+    description:
+      name: url_launcher_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
+  url_launcher_web:
+    dependency: transitive
+    description:
+      name: url_launcher_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1+1"
   uuid:
     dependency: transitive
     description:
@@ -645,5 +694,5 @@ packages:
     source: hosted
     version: "2.2.0"
 sdks:
-  dart: ">=2.7.0-dev <3.0.0"
+  dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.4 <2.0.0"

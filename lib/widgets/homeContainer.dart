@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class HomeContainerWidget extends StatelessWidget {
@@ -26,10 +27,10 @@ class HomeContainerWidget extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text( titleText,
-                  style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w600,),),
+                  style: GoogleFonts.openSans(textStyle: TextStyle(color: Colors.white, fontSize:30.0, fontWeight: FontWeight.w600,)),),
                 SizedBox(height: 10.0),
                 Text(subtitleText,
-                  style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600),),
+                  style: GoogleFonts.openSans(textStyle:TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600) ),),
               ],
             ),
           ),

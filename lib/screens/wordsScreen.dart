@@ -7,8 +7,7 @@ import 'package:engtrhukuksozluk/screens/favoriteWords.dart';
 
 class WordsScreen extends StatefulWidget {
   final int selectIndexId;
-  WordsScreen(this.selectIndexId,this.favoriteDao);
-  final FavoriteDao favoriteDao;
+  WordsScreen(this.selectIndexId);
 
 
 
@@ -24,16 +23,15 @@ class _WordsScreenState extends State<WordsScreen> {
 
   _WordsScreenState(this.selectIndexId);
 
-  // ignore: missing_return
   Widget routerPage(int selectIndexId){
     switch(selectIndexId){
       case 0: return WordsPage();
       case 1: return SearchWords();
-      case 2: return FavoriteWords(favoriteDao);
+      case 2: return FavoriteWords();
       case 3: return AboutUs();
 
       break;
-      default :return WordsScreen(selectIndexId, favoriteDao);
+      default :return WordsScreen(selectIndexId);
     }
   }
   @override
