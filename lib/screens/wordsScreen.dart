@@ -4,13 +4,13 @@ import 'package:engtrhukuksozluk/screens/aboutus.dart';
 import 'package:engtrhukuksozluk/screens/wordsPage.dart';
 import 'package:engtrhukuksozluk/screens/searchWords.dart';
 import 'package:engtrhukuksozluk/screens/favoriteWords.dart';
+import 'package:animations/animations.dart';
 
 class WordsScreen extends StatefulWidget {
   final int selectIndexId;
   WordsScreen(this.selectIndexId);
 
-
-
+  
   @override
   _WordsScreenState createState() => _WordsScreenState(selectIndexId);
 }
@@ -44,7 +44,24 @@ class _WordsScreenState extends State<WordsScreen> {
         ),
         backgroundColor: Color(0XFF2A2E43),
       ),
-      body: routerPage(selectIndexId),
+      //routerPage(selectIndexId), 
+      body: PageTransitionSwitcher(
+          transitionBuilder: (
+              Widget child,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+          ){
+            return FadeThroughTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              child: child,
+            );
+          },
+        child: routerPage(selectIndexId),
+
+
+      ),
+      
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey,
         items:  <BottomNavigationBarItem>[

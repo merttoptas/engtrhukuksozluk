@@ -40,7 +40,10 @@ class _WordsPageState extends State<WordsPage> {
 
     await favoriteDao.insertFavoriteWord(favorite);
     Scaffold.of(context).showSnackBar(SnackBar(content:
-    const Text('Favorilerime Eklendi'),
+    const Text('Favorilerime Eklendi',),
+      behavior: SnackBarBehavior.floating,
+      elevation: 2.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
       duration: Duration(milliseconds: 1500),)
     );
   }
@@ -86,7 +89,11 @@ class _WordsPageState extends State<WordsPage> {
                           if(favExistsList.toList().isNotEmpty){
                              Scaffold.of(context).showSnackBar(SnackBar(content:
                              const Text('Favorilerimde Zaten Var'),
-                               duration: Duration(milliseconds: 1500),)
+                               duration: Duration(milliseconds: 1500),
+                               behavior: SnackBarBehavior.floating,
+                               elevation: 2.0,
+                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+                             ),
                              );
                            }else{
                              insertWord(patient);

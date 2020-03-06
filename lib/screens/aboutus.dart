@@ -4,8 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:engtrhukuksozluk/utils/const.dart';
 import 'package:engtrhukuksozluk/widgets/listTileCard.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:engtrhukuksozluk/utils/const.dart';
-
 class AboutUs extends StatefulWidget {
 
   @override
@@ -69,39 +67,41 @@ class _AboutUsState extends State<AboutUs> {
                   left: 25.0,
                   right: 25.0,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
+                      Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
                       SizedBox(height: 15.0,),
                       Text(Constants.aboutText,
                         textAlign: TextAlign.justify,
-                        style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
+                        style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
                       ),
-                      Container(
-                        margin: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                      ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            ListTileCard(text: Constants.webSiteText,
-                              icon: Icon(Icons.home, color: Color(0XFF2A2E43), size: 20.0,),
-                              onPressed: (){
-                                _launchURL(Constants.webSite);
-                              },),
-                            ListTileCard(text: Constants.githubText,
-                              icon: Icon(Icons.star, color: Color(0XFF2A2E43), size: 20.0,),
-                              onPressed: (){
-                                _launchURL(Constants.github);
-                              },),
-                            ListTileCard(text: Constants.mailText,
-                              icon: Icon(Icons.alternate_email, color:Color(0XFF2A2E43), size: 20.0,),
-                              onPressed: (){
-                                _launchURL(Constants.mail);
-                              },
-                            ),
-                      ],
+                      SizedBox(height: 10.0,),
+                      Padding(
+                        padding: const EdgeInsets.only(top:10.0, left: 24.0,right: 24.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          elevation: 5.0,
+                          child: Column(
+                            children: <Widget>[
+                              ListTileCard(text: Constants.webSiteText,
+                                icon: Icon(Icons.home, color: Colors.white, size: 20.0,),
+                                onPressed: (){
+                                  _launchURL(Constants.webSite);
+                                },),
+                              ListTileCard(text: Constants.githubText,
+                                icon: Icon(Icons.star, color: Colors.white, size: 20.0,),
+                                onPressed: (){
+                                  _launchURL(Constants.github);
+                                },),
+                              ListTileCard(text: Constants.mailText,
+                                icon: Icon(Icons.alternate_email, color:Colors.white, size: 20.0,),
+                                onPressed: (){
+                                  _launchURL(Constants.mail);
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

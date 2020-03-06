@@ -42,7 +42,6 @@ class _FavoriteWordsState extends State<FavoriteWords> {
             child: StreamBuilder<List<Favorite>>(
                 stream: favoriteDao?.findAllFavoriteStream(),
                  builder: (_, snapshot){
-
                   if(!snapshot.hasData){
                     return Container();
                   }else
@@ -115,7 +114,19 @@ class ListFavorite extends StatelessWidget{
       ),
       onDismissed: (_)async{
         await dao.deleteFavWord(favorite);
-        Scaffold.of(context).showSnackBar(SnackBar(content: const Text('Başarıyla Silindi'), duration: Duration(milliseconds: 1500),));
+        Scaffold.of(context).showSnackBar(
+            SnackBar(content: const Text('Başarıyla Silindi'),
+              duration: Duration(milliseconds: 1500),
+              action: SnackBarAction(
+                label: 'Geri Al',
+                onPressed: (){
+                  dao.insertFavoriteWord(favorite);
+                },
+              ),
+              behavior: SnackBarBehavior.floating,
+              elevation: 2.0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+            ),);
       },
     );
   }

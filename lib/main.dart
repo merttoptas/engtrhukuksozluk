@@ -1,5 +1,6 @@
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/data/database/database.dart';
+import 'package:engtrhukuksozluk/screens/splashScreen.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/screens/homeScreen.dart';
@@ -34,8 +35,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.openSans().fontFamily,
      ),
       debugShowCheckedModeBanner: false,
-
-      home:  HomeScreen(favoriteDao),
+      home:  SplashScreen(favoriteDao),
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
 
@@ -44,6 +44,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-

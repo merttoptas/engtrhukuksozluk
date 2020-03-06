@@ -91,7 +91,6 @@ class _SearchWordsState extends State<SearchWords> {
                 itemBuilder: (BuildContext ctx, int index){
                   AlgoliaObjectSnapshot snap = _results[index];
                   return ListTile(
-
                     contentPadding:EdgeInsets.only(left: 6.0,right: 6.0),
                     title:  Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,7 +111,7 @@ class _SearchWordsState extends State<SearchWords> {
                                     children: <Widget>[
                                       Padding(
                                         padding: EdgeInsets.only(top: 5.0, left: 10.0, bottom: 3.0),
-                                        child: Text(snap.data['english'], style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),),
+                                        child: Text(snap.data['english'], style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
                                       ),
                                     ],
                                   ),
@@ -121,7 +120,7 @@ class _SearchWordsState extends State<SearchWords> {
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.only(left: 10.0,bottom: 10.0),
-                                        child: Text(snap.data['turkish'], style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),),
+                                        child: Text(snap.data['turkish'], style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),),
                                       ),
                                     ],
                                   ),
