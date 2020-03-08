@@ -3,7 +3,6 @@ import 'package:engtrhukuksozluk/data/database/database.dart';
 import 'package:engtrhukuksozluk/screens/splashScreen.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/screens/homeScreen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:google_fonts/google_fonts.dart';
 

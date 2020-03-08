@@ -13,6 +13,7 @@ class Constants{
 
   static String applicationId = "WZFSBELAA6";
   static String apiKey = '4c14584cc213e038c3cd6a24650bda91';
+
   static String aboutText = 'Hukuk Sözlük, bir hukuk fakültesi öğrencisi tarafından geliştirilmiştir. '
       'Hukuk fakültesi öğrencileri ve avukatlar için yardımcı olacak niteliktedir. '
       'Sözlük, hukuk terminolojisini öğrenmek, öğretmek ve geliştirmek amacı güder.'

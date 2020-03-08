@@ -11,6 +11,7 @@ class SearchWords extends StatefulWidget {
 }
 
 class _SearchWordsState extends State<SearchWords> {
+
   TextEditingController _searchText = TextEditingController(text: "");
 
   List<AlgoliaObjectSnapshot> _results = [];
@@ -28,7 +29,10 @@ class _SearchWordsState extends State<SearchWords> {
     );
 
     AlgoliaQuery query = algolia.instance.index('words');
-    query = query.search(_searchText.text);
+
+    if(_searchText.text !=null){
+      query = query.search(_searchText.text);
+    }
 
     _results =(await query.getObjects()).hits;
     setState(() {
