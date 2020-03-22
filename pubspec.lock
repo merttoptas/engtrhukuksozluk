@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  auto_animated:
+    dependency: "direct main"
+    description:
+      name: auto_animated
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -98,14 +105,14 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.4"
+    version: "1.8.0"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.0"
+    version: "4.5.2"
   built_collection:
     dependency: transitive
     description:
@@ -140,7 +147,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.4"
+    version: "0.13.4+1"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -154,7 +161,7 @@ packages:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.1+1"
   code_builder:
     dependency: transitive
     description:
@@ -286,13 +293,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_staggered_animations:
-    dependency: "direct main"
-    description:
-      name: flutter_staggered_animations
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -303,6 +303,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_widgets:
+    dependency: transitive
+    description:
+      name: flutter_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.11"
   glob:
     dependency: transitive
     description:
@@ -587,7 +594,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.2+1"
   stack_trace:
     dependency: transitive
     description:
@@ -699,7 +706,7 @@ packages:
       name: watcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.7+13"
+    version: "0.9.7+14"
   web_socket_channel:
     dependency: transitive
     description:
@@ -723,4 +730,4 @@ packages:
     version: "2.2.0"
 sdks:
   dart: ">=2.7.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.4 <2.0.0"
+  flutter: ">=1.12.13+hotfix.5 <2.0.0"

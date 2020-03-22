@@ -1,6 +1,6 @@
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/data/database/database.dart';
-import 'package:engtrhukuksozluk/screens/splashScreen.dart';
+import 'package:engtrhukuksozluk/screens/splash_page.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

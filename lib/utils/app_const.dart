@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-class Constants{
+
+class AppConstant{
 
   //Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
@@ -26,7 +27,7 @@ class Constants{
   static String github = 'https://github.com/merttoptas';
   static String webSiteText = 'merttoptas.com';
   static String githubText = 'GitHub: merttoptas';
-  static String mailText = 'merttoptas34@gmail.com';
+  static String mailText = 'E-Posta Gönder';
 
 
 

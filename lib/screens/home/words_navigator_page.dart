@@ -1,9 +1,9 @@
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/screens/aboutus.dart';
-import 'package:engtrhukuksozluk/screens/wordsPage.dart';
-import 'package:engtrhukuksozluk/screens/searchWords.dart';
-import 'package:engtrhukuksozluk/screens/favoriteWords.dart';
+import 'package:engtrhukuksozluk/screens/aboutus_page.dart';
+import 'package:engtrhukuksozluk/screens/words_page.dart';
+import 'package:engtrhukuksozluk/screens/search_page.dart';
+import 'package:engtrhukuksozluk/screens/favorite_page.dart';
 import 'package:animations/animations.dart';
 
 class WordsScreen extends StatefulWidget {
@@ -37,13 +37,7 @@ class _WordsScreenState extends State<WordsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hukuk Sözlüğü',
-          style: TextStyle(
-              fontWeight: FontWeight.w600),
-        ),
-        backgroundColor: Color(0XFF2A2E43),
-      ),
+
       //routerPage(selectIndexId), 
       body: PageTransitionSwitcher(
           transitionBuilder: (

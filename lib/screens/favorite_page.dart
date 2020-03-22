@@ -36,6 +36,23 @@ class _FavoriteWordsState extends State<FavoriteWords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:  AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios, color: Color(0xFF0A151F),
+          ),),
+        elevation: 0,
+        backgroundColor: Color(0xFFF8F8F8),
+        title: Text(
+          'Favorilerim',
+          style: TextStyle(color: Color(0xFF0A151F)),
+        ),
+
+        brightness: Brightness.light,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -57,7 +74,6 @@ class _FavoriteWordsState extends State<FavoriteWords> {
                         }
                     );
                   }
-
             }),
           ),
         ],
@@ -70,23 +86,30 @@ class ListFavorite extends StatelessWidget{
   const ListFavorite({Key key, @required this.favorite, @required this.dao});
   final FavoriteDao dao;
   final Favorite favorite;
+
+
   @override
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key('${favorite.hashCode}'),
-      background: Container(
-        child: Icon(Icons.delete, color: Colors.white,),
-          color: Colors.red),
+      background: Padding(
+        padding: const EdgeInsets.only(left: 16,right: 16.0,bottom: 8,top: 8),
+        child: Container(
+          child: Icon(Icons.delete, color: Colors.white,),
+            color: Colors.red),
+      ),
       direction: DismissDirection.endToStart,
       child: Padding(
-        padding: EdgeInsets.only(left: 3.0, right: 3.0),
-        child:  Card(
-          elevation: 2.0,
+        padding: const EdgeInsets.only(left: 16,right: 16.0,bottom: 8,top: 8),
+        child:  Material(
+          color: Colors.white,
+          elevation: 4,
+          shadowColor: Colors.black26,
+          borderRadius: BorderRadius.circular(6),
           child: Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6.0),
-              color: Colors.white,
             ),
             child: Column(
               children: <Widget>[

@@ -1,5 +1,5 @@
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/screens/homeScreen.dart';
+import 'package:engtrhukuksozluk/screens/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:shimmer/shimmer.dart';

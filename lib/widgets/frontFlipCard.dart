@@ -30,19 +30,25 @@ class frontFlipCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
-                          child: Text(text,
-                            style: TextStyle(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.w900,letterSpacing: 1.2
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Text(text,
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w900,letterSpacing: 1.2
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 10.0),

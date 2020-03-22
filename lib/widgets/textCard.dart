@@ -9,10 +9,11 @@ class textCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       padding: EdgeInsets.only(right: 30.0, left: 30.0, top: 30.0,bottom: 30.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
         color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Container(
         child:  Row(

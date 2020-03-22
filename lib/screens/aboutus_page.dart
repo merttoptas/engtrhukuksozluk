@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:engtrhukuksozluk/utils/const.dart';
+import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/widgets/listTileCard.dart';
 import 'package:google_fonts/google_fonts.dart';
 class AboutUs extends StatefulWidget {
@@ -42,7 +42,7 @@ class _AboutUsState extends State<AboutUs> {
                         topLeft: Radius.circular(45.0),
                         topRight: Radius.circular(45.0),
                       ),
-                      color: Colors.white,
+                      color: Colors.white ,
                     ),
                     height: MediaQuery.of(context).size.height -100.0,
                     width: MediaQuery.of(context).size.width,
@@ -68,11 +68,11 @@ class _AboutUsState extends State<AboutUs> {
                   right: 25.0,
                   child: Column(
                     children: <Widget>[
-                      Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
+                      Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
                       SizedBox(height: 15.0,),
-                      Text(Constants.aboutText,
+                      Text(AppConstant.aboutText,
                         textAlign: TextAlign.justify,
-                        style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
+                        style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 12.0, color: Colors.black,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
                       ),
                       SizedBox(height: 10.0,),
                       Padding(
@@ -84,20 +84,20 @@ class _AboutUsState extends State<AboutUs> {
                           elevation: 5.0,
                           child: Column(
                             children: <Widget>[
-                              ListTileCard(text: Constants.webSiteText,
+                              ListTileCard(text: AppConstant.webSiteText,
                                 icon: Icon(Icons.home, color: Colors.white, size: 20.0,),
                                 onPressed: (){
-                                  _launchURL(Constants.webSite);
+                                  _launchURL(AppConstant.webSite);
                                 },),
-                              ListTileCard(text: Constants.githubText,
+                              ListTileCard(text: AppConstant.githubText,
                                 icon: Icon(Icons.star, color: Colors.white, size: 20.0,),
                                 onPressed: (){
-                                  _launchURL(Constants.github);
+                                  _launchURL(AppConstant.github);
                                 },),
-                              ListTileCard(text: Constants.mailText,
+                              ListTileCard(text: AppConstant.mailText,
                                 icon: Icon(Icons.alternate_email, color:Colors.white, size: 20.0,),
                                 onPressed: (){
-                                  _launchURL(Constants.mail);
+                                  _launchURL(AppConstant.mail);
                                 },
                               ),
                             ],
