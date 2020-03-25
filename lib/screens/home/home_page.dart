@@ -1,33 +1,38 @@
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/screens/words_learn_page.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/widgets/homeContainer.dart';
-import 'package:engtrhukuksozluk/screens/home/words_navigator_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/widgets/homeContainer.dart';
+import 'package:engtrhukuksozluk/screens/words_learn_page.dart';
+import 'package:engtrhukuksozluk/screens/home/words_navigator_page.dart';
 
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen({Key key, this.favoriteDao}): super(key:key);
 
-  int selectIndexId;
   final FavoriteDao favoriteDao;
-  HomeScreen(this.favoriteDao);
 
   @override
   Widget build(BuildContext context) {
+    int selectIndexId;
     return MaterialApp(
       home: Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 20.0, top:50.0,right: 20.0),
-              child: Text('Hukuk Sözlüğü', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),),
+            Flexible(
+              child: Container(
+                padding: EdgeInsets.only(left: 20.0, top:50.0,right: 20.0),
+                child: Text(AppConstant.homeTitle, style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 20.0,top: 5.0, right: 20.0),
-              child: Text('İngilizce ve Türkçe olarak yüzlerce hukuk kelimesi bir arada.',
-                style: GoogleFonts.openSans(textStyle:TextStyle(fontSize: 19.0, color: Colors.grey, fontWeight: FontWeight.bold) ),),
+              child: Text(AppConstant.homeSubtitle,
+                style: GoogleFonts.openSans(textStyle:TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold) ),),
             ),
             SizedBox(height: 30.0,),
             GestureDetector(
@@ -36,20 +41,19 @@ class HomeScreen extends StatelessWidget {
                 child:   FittedBox(
                   child: InkWell(
                     onTap: (){
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => WordsLearn()));
-
+                      Navigator.push(context,
+                          CupertinoPageRoute(builder: (context) => WordsLearn()));
                     },
                     child: HomeContainerWidget(
                       /*
                        startColour: Color(0XFFFF416C),
                       endColour: Color(0xFF8A52E9),
                        */
-
                       startColour: Color(0XFF2A2E43),
                       endColour: Color(0XFF376DF6),
-                      titleText: 'Kelime Öğrenme   ',
-                      subtitleText: 'İngilizce ve Türkçe kelimelerle \nalıştırma yapın',
-                      assetImage: AssetImage('images/home_learn_word.png'),
+                      titleText: AppConstant.learnContainer,
+                      subtitleText: AppConstant.learnContainerSubTitle,
+                      assetImage: AssetImage(AppConstant.svgHomeLearn),
                     ),
                   ),
                 ),
@@ -63,9 +67,8 @@ class HomeScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: (){
                         selectIndexId =1;
-
                         Navigator.push(context,
-                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
                         },
                       child: HomeContainerWidget(
                         /*
@@ -74,9 +77,9 @@ class HomeScreen extends StatelessWidget {
                          */
                         startColour: Color(0XFF2A2E43),
                         endColour: Color(0XFF376DF6),
-                        titleText: 'Kelime Arama      ',
-                        subtitleText: 'Yüzlerce İngilizce - Türkçe \nhukuk kelimesini bulabilirsin',
-                        assetImage: AssetImage('images/transparen_bool.png'),
+                        titleText: AppConstant.searchContainer,
+                        subtitleText: AppConstant.searchContainerSubTitle,
+                        assetImage: AssetImage(AppConstant.svgSearch),
                       ),
                     ),
                   ),
@@ -91,10 +94,8 @@ class HomeScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: (){
                         selectIndexId = 2;
-
                         Navigator.push(context,
-                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId)));
-
+                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
                       },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF2A2E43),
@@ -103,10 +104,9 @@ class HomeScreen extends StatelessWidget {
                         startColour: Color(0XFFFFC92B),
                         endColour: Color(0XFFFF416C),
                          */
-
-                        titleText: 'Favorilerim            ',
-                        subtitleText: 'Favorilerine eklediğin  \nkelimeleri burada bulabilirsin',
-                        assetImage: AssetImage('images/home_ic_biology.png'),
+                        titleText: AppConstant.favoriteContainer,
+                        subtitleText: AppConstant.favoriteContainerSubTitle,
+                        assetImage: AssetImage(AppConstant.svgFavorite),
                       ),
                     ),
                   ),
@@ -122,14 +122,14 @@ class HomeScreen extends StatelessWidget {
                       onTap: (){
                         selectIndexId = 3;
                         Navigator.push(context,
-                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId)));
+                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
                       },
                       child: HomeContainerWidget(
                         startColour: Color(0XFF2A2E43),
                         endColour: Color(0XFF376DF6),
-                        titleText: 'Hakkımızda         ',
-                        subtitleText: 'Uygulama hakkında bilgiler \nve daha fazlası',
-                        assetImage: AssetImage('images/aboutus.png'),
+                        titleText: AppConstant.aboutContainer,
+                        subtitleText: AppConstant.aboutContainerSubtitle,
+                        assetImage: AssetImage(AppConstant.svgAbout),
                       ),
                     ),
                   ),

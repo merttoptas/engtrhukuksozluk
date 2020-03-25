@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// ignore: must_be_immutable
 class HomeContainerWidget extends StatelessWidget {
   HomeContainerWidget({this.startColour, this.endColour,this.titleText, this.subtitleText, this.assetImage});
-  Color startColour, endColour;
-  String titleText, subtitleText;
-  AssetImage assetImage;
+  final Color startColour, endColour;
+  final String titleText, subtitleText;
+  final AssetImage assetImage;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class HomeContainerWidget extends StatelessWidget {
 
             ),
             Padding(
-              padding: const EdgeInsets.only( right: 20.0),
+              padding: const EdgeInsets.only(right: 20.0),
               child: Container(
                 width:180,
                 foregroundDecoration: BoxDecoration(

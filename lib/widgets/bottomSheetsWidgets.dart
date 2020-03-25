@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-
-
 class BottomSheetWidget {
-  void settingModalBottomSheet({BuildContext context,String word, String title, Function onTapFav, Function onTapVoice}){
+  void settingModalBottomSheet({BuildContext context,String word, String title, Function onTapFav, Function onTapVoice, Function onPressed}){
     showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
         builder: (context) {
           return Container(
-            height: MediaQuery.of(context).size.height * .5,
-            child: Container(child: _buildDetailItem(word: word,title: title,onTapVoice: onTapVoice, onTapFav: onTapFav ), decoration: _bottomSheetBoxDecoration),
+            height: MediaQuery.of(context).size.height * 0.45,
+            child: Container(child: _buildDetailItem(word: word,title: title, onTapVoice: onTapVoice, onTapFav: onTapFav, onPressed: onPressed ), decoration: _bottomSheetBoxDecoration),
           );
         });
 }
 
-  Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav, Function onTapVoice}) => Padding(
+  Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav, Function onTapVoice, Function onPressed}) => Padding(
     padding: const EdgeInsets.only(top: 32.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         new RawMaterialButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: onPressed,
           child: new Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
@@ -81,6 +77,7 @@ class BottomSheetWidget {
                   ),
                 ),
               ),
+
             ),
           ],
         ),
@@ -100,10 +97,11 @@ class BottomSheetWidget {
     ),
   );
 
-  Widget _buildDetailItem({String title, String word, Function onTapFav, Function onTapVoice}) => Column(
+  Widget _buildDetailItem({String title, String word, Function onTapFav, Function onTapVoice, Function onPressed}) => Column(
     children: <Widget>[
       _pullDown(Colors.black45),
-      _itemTopMenu(heading: title, onTapFav: onTapFav, onTapVoice: onTapVoice),
+      _itemTopMenu(heading: title, onTapFav: onTapFav, onTapVoice: onTapVoice, onPressed: onPressed),
+      Divider(),
       Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -139,7 +137,7 @@ class BottomSheetWidget {
                                 color: Colors.black45,
                               ),
                               children: <TextSpan>[
-                                TextSpan(text: word, style: TextStyle(fontWeight: FontWeight.bold)),
+                                TextSpan(text: word ,style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),),
                               ],
                             ),
                           ),

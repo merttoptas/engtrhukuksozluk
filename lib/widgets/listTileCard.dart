@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// ignore: must_be_immutable
 class ListTileCard extends StatelessWidget {
   ListTileCard({this.onPressed,this.text,this.icon});
-  Function onPressed;
-  String text;
-  Icon icon;
+  final Function onPressed;
+  final String text;
+  final Icon icon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class ListTileCard extends StatelessWidget {
                     backgroundColor: Color(0XFF2A2E43), radius:14, child:icon,),
                   title:Text(text, style: GoogleFonts.openSans(textStyle:
                         TextStyle(fontSize: 12.0,fontWeight: FontWeight.w500,
-                  color: Colors.black,letterSpacing: 1.2),
+                            color: Colors.black,letterSpacing: 1.2),
                   ),
                   ),
                   ),

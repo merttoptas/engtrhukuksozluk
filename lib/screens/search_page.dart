@@ -1,14 +1,17 @@
-import 'package:algolia/algolia.dart';
-import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:algolia/algolia.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/model/Favorite.dart';
+import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/data/database/database.dart';
-import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
 
 class SearchWords extends StatefulWidget {
+ const SearchWords({Key key}): super(key: key);
 
   @override
   _SearchWordsState createState() => _SearchWordsState();
@@ -17,14 +20,16 @@ class SearchWords extends StatefulWidget {
 class _SearchWordsState extends State<SearchWords> {
 
   TextEditingController _searchText = TextEditingController(text: "");
+  FocusNode _searchNode = FocusNode();
 
   List<AlgoliaObjectSnapshot> _results = [];
+  List<Favorite> favoriteList = [];
+  List<Favorite> favExistsList = [];
+
+  FavoriteDatabase favoriteDatabase;
+  FavoriteDao favoriteDao;
 
   bool _searching = false;
-
-
-
-  FocusNode _searchNode = FocusNode();
 
   Future _search(String searchText) async{
     setState(() {
@@ -60,18 +65,9 @@ class _SearchWordsState extends State<SearchWords> {
 
     }
 
-
-
     return _results;
   }
-  bool isLiked=false;
-
-  FavoriteDatabase favoriteDatabase;
-  FavoriteDao favoriteDao;
-
-  List<Favorite> favoriteList = [];
-  List<Favorite> favExistsList = [];
-  builder() async{
+  _builder() async{
     favoriteDatabase = await $FloorFavoriteDatabase.databaseBuilder("favorite.db").build();
     setState(() {
       favoriteDao = favoriteDatabase.favoriteDao;
@@ -82,7 +78,12 @@ class _SearchWordsState extends State<SearchWords> {
   void initState() {
     super.initState();
     _searchNode.addListener(_listener);
-    builder();
+    _builder();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _searchNode.addListener(_listener);
   }
 
   void _listener(){
@@ -97,7 +98,7 @@ class _SearchWordsState extends State<SearchWords> {
       });
     }
   }
-  Future wordExists(Favorite patient, int favId )async{
+  Future _wordExists(Favorite patient, int favId )async{
 
     await favoriteDao.getAllFavoriteWords().then((list){favoriteList.addAll(list);});
     favoriteList.toList();
@@ -106,7 +107,7 @@ class _SearchWordsState extends State<SearchWords> {
 
     if(favExistsList.toList().isNotEmpty){
       Scaffold.of(context).showSnackBar(SnackBar(content:
-      const Text('Favorilerimde Zaten Var'),
+       Text(AppConstant.favSnackBarNegative),
         duration: Duration(milliseconds: 1500),
         behavior: SnackBarBehavior.floating,
         elevation: 2.0,
@@ -114,14 +115,14 @@ class _SearchWordsState extends State<SearchWords> {
       ),
       );
     }else{
-      insertWord(patient);
+      _insertWord(patient);
     }
 
   }
 
-  Future insertWord(Favorite favorite) async {
+  Future _insertWord(Favorite favorite) async {
     Scaffold.of(context).showSnackBar(SnackBar(content:
-      const Text('Favorilerime Eklendi',),
+       Text(AppConstant.favSnackBarPositive),
       behavior: SnackBarBehavior.floating,
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
@@ -145,30 +146,39 @@ class _SearchWordsState extends State<SearchWords> {
           elevation: 0,
           backgroundColor: Color(0xFFF8F8F8),
           title: Text(
-            'Kelime Arama',
+            AppConstant.hintSearch,
             style: TextStyle(color: Color(0xFF0A151F)),
           ),
-
     brightness: Brightness.light,
     ),
       body: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(left: 16.0, right:16.0, top: 10.0,bottom: 5.0),
-            child: TextField(onTap: (){
-            },
-              controller: _searchText,
-              onChanged: _search,
-              focusNode: _searchNode,
-              decoration: InputDecoration(
-                hintText: 'Arama',
-                hoverColor: Color(0xff5563ff),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0XFF2A2E43)),
-                ),
-                prefixIcon: Icon(Icons.search,color: Color(0XFF2A2E43),),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(6.0)),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.0),
+                  border: Border.all( color:Color(0XFF2A2E43)),
+                  boxShadow:[
+                    BoxShadow(color: Colors.white.withOpacity(0.1), offset: Offset(0, 0), blurRadius: 3, spreadRadius: 1)
+                  ]
+              ),
+              child: TextField(onTap: (){
+              },
+                controller: _searchText,
+                onChanged: _search,
+                focusNode: _searchNode,
+                decoration: InputDecoration(
+                  hintText: AppConstant.hintSearch,
+                  hoverColor: Color(0xff5563ff),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0XFF2A2E43)),
+                  ),
+                  prefixIcon: Icon(Icons.search,color: Color(0XFF2A2E43),),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                  ),
                 ),
               ),
             ),
@@ -179,23 +189,20 @@ class _SearchWordsState extends State<SearchWords> {
               child: _searching == true
                   ? Center(
                 child: FadeAnimatedTextKit(
-                  text: ['Aranıyor bekleyin..'],
+                  text: [AppConstant.hintSearching],
                   textStyle: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
                   textAlign: TextAlign.start,
                 ),
               )
                   : _results.length ==0
                   ? Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(left:20.0, right: 20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('images/board.png',),
-                      SizedBox(height: 10.0,),
-                      Text('Henüz arama yapılmadı..', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400),)
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(AppConstant.svgBoard,height: 250,width: 250,),
+                    SizedBox(height: 10.0,),
+                    Text(AppConstant.defaultSearch, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),)
+                  ],
                 ),
               )
                   : ListView.builder(
@@ -222,9 +229,8 @@ class _SearchWordsState extends State<SearchWords> {
                                 int favId = snap.data['id'];
                                 var patient = Favorite(turkish: turkish, english: english, favId: favId);
 
-                                wordExists(patient, favId);
+                                _wordExists(patient, favId);
                                 return !isLiked;
-
                               }
                             );
 
@@ -240,7 +246,7 @@ class _SearchWordsState extends State<SearchWords> {
                                 mainAxisAlignment: MainAxisAlignment.start  ,
                                 children: <Widget>[
                                   Text(
-                                  snap.data['english'],
+                                    snap.data['english'],
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                                   ),
                                 ],

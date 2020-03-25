@@ -1,42 +1,49 @@
-import 'package:engtrhukuksozluk/data/database/database.dart';
-import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/widgets/wordsRow.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:engtrhukuksozluk/model/Words.dart';
 import 'package:engtrhukuksozluk/service/cloud_service.dart';
+import 'package:engtrhukuksozluk/data/database/database.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
+import 'package:engtrhukuksozluk/widgets/wordsRow.dart';
+import 'package:engtrhukuksozluk/model/Words.dart';
+
+
 class WordsPage extends StatefulWidget {
+  const WordsPage({Key key}): super(key:key);
   @override
   _WordsPageState createState() => _WordsPageState();
 }
 
 class _WordsPageState extends State<WordsPage> {
-
   Favorite favorite;
   FavoriteDao favoriteDao;
   QuerySnapshot cache;
   FavoriteDatabase favoriteDatabase;
   List<Favorite> favoriteList = [];
   List<Favorite> favExistsList = [];
+  GetWordsCloud _getWordsCloud = GetWordsCloud();
+
 
   @override
   void initState() {
     super.initState();
-    GetWordsCloud().getAllWords();
-    builder();
+    _getWordsCloud.getAllWords();
+    _builder();
   }
 
-  builder() async{
+  _builder() async{
     favoriteDatabase = await $FloorFavoriteDatabase.databaseBuilder("favorite.db").build();
     setState(() {
       favoriteDao = favoriteDatabase.favoriteDao;
     });
   }
 
-  Future wordExists(Favorite patient, int favId )async{
+
+  Future wordExists(Favorite patient, int favId ) async{
 
     await favoriteDao.getAllFavoriteWords().then((list){favoriteList.addAll(list);});
     favoriteList.toList();
@@ -45,7 +52,7 @@ class _WordsPageState extends State<WordsPage> {
 
     if(favExistsList.toList().isNotEmpty){
       Scaffold.of(context).showSnackBar(SnackBar(content:
-      const Text('Favorilerimde Zaten Var'),
+      Text(AppConstant.favSnackBarPositive),
         duration: Duration(milliseconds: 1500),
         behavior: SnackBarBehavior.floating,
         elevation: 2.0,
@@ -57,14 +64,16 @@ class _WordsPageState extends State<WordsPage> {
     }
 
   }
+
   Future insertWord(Favorite favorite)async{
     await favoriteDao.insertFavoriteWord(favorite);
     Scaffold.of(context).showSnackBar(SnackBar(content:
-    const Text('Favorilerime Eklendi',),
+      Text(AppConstant.favSnackBarPositive),
+      duration: Duration(milliseconds: 1500),
       behavior: SnackBarBehavior.floating,
       elevation: 2.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-      duration: Duration(milliseconds: 1500),)
+    ),
     );
   }
 
@@ -84,7 +93,7 @@ class _WordsPageState extends State<WordsPage> {
         elevation: 0,
         backgroundColor: Color(0xFFF8F8F8),
         title: Text(
-          'Hukuk Kelimeleri',
+          AppConstant.wordsPage,
           style: TextStyle(color: Color(0xFF0A151F)),
         ),
 
@@ -97,7 +106,7 @@ class _WordsPageState extends State<WordsPage> {
           Expanded(
             flex: 1,
             child: FutureBuilder<List<Words>>(
-              future: GetWordsCloud().getAllWords(),
+              future: _getWordsCloud.getAllWords(),
               builder: (context, wordsList){
                 if(!wordsList.hasData){
                   return Center(
@@ -111,12 +120,13 @@ class _WordsPageState extends State<WordsPage> {
                   return ListView.builder(
                     itemBuilder: (context, index){
                       var currentWords = allWordsList[index];
-                      return wordsRowWidget(
+                      return WordsRowWidget(
                         onTap: ()async{
                           BottomSheetWidget().settingModalBottomSheet(context: context,
                               word: currentWords.turkish,
                               title: currentWords.english,
                               onTapVoice: (){print('voice');},
+                              onPressed: (){Navigator.pop(context);},
                               onTapFav: (bool isLiked) async {
 
                                 String english = currentWords.english;
@@ -148,10 +158,11 @@ class _WordsPageState extends State<WordsPage> {
               },
             ),
           ),
-
         ],
       ),
     );
   }
+
 }
+
 

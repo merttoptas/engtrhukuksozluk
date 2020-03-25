@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-class textCard extends StatelessWidget {
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+
+class TextCard extends StatelessWidget {
+  TextCard({this.valueNotifier1, this.valueNotifier2});
 
   final ValueNotifier valueNotifier1;
   final ValueNotifier valueNotifier2;
-
-  textCard({this.valueNotifier1, this.valueNotifier2});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,9 @@ class textCard extends StatelessWidget {
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-          TitleValueWidget(title: 'Öğrenilen', valueNotifier: valueNotifier1),
+          TitleValueWidget(title: AppConstant.learnWord, valueNotifier: valueNotifier1),
           Spacer(),
-          TitleValueWidget(title: 'Bilinmeyen', valueNotifier: valueNotifier2),
+          TitleValueWidget(title: AppConstant.notLearnWord, valueNotifier: valueNotifier2),
         ],),
 
       )

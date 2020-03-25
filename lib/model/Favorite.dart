@@ -14,8 +14,6 @@ class Favorite {
   @ColumnInfo(name: "favId")
   final int favId;
 
-
-
   Favorite({this.id,this.turkish, this.english,this.favId});
 
   @override

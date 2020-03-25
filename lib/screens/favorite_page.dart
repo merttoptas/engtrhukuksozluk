@@ -1,11 +1,9 @@
-import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/widgets/wordsRow.dart';
+
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/data/database/database.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/data/database/database.dart';
-import 'package:like_button/like_button.dart';
 
 class FavoriteWords extends StatefulWidget {
 
@@ -47,7 +45,7 @@ class _FavoriteWordsState extends State<FavoriteWords> {
         elevation: 0,
         backgroundColor: Color(0xFFF8F8F8),
         title: Text(
-          'Favorilerim',
+          AppConstant.appBarFavorite,
           style: TextStyle(color: Color(0xFF0A151F)),
         ),
 
@@ -138,10 +136,10 @@ class ListFavorite extends StatelessWidget{
       onDismissed: (_)async{
         await dao.deleteFavWord(favorite);
         Scaffold.of(context).showSnackBar(
-            SnackBar(content: const Text('Başarıyla Silindi'),
+            SnackBar(content:  Text(AppConstant.snackBarDelete),
               duration: Duration(milliseconds: 1500),
               action: SnackBarAction(
-                label: 'Geri Al',
+                label: AppConstant.backup,
                 onPressed: (){
                   dao.insertFavoriteWord(favorite);
                 },

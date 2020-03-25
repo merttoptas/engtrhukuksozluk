@@ -1,16 +1,17 @@
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:flutter/material.dart';
-import 'package:engtrhukuksozluk/screens/aboutus_page.dart';
-import 'package:engtrhukuksozluk/screens/words_page.dart';
-import 'package:engtrhukuksozluk/screens/search_page.dart';
-import 'package:engtrhukuksozluk/screens/favorite_page.dart';
 import 'package:animations/animations.dart';
 
-class WordsScreen extends StatefulWidget {
-  final int selectIndexId;
-  WordsScreen(this.selectIndexId);
+import 'package:engtrhukuksozluk/screens/aboutus_page.dart';
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/screens/favorite_page.dart';
+import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/screens/search_page.dart';
+import 'package:engtrhukuksozluk/screens/words_page.dart';
 
-  
+class WordsScreen extends StatefulWidget {
+  const WordsScreen({Key key,this.selectIndexId}): super(key: key);
+  final int selectIndexId;
+
   @override
   _WordsScreenState createState() => _WordsScreenState(selectIndexId);
 }
@@ -19,8 +20,6 @@ class _WordsScreenState extends State<WordsScreen> {
   int selectIndexId;
   int currentIndex  = 0;
   FavoriteDao favoriteDao;
-
-
   _WordsScreenState(this.selectIndexId);
 
   Widget routerPage(int selectIndexId){
@@ -31,7 +30,7 @@ class _WordsScreenState extends State<WordsScreen> {
       case 3: return AboutUs();
 
       break;
-      default :return WordsScreen(selectIndexId);
+      default :return WordsScreen(selectIndexId: selectIndexId,);
     }
   }
   @override
@@ -53,7 +52,6 @@ class _WordsScreenState extends State<WordsScreen> {
           },
         child: routerPage(selectIndexId),
 
-
       ),
       
       bottomNavigationBar: BottomNavigationBar(
@@ -61,21 +59,20 @@ class _WordsScreenState extends State<WordsScreen> {
         items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            title: Text('Kelimeler'),
+            title: Text(AppConstant.pageWords),
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.search),
-              title: Text('Arama')
+              title: Text(AppConstant.pageSearch)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
-            title: Text('Favoriler'),
+            title: Text(AppConstant.pageFavorite),
             activeIcon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            title: Text('Hakkımızda'),
-
+            title: Text(AppConstant.pageAbout),
           ),
         ],
         currentIndex: selectIndexId,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flip_card/flip_card.dart';
 
-class frontFlipCard extends StatelessWidget {
-  frontFlipCard({this.text, this.cardKey});
-  String text;
-
-
+class FrontFlipCard extends StatelessWidget {
+  FrontFlipCard({Key key, this.text, this.cardKey}): super(key:key);
+  final String text;
   final GlobalKey<FlipCardState> cardKey;
 
   @override
@@ -61,7 +61,7 @@ class frontFlipCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text('ANLAMI GÖRMEK İÇİN DOKUN!',
+                          Text(AppConstant.btnMeaning,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,

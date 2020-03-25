@@ -1,8 +1,9 @@
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/screens/home/home_page.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
  FavoriteDao favoriteDao;
+
   Future<bool> _mockCheckForSession() async {
     await Future.delayed(Duration(milliseconds: 3000), () {});
 
@@ -38,14 +40,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToHome(){
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-            builder: (BuildContext context) => HomeScreen(favoriteDao)
-        )
-    );
+    Navigator.pushReplacementNamed(context, AppConstant.pageHome);
+
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Container(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      "Hukuk Sözlüğü",
+                      AppConstant.homeTitle,
                       style: TextStyle(
                           fontFamily: 'Pacifico',
                           fontSize: 40.0,

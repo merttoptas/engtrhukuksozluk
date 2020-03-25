@@ -1,10 +1,13 @@
+import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
-class backendFlipCard extends StatelessWidget {
+class BackendFlipCard extends StatelessWidget {
+
+  BackendFlipCard({@required this.cardKey,this.text,this.onButton2Press,this.onButton3Press});
+
   final Function onButton2Press,onButton3Press;
-  backendFlipCard({@required this.cardKey,this.text,this.onButton2Press,this.onButton3Press});
-  String text;
+  final String text;
   final GlobalKey<FlipCardState> cardKey;
 
   @override
@@ -62,9 +65,9 @@ class backendFlipCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          addButton('BİLİYORUM', onButton3Press),
+                          addButton(AppConstant.btnLearn, onButton3Press),
                           Spacer(),
-                          addButton('BİLMİYORUM', onButton2Press),
+                          addButton(AppConstant.notLearnWord, onButton2Press),
 
                         ],
                       ),

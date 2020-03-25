@@ -54,7 +54,7 @@ class _AboutUsState extends State<AboutUs> {
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('images/aboutus.png'),
+                        image: AssetImage(AppConstant.svgAbout),
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-import 'package:engtrhukuksozluk/utils/app_const.dart';
-class wordsRowWidget extends StatelessWidget {
-  wordsRowWidget({this.text,this.onButtonPress, this.onTap});
 
-  String text;
-  Function onButtonPress, onTap;
-  bool isLiked=false;
+import 'package:engtrhukuksozluk/utils/app_const.dart';
+
+class WordsRowWidget extends StatelessWidget {
+ const WordsRowWidget({Key key, this.text,this.onButtonPress, this.onTap}):super(key:key);
+
+  final String text;
+  final Function onButtonPress, onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class wordsRowWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 40,
+                  height: 45,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6.0),
                   ),
@@ -39,13 +39,12 @@ class wordsRowWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.only(top: 5.0, left: 10.0),
+                              padding: EdgeInsets.only(top: 10,left: 10.0),
                               child: Text(text,
-
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),),
+                                style: Theme.of(context).textTheme.body1.copyWith(color: Colors.black, fontWeight: FontWeight.normal),),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 10.0,top: 5.0),
+                              padding: const EdgeInsets.only(right: 10.0,top: 10.0),
                               child: Container(
                                 child: Icon(
                                   Icons.arrow_forward_ios,
