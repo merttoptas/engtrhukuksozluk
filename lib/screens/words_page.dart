@@ -10,6 +10,9 @@ import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/widgets/wordsRow.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
+import 'package:engtrhukuksozluk/service/data.dart';
+import 'package:provider/provider.dart';
+
 
 
 class WordsPage extends StatefulWidget {
@@ -26,6 +29,8 @@ class _WordsPageState extends State<WordsPage> {
   List<Favorite> favoriteList = [];
   List<Favorite> favExistsList = [];
   GetWordsCloud _getWordsCloud = GetWordsCloud();
+  DataHelper _dataHelper = DataHelper();
+
 
 
   @override
@@ -64,7 +69,6 @@ class _WordsPageState extends State<WordsPage> {
     }
 
   }
-
   Future insertWord(Favorite favorite)async{
     await favoriteDao.insertFavoriteWord(favorite);
     Scaffold.of(context).showSnackBar(SnackBar(content:
@@ -106,7 +110,7 @@ class _WordsPageState extends State<WordsPage> {
           Expanded(
             flex: 1,
             child: FutureBuilder<List<Words>>(
-              future: _getWordsCloud.getAllWords(),
+              future:_getWordsCloud.getAllWords() ,
               builder: (context, wordsList){
                 if(!wordsList.hasData){
                   return Center(
@@ -125,7 +129,7 @@ class _WordsPageState extends State<WordsPage> {
                           BottomSheetWidget().settingModalBottomSheet(context: context,
                               word: currentWords.turkish,
                               title: currentWords.english,
-                              onTapVoice: (){print('voice');},
+                              onTapVoice: () => _dataHelper.speak(currentWords.english),
                               onPressed: (){Navigator.pop(context);},
                               onTapFav: (bool isLiked) async {
 
@@ -135,7 +139,7 @@ class _WordsPageState extends State<WordsPage> {
 
                                 var patient = Favorite(turkish: turkish, english: english, favId: favId);
                                 wordExists(patient, favId);
-                                return !isLiked;
+                                  return !isLiked;
 
                               }
                           );
@@ -164,5 +168,3 @@ class _WordsPageState extends State<WordsPage> {
   }
 
 }
-
-

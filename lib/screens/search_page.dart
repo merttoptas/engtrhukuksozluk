@@ -9,6 +9,8 @@ import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/data/database/database.dart';
+import 'package:engtrhukuksozluk/service/data.dart';
+
 
 class SearchWords extends StatefulWidget {
  const SearchWords({Key key}): super(key: key);
@@ -21,6 +23,7 @@ class _SearchWordsState extends State<SearchWords> {
 
   TextEditingController _searchText = TextEditingController(text: "");
   FocusNode _searchNode = FocusNode();
+  DataHelper _dataHelper = DataHelper();
 
   List<AlgoliaObjectSnapshot> _results = [];
   List<Favorite> favoriteList = [];
@@ -222,7 +225,7 @@ class _SearchWordsState extends State<SearchWords> {
                           BottomSheetWidget().settingModalBottomSheet(context: context,
                               word: snap.data['turkish'],
                               title: snap.data['turkish'],
-                              onTapVoice: (){print('voice');},
+                              onTapVoice: () => _dataHelper.speak(snap.data['english']),
                               onTapFav: (bool isLiked) async {
                                 String english = snap.data['english'];
                                 String turkish = snap.data['turkish'];

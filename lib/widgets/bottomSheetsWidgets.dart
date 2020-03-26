@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
+
 class BottomSheetWidget {
-  void settingModalBottomSheet({BuildContext context,String word, String title, Function onTapFav, Function onTapVoice, Function onPressed}){
+  void settingModalBottomSheet({BuildContext context,String word, String title,
+    Function onTapFav, Function onTapVoice, Function onPressed}){
     showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
         builder: (context) {
           return Container(
             height: MediaQuery.of(context).size.height * 0.45,
-            child: Container(child: _buildDetailItem(word: word,title: title, onTapVoice: onTapVoice, onTapFav: onTapFav, onPressed: onPressed ), decoration: _bottomSheetBoxDecoration),
+            child: Container(child: _buildDetailItem(word: word,title: title,
+                onTapVoice: onTapVoice, onTapFav: onTapFav, onPressed: onPressed ),
+                decoration: _bottomSheetBoxDecoration),
           );
         });
 }
 
-  Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav, Function onTapVoice, Function onPressed}) => Padding(
+  Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav,
+    Function onTapVoice, Function onPressed}) => Padding(
     padding: const EdgeInsets.only(top: 32.0),
-    child: Row(
+      child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         new RawMaterialButton(
@@ -30,12 +35,14 @@ class BottomSheetWidget {
           elevation: 0,
           padding: const EdgeInsets.all(15.0),
         ),
-        Spacer(flex: 5,),
-        Text(heading,
-          style: TextStyle(fontSize: 16, color:  Colors.black,  fontWeight: FontWeight.w600),
+        Spacer(flex: 4,),
+        FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(heading,
+            style: TextStyle(fontSize: 16, color:  Colors.black,  fontWeight: FontWeight.w600),
+          ),
         ),
-        Spacer(flex: 5,),
-
+        Spacer(flex: 4,),
         Row(
           children: <Widget>[
             Material(
@@ -81,7 +88,6 @@ class BottomSheetWidget {
             ),
           ],
         ),
-        Spacer(),
       ],
     ),
   );
