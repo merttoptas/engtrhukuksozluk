@@ -1,13 +1,16 @@
+import 'package:engtrhukuksozluk/data/service/advert_service.dart';
+import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/widgets/backendFlipCard.dart';
-import 'package:engtrhukuksozluk/service/cloud_service.dart';
-import 'package:engtrhukuksozluk/widgets/frontFlipCard.dart';
+import 'package:engtrhukuksozluk/ui/widgets/backendFlipCard.dart';
+import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
+import 'package:engtrhukuksozluk/ui/widgets/frontFlipCard.dart';
 import 'package:engtrhukuksozluk/model/valueModel.dart';
-import 'package:engtrhukuksozluk/widgets/textCard.dart';
+import 'package:engtrhukuksozluk/ui/widgets/textCard.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
+import 'package:flutter_native_admob/flutter_native_admob.dart';
 
 class WordsLearn extends StatefulWidget {
   const WordsLearn({Key key}):super(key:key);
@@ -23,24 +26,25 @@ class _WordsLearnState extends State<WordsLearn> {
   final ValueNotifier valueNotifier1;
   final ValueNotifier valueNotifier2;
   var size;
-
   int value1 = 0;
   int value2 = 0;
   String string;
   List<Words> wordsList;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
-
-
+  
 @override
   void initState() {
   setState(() {
      model.value1 = 0;
      model.value2 = 0;
     });
+
   super.initState();
-
   }
-
+  @override
+  void dispose() {
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -62,7 +66,7 @@ class _WordsLearnState extends State<WordsLearn> {
         brightness: Brightness.light,
       ),
       backgroundColor: Color(0XFF2A2E43),
-      body: Column(
+      body: Stack(
         children: <Widget>[
           Container(
             child: Column(
@@ -71,7 +75,8 @@ class _WordsLearnState extends State<WordsLearn> {
                   future: GetWordsCloud().getRandomWords(),
                   builder: (context, wordsList){
                     if(!wordsList.hasData){
-                      return FlipCard(key: cardKey,
+                      return FlipCard(
+                        key: cardKey,
                         back: BackendFlipCard(cardKey: cardKey,text: "",),
                         front: FrontFlipCard(cardKey: cardKey,text: "",),
                       );
@@ -110,7 +115,7 @@ class _WordsLearnState extends State<WordsLearn> {
                   },
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 0,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(32.0),
@@ -118,6 +123,11 @@ class _WordsLearnState extends State<WordsLearn> {
                     valueNotifier1: model.onValue1Change,
                     valueNotifier2: model.onValue2Change,
                   ),
+                ),
+                SizedBox(height: 30,),
+                  Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: AdsWidget(borderRadius: BorderRadius.circular(12), height: 200.0,type: NativeAdmobType.full,),
                 ),
               ],
             ),

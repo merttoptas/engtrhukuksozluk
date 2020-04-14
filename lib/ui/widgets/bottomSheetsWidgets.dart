@@ -1,4 +1,7 @@
+
+import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:like_button/like_button.dart';
 
 
@@ -103,7 +106,7 @@ class BottomSheetWidget {
     ),
   );
 
-  Widget _buildDetailItem({String title, String word, Function onTapFav, Function onTapVoice, Function onPressed}) => Column(
+  Widget _buildDetailItem({String title, String word, Function onTapFav, Function onTapVoice, Function onPressed, BuildContext context}) => Column(
     children: <Widget>[
       _pullDown(Colors.black45),
       _itemTopMenu(heading: title, onTapFav: onTapFav, onTapVoice: onTapVoice, onPressed: onPressed),
@@ -113,48 +116,60 @@ class BottomSheetWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             Material(
               color: Colors.white,
               elevation: 4,
               shadowColor: Colors.black38,
               borderRadius: BorderRadius.circular(8),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(12),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 12,
-                          ),
-                          RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black45,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(12),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16),
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 12,
                               ),
-                              children: <TextSpan>[
-                                TextSpan(text: word ,style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),),
-                              ],
-                            ),
+                              RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black45,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(text: word ,style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 8,),
+                        Divider(),
+                      ],
+
                     ),
-                    SizedBox(height: 8,),
-                    Divider(),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
+
+
+            ),
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AdsWidget(borderRadius: BorderRadius.circular(12), height: 80,type: NativeAdmobType.banner,),
             ),
           ],
         ),

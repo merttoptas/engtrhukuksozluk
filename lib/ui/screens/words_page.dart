@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:engtrhukuksozluk/service/cloud_service.dart';
-import 'package:engtrhukuksozluk/data/database/database.dart';
+import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
+import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
-import 'package:engtrhukuksozluk/widgets/wordsRow.dart';
+import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
+import 'package:engtrhukuksozluk/ui/widgets/wordsRow.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
-import 'package:engtrhukuksozluk/service/data.dart';
+import 'package:engtrhukuksozluk/data/service/data.dart';
 import 'package:provider/provider.dart';
 
 
@@ -94,14 +94,13 @@ class _WordsPageState extends State<WordsPage> {
             color: Color(0xFF0A151F),
           ),
         ),
-        elevation: 0,
+        elevation: 0.5,
+        brightness: Brightness.light,
         backgroundColor: Color(0xFFF8F8F8),
         title: Text(
           AppConstant.wordsPage,
           style: TextStyle(color: Color(0xFF0A151F)),
         ),
-
-        brightness: Brightness.light,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

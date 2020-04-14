@@ -6,10 +6,10 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/widgets/bottomSheetsWidgets.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/data/database/database.dart';
-import 'package:engtrhukuksozluk/service/data.dart';
+import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/database/database.dart';
+import 'package:engtrhukuksozluk/data/service/data.dart';
 
 
 class SearchWords extends StatefulWidget {
@@ -33,6 +33,7 @@ class _SearchWordsState extends State<SearchWords> {
   FavoriteDao favoriteDao;
 
   bool _searching = false;
+
 
   Future _search(String searchText) async{
     setState(() {
@@ -101,6 +102,8 @@ class _SearchWordsState extends State<SearchWords> {
       });
     }
   }
+
+
   Future _wordExists(Favorite patient, int favId )async{
 
     await favoriteDao.getAllFavoriteWords().then((list){favoriteList.addAll(list);});
@@ -146,7 +149,7 @@ class _SearchWordsState extends State<SearchWords> {
             icon: Icon(
               Icons.arrow_back_ios, color: Color(0xFF0A151F),
             ),),
-          elevation: 0,
+          elevation: 0.5,
           backgroundColor: Color(0xFFF8F8F8),
           title: Text(
             AppConstant.hintSearch,
@@ -222,9 +225,11 @@ class _SearchWordsState extends State<SearchWords> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(6),
                         onTap: () async {
-                          BottomSheetWidget().settingModalBottomSheet(context: context,
+                          BottomSheetWidget().settingModalBottomSheet(
+                              context: context,
                               word: snap.data['turkish'],
                               title: snap.data['turkish'],
+                              onPressed: (){Navigator.pop(context);},
                               onTapVoice: () => _dataHelper.speak(snap.data['english']),
                               onTapFav: (bool isLiked) async {
                                 String english = snap.data['english'];

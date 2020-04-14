@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 
-import 'package:engtrhukuksozluk/screens/aboutus_page.dart';
+import 'package:engtrhukuksozluk/ui/screens/aboutus_page.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/screens/favorite_page.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/screens/search_page.dart';
-import 'package:engtrhukuksozluk/screens/words_page.dart';
+import 'package:engtrhukuksozluk/ui/screens/favorite_page.dart';
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/ui/screens/search_page.dart';
+import 'package:engtrhukuksozluk/ui/screens/words_page.dart';
 
 class WordsScreen extends StatefulWidget {
   const WordsScreen({Key key,this.selectIndexId}): super(key: key);

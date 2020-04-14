@@ -30,7 +30,7 @@ class ListTileCard extends StatelessWidget {
                   ),
               ),
           ),
-          SizedBox(height: 5.0,)
+          SizedBox(height: 10.0,)
         ],
       ),
     );

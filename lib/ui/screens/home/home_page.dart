@@ -1,22 +1,23 @@
+import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'package:google_fonts/google_fonts.dart';
-
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/widgets/homeContainer.dart';
-import 'package:engtrhukuksozluk/screens/words_learn_page.dart';
-import 'package:engtrhukuksozluk/screens/home/words_navigator_page.dart';
-
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/ui/widgets/homeContainer.dart';
+import 'package:engtrhukuksozluk/ui/screens/words_learn_page.dart';
+import 'package:engtrhukuksozluk/ui/screens/home/words_navigator_page.dart';
+import 'package:engtrhukuksozluk/data/service/advert_service.dart';
+import 'package:flutter_native_admob/flutter_native_admob.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key, this.favoriteDao}): super(key:key);
 
   final FavoriteDao favoriteDao;
+  final AdvertService advertService = AdvertService();
 
   @override
   Widget build(BuildContext context) {
+    final AdvertService advertService = AdvertService();
     int selectIndexId;
     return MaterialApp(
       home: Scaffold(
@@ -26,13 +27,13 @@ class HomeScreen extends StatelessWidget {
             Flexible(
               child: Container(
                 padding: EdgeInsets.only(left: 20.0, top:50.0,right: 20.0),
-                child: Text(AppConstant.homeTitle, style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),),
+                child: Text(AppConstant.homeTitle, style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 20.0,top: 5.0, right: 20.0),
               child: Text(AppConstant.homeSubtitle,
-                style: GoogleFonts.openSans(textStyle:TextStyle(fontSize: 19.0, fontWeight: FontWeight.bold) ),),
+                style: TextStyle(fontSize: 19.0, fontWeight: FontWeight.normal),),
             ),
             SizedBox(height: 30.0,),
             GestureDetector(
@@ -42,8 +43,7 @@ class HomeScreen extends StatelessWidget {
                   child: InkWell(
                     onTap: (){
                       Navigator.push(context,
-                          CupertinoPageRoute(builder: (context) => WordsLearn()));
-                    },
+                          CupertinoPageRoute(builder: (context) => WordsLearn()));},
                     child: HomeContainerWidget(
                       /*
                        startColour: Color(0XFFFF416C),
@@ -135,6 +135,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.only(left: 20,right: 20),
+              child: AdsWidget(borderRadius: BorderRadius.circular(15), height: 100.0,type: NativeAdmobType.banner,),
             ),
           ],
         ),

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
 
 

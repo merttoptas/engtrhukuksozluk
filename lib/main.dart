@@ -1,13 +1,14 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-
+import 'package:engtrhukuksozluk/ui/screens/intro_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/data/database/database.dart';
-import 'package:engtrhukuksozluk/screens/splash_page.dart';
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/database/database.dart';
+import 'package:engtrhukuksozluk/ui/screens/splash_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:engtrhukuksozluk/screens/home/home_page.dart';
+import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
 
 void main() async{
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
     //theme: isDark ? Constants.darkTheme: Constants.lightTheme,
       theme: ThemeData(
+        brightness: Brightness.light,
         backgroundColor: AppConstant.lightBG,
         textTheme: TextTheme(
           body1: TextStyle(fontSize: AppConstant.fontSizeBody),
@@ -41,7 +43,6 @@ class MyApp extends StatelessWidget {
           caption: TextStyle(fontSize: AppConstant.fontSizeCaption, fontWeight: FontWeight.bold),
           title: TextStyle(fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
           display1: TextStyle(fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
-
 
         ),
         fontFamily: GoogleFonts.openSans().fontFamily,
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppConstant.pageSplash,
       routes: {
         AppConstant.pageSplash: (context) => SplashScreen(favoriteDao),
+        AppConstant.pageIntro: (context) => IntroScreen(),
         AppConstant.pageHome: (context) => HomeScreen(favoriteDao: favoriteDao,),
       },
 

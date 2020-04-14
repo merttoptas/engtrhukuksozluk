@@ -6,7 +6,7 @@ class AppConstant{
   //Colors for theme
   static final Color lightPrimary = Color(0XFF2A2E43);
   static final Color darkPrimary = Color(0xFF0A151F);
-  static final Color lightAccent = Color(0XFF2A2E43);
+  static final Color lightAccent = Color(0xFFF8F8F8);
   static final Color darkAccent = Color(0XFF2A2E43);
   static final Color lightBG = Color(0xFFF8F8F8);
   static final Color darkBG = Color(0xFF183148);
@@ -56,7 +56,7 @@ class AppConstant{
   static const double fontSizeCaption = 12;
   static const double fontSizeTitle = 22;
   static const double fontSizeHeadline = 24;
-  static const double fontSizeIdiomCardTitle = 18;
+  static const double fontSizeSliderDescription = 20;
   static const double fontSizeIdiomCardContent = 12;
 
 
@@ -121,8 +121,13 @@ class AppConstant{
   static final String svgFavorite = 'images/home_ic_biology.png';
   static final String svgAbout = 'images/aboutus.png';
   static final String svgBoard = 'images/board.png';
+  static final String svgSlider = 'images/slider.png';
+  static final String svgSliderOne = 'images/slider1.png';
+  static final String svgSliderSecond = 'images/slider2.png';
+  static final String svgAppIcon = 'images/icon2.png';
 
-  //page
+
+    //page
   static final String pageWords = 'Kelimeler';
   static final String pageSearch = 'Arama';
   static final String pageFavorite = 'Favoriler';
@@ -131,6 +136,7 @@ class AppConstant{
   //region Page
   static final String pageSplash = "/";
   static final String pageHome = "/home";
+  static final String pageIntro ="/intro";
 
 
 }

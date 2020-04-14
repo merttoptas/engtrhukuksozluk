@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/data/database/database.dart';
+import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 
 class FavoriteWords extends StatefulWidget {
 
@@ -42,7 +42,7 @@ class _FavoriteWordsState extends State<FavoriteWords> {
           icon: Icon(
             Icons.arrow_back_ios, color: Color(0xFF0A151F),
           ),),
-        elevation: 0,
+        elevation: 0.5,
         backgroundColor: Color(0xFFF8F8F8),
         title: Text(
           AppConstant.appBarFavorite,
