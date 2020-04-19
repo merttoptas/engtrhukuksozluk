@@ -40,13 +40,15 @@ class _FavoriteWordsState extends State<FavoriteWords> {
             Navigator.pop(context);
           },
           icon: Icon(
-            Icons.arrow_back_ios, color: Color(0xFF0A151F),
+            Icons.arrow_back_ios, color: Colors.white,
           ),),
         elevation: 0.5,
-        backgroundColor: Color(0xFFF8F8F8),
+        centerTitle: true,
+        backgroundColor: Color(0XFF78aaff),
+
         title: Text(
           AppConstant.appBarFavorite,
-          style: TextStyle(color: Color(0xFF0A151F)),
+          style: TextStyle(color: Colors.white),
         ),
 
         brightness: Brightness.light,

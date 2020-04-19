@@ -1,4 +1,3 @@
-
 import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
@@ -23,74 +22,82 @@ class BottomSheetWidget {
 
   Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav,
     Function onTapVoice, Function onPressed}) => Padding(
-    padding: const EdgeInsets.only(top: 32.0),
+    padding: const EdgeInsets.only(top: 30.0),
       child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        new RawMaterialButton(
+        RawMaterialButton(
+          constraints: BoxConstraints(minWidth: 5, minHeight: 30.0),
           onPressed: onPressed,
           child: new Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
-            size: 13.0,
+            size: 15.0,
           ),
-          shape: new CircleBorder(),
           elevation: 0,
-          padding: const EdgeInsets.all(15.0),
         ),
-        Spacer(flex: 4,),
-        FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(heading,
-            style: TextStyle(fontSize: 16, color:  Colors.black,  fontWeight: FontWeight.w600),
+        Spacer(flex: 4,), // 1st spacer
+
+        Container(
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(heading,
+              style: TextStyle(fontSize: 16, color:  Colors.black,  fontWeight: FontWeight.w600),
+            ),
           ),
         ),
-        Spacer(flex: 4,),
-        Row(
-          children: <Widget>[
-            Material(
-              borderRadius: BorderRadius.circular(24),
-              color: Colors.white,
-              elevation: 4,
-              shadowColor: Colors.black38,
-              child: InkWell(
-                onTap: onTapVoice,
-                borderRadius: BorderRadius.circular(24),
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  child: Center(child: Icon(Icons.settings_voice)),
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            Material(
-              borderRadius: BorderRadius.circular(24),
-              color: Colors.white,
-              elevation: 4,
-              shadowColor: Colors.black38,
-              child: Container(
-                height: 40,
-                width: 40,
-                child: Center(
-                  child: LikeButton(
-                    onTap: onTapFav,
-                    likeBuilder: (bool isLiked) {
-                      return Icon(
-                        Icons.favorite,
-                        color: isLiked ? Colors.red : Colors.black,
-                        size: 24.0,
-                      );
-                    },
+        Spacer(flex: 3,), // 1st spacer
+        Padding(
+          padding: const EdgeInsets.only(right: 5.0),
+          child: Container(
+            child: Row(
+              children: <Widget>[
+                Material(
+                  borderRadius: BorderRadius.circular(24),
+                  color: Colors.white,
+                  elevation: 4,
+                  shadowColor: Colors.black38,
+                  child: InkWell(
+                    onTap: onTapVoice,
+                    borderRadius: BorderRadius.circular(24),
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      child: Center(child: Icon(Icons.settings_voice)),
+                    ),
                   ),
                 ),
-              ),
+                SizedBox(width:5,),
+                Material(
+                  borderRadius: BorderRadius.circular(24),
+                  color: Colors.white,
+                  elevation: 4,
+                  shadowColor: Colors.black38,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    child: Center(
+                      child: LikeButton(
+                        onTap: onTapFav,
+                        likeBuilder: (bool isLiked) {
+                          return Icon(
+                            Icons.favorite,
+                            color: isLiked ? Colors.red : Colors.black,
+                            size: 26.0,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
 
+                ),
+
+              ],
             ),
-          ],
+          ),
         ),
+
       ],
     ),
   );
@@ -125,34 +132,33 @@ class BottomSheetWidget {
               shadowColor: Colors.black38,
               borderRadius: BorderRadius.circular(8),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(12),
                     child: Column(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16),
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: 12,
-                              ),
-                              RichText(
-                                textAlign: TextAlign.center,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black45,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(text: word ,style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),),
-                                  ],
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              height: 12,
+                            ),
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
                                 ),
+                                children: <TextSpan>[
+                                  TextSpan(text: word ,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black ),),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         SizedBox(height: 8,),
                         Divider(),
@@ -162,9 +168,6 @@ class BottomSheetWidget {
                   ),
                 ],
               ),
-
-
-
             ),
             SizedBox(height: 10,),
             Padding(

@@ -65,17 +65,15 @@ class AppConstant{
   static final String applicationId = "WZFSBELAA6";
   static final String apiKey = '4c14584cc213e038c3cd6a24650bda91';
 
-  static final String aboutText = 'Hukuk Sözlük, bir hukuk fakültesi öğrencisi tarafından geliştirilmiştir. '
-      'Hukuk fakültesi öğrencileri ve avukatlar için yardımcı olacak niteliktedir. '
-      'Sözlük, hukuk terminolojisini öğrenmek, öğretmek ve geliştirmek amacı güder.'
-      'Tarihin ilk çağlarından beri var olan hukukun şahsına münhasır,'
-      ' birçok dil ile kaynaşmış terimlerini açıklamak maksadıyla oluşturulmuştur.'
-      '\nGün geçtikte kendini yenileyen bu sözlüğün, kelime haznesinin geliştirmesinde siz de yardımcı olabilirsiniz. ';
+  static final String aboutText = 'JusTerm bir Hukuk Fakültesi öğrencisi tarafından, hukuk insanlarına yardımcı olmak  '
+      'amacıyla geliştirişmiş bir hukuk terimleri sözlüğü uygulamasıdır. '
+      'Gün geçtikte kendini yenileyen bu sözlüğün, kelime haznesinin geliştirmesinde'
+      ' siz de yardımcı olmak isterseniz e-posta göndererek katkıda bulunabilirsiniz.';
 
 
 
   //home container
-  static final String homeTitle ="Hukuk Sözlüğü";
+  static final String homeTitle ="JusTerm";
   static final String homeSubtitle = "İngilizce ve Türkçe olarak yüzlerce hukuk kelimesi bir arada.";
   static final String learnContainer = 'Kelime Öğrenme   ';
   static final String learnContainerSubTitle = 'İngilizce ve Türkçe kelimelerle \nalıştırma yapın';

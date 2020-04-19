@@ -9,7 +9,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="engtrhukuksozluk"
+        android:label="JusTerm"
         android:icon="@mipmap/ic_launcher">
 
         <activity

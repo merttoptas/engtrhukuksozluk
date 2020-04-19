@@ -18,6 +18,7 @@ class FrontFlipCard extends StatelessWidget {
             cardKey.currentState.toggleCard();
           },
           child: Card(
+            color: Color(0XFF78aaff),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
@@ -42,6 +43,7 @@ class FrontFlipCard extends StatelessWidget {
                               child: Text(text,
                                 style: TextStyle(
                                     fontSize: 20.0,
+                                    color: Colors.white,
                                     fontWeight: FontWeight.w900,letterSpacing: 1.2
                                 ),
                               ),
@@ -53,7 +55,7 @@ class FrontFlipCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 10.0),
                       child: Divider(
-                        color: Colors.grey,
+                        color: Colors.white,
                       ),
                     ),
                     Padding(
@@ -64,6 +66,7 @@ class FrontFlipCard extends StatelessWidget {
                           Text(AppConstant.btnMeaning,
                             style: TextStyle(
                               fontSize: 14,
+                              color: Colors.white,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

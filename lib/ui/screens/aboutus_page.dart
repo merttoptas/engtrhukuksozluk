@@ -26,7 +26,7 @@ class _AboutUsState extends State<AboutUs> {
       overflow: Overflow.visible,
       children: <Widget>[
         Container(
-          color: AppConstant.lightPrimary,
+          color: Color(0XFF78aaff),
           child: ListView(
             children: <Widget>[
               Stack(
@@ -37,7 +37,7 @@ class _AboutUsState extends State<AboutUs> {
                     color: Colors.transparent,
                   ),
                   Positioned(
-                    top: 75.0,
+                    top: 85.0,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -51,7 +51,7 @@ class _AboutUsState extends State<AboutUs> {
                     ),
                   ),
                   Positioned(
-                    top: 20.0,
+                    top: 25.0,
                     left: (MediaQuery.of(context).size.width/2)-100,
                     child: Container(
                       decoration: BoxDecoration(

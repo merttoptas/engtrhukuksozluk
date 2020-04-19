@@ -1,8 +1,6 @@
-import 'package:engtrhukuksozluk/data/service/advert_service.dart';
 import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
-
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/ui/widgets/backendFlipCard.dart';
 import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
@@ -58,14 +56,13 @@ class _WordsLearnState extends State<WordsLearn> {
             Icons.arrow_back_ios, color: Colors.white,
           ),),
         elevation: 0,
-        backgroundColor: Color(0XFF2A2E43),
+        backgroundColor: Color(0XFF78aaff),
         title: Text(
           AppConstant.hintSearch,
           style: TextStyle(color: Colors.white),
         ),
         brightness: Brightness.light,
       ),
-      backgroundColor: Color(0XFF2A2E43),
       body: Stack(
         children: <Widget>[
           Container(
@@ -126,7 +123,7 @@ class _WordsLearnState extends State<WordsLearn> {
                 ),
                 SizedBox(height: 30,),
                   Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: AdsWidget(borderRadius: BorderRadius.circular(12), height: 200.0,type: NativeAdmobType.full,),
                 ),
               ],

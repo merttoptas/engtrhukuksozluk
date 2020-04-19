@@ -55,7 +55,7 @@ class _WordsScreenState extends State<WordsScreen> {
       ),
       
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.red,
         items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),

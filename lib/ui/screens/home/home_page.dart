@@ -1,4 +1,5 @@
 import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
+import 'package:engtrhukuksozluk/ui/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
@@ -14,122 +15,111 @@ class HomeScreen extends StatelessWidget {
 
   final FavoriteDao favoriteDao;
   final AdvertService advertService = AdvertService();
+  MediaQueryData queryData;
 
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
     final AdvertService advertService = AdvertService();
     int selectIndexId;
     return MaterialApp(
       home: Scaffold(
+        appBar: HomeAppBar(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Flexible(
-              child: Container(
-                padding: EdgeInsets.only(left: 20.0, top:50.0,right: 20.0),
-                child: Text(AppConstant.homeTitle, style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20.0,top: 5.0, right: 20.0),
-              child: Text(AppConstant.homeSubtitle,
-                style: TextStyle(fontSize: 19.0, fontWeight: FontWeight.normal),),
-            ),
-            SizedBox(height: 30.0,),
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
-                child:   FittedBox(
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context,
-                          CupertinoPageRoute(builder: (context) => WordsLearn()));},
-                    child: HomeContainerWidget(
-                      /*
-                       startColour: Color(0XFFFF416C),
-                      endColour: Color(0xFF8A52E9),
-                       */
-                      startColour: Color(0XFF2A2E43),
-                      endColour: Color(0XFF376DF6),
-                      titleText: AppConstant.learnContainer,
-                      subtitleText: AppConstant.learnContainerSubTitle,
-                      assetImage: AssetImage(AppConstant.svgHomeLearn),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
-                child: Center(
-                  child: FittedBox(
+            SizedBox(height: 20.0,),
+            Expanded(
+              child: GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
+                  child:   FittedBox(
                     child: InkWell(
                       onTap: (){
-                        selectIndexId =1;
                         Navigator.push(context,
-                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
-                        },
+                            CupertinoPageRoute(builder: (context) => WordsLearn()));},
                       child: HomeContainerWidget(
-                        /*
-                          startColour: Color(0XFF376DF6),
+                        startColour: Color(0XFFFF416C),
                         endColour: Color(0xFF8A52E9),
-                         */
-                        startColour: Color(0XFF2A2E43),
-                        endColour: Color(0XFF376DF6),
-                        titleText: AppConstant.searchContainer,
-                        subtitleText: AppConstant.searchContainerSubTitle,
-                        assetImage: AssetImage(AppConstant.svgSearch),
+                        titleText: AppConstant.learnContainer,
+                        subtitleText: AppConstant.learnContainerSubTitle,
+                        assetImage: AssetImage(AppConstant.svgHomeLearn),
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
-                child: Center(
-                  child: FittedBox(
-                    child: InkWell(
-                      onTap: (){
-                        selectIndexId = 2;
-                        Navigator.push(context,
-                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
-                      },
-                      child: HomeContainerWidget(
-                        startColour: Color(0XFF2A2E43),
-                        endColour: Color(0XFF376DF6),
-                        /*
-                        startColour: Color(0XFFFFC92B),
-                        endColour: Color(0XFFFF416C),
-                         */
-                        titleText: AppConstant.favoriteContainer,
-                        subtitleText: AppConstant.favoriteContainerSubTitle,
-                        assetImage: AssetImage(AppConstant.svgFavorite),
+            Expanded(
+              child: GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
+                  child: Center(
+                    child: FittedBox(
+                      child: InkWell(
+                        onTap: (){
+                          selectIndexId =1;
+                          Navigator.push(context,
+                              CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
+                          },
+                        child: HomeContainerWidget(
+                          startColour: Color(0XFF8A52E9),
+                          endColour: Color(0xFF376DF6),
+                          titleText: AppConstant.searchContainer,
+                          subtitleText: AppConstant.searchContainerSubTitle,
+                          assetImage: AssetImage(AppConstant.svgSearch),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-            GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
-                child: Center(
-                  child: FittedBox(
-                    child: InkWell(
-                      onTap: (){
-                        selectIndexId = 3;
-                        Navigator.push(context,
-                            CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
-                      },
-                      child: HomeContainerWidget(
-                        startColour: Color(0XFF2A2E43),
-                        endColour: Color(0XFF376DF6),
-                        titleText: AppConstant.aboutContainer,
-                        subtitleText: AppConstant.aboutContainerSubtitle,
-                        assetImage: AssetImage(AppConstant.svgAbout),
+            
+            Expanded(
+              child: GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
+                  child: Center(
+                    child: FittedBox(
+                      child: InkWell(
+                        onTap: (){
+                          selectIndexId = 2;
+                          Navigator.push(context,
+                              CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
+                        },
+                        child: HomeContainerWidget(
+                          startColour: Color(0XFFFFC92B),
+                          endColour: Color(0XFFFF416C),
+                          titleText: AppConstant.favoriteContainer,
+                          subtitleText: AppConstant.favoriteContainerSubTitle,
+                          assetImage: AssetImage(AppConstant.svgFavorite),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 5.0,right: 20.0, bottom: 5.0),
+                  child: Center(
+                    child: FittedBox(
+                      child: InkWell(
+                        onTap: (){
+                          selectIndexId = 3;
+                          Navigator.push(context,
+                              CupertinoPageRoute(builder: (context) => WordsScreen(selectIndexId: selectIndexId,)));
+                        },
+                        child: HomeContainerWidget(
+                          startColour: Color(0XFF21e8ac),
+                          endColour: Color(0XFF376DF6),
+                          titleText: AppConstant.aboutContainer,
+                          subtitleText: AppConstant.aboutContainerSubtitle,
+                          assetImage: AssetImage(AppConstant.svgAbout),
+                        ),
                       ),
                     ),
                   ),
@@ -139,7 +129,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left: 20,right: 20),
-              child: AdsWidget(borderRadius: BorderRadius.circular(15), height: 100.0,type: NativeAdmobType.banner,),
+              child: AdsWidget(
+                borderRadius: BorderRadius.circular(15),
+                height:MediaQuery.of(context).size.height * 0.13,
+                type: NativeAdmobType.banner,),
             ),
           ],
         ),

@@ -5,7 +5,6 @@ import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
 
-
 final _firestore = Firestore.instance;
 FavoriteDao favoriteDao;
 Favorite favorite;
@@ -45,7 +44,6 @@ class GetWordsCloud{
       if(!randomList.contains(randomWords)){
         randomList.add(randomWords);
       }
-
 
     }
       return randomList;

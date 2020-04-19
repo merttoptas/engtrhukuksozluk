@@ -91,15 +91,16 @@ class _WordsPageState extends State<WordsPage> {
           },
           icon: Icon(
             Icons.arrow_back_ios,
-            color: Color(0xFF0A151F),
+            color: Colors.white,
           ),
         ),
         elevation: 0.5,
         brightness: Brightness.light,
-        backgroundColor: Color(0xFFF8F8F8),
+        backgroundColor: Color(0XFF78aaff),
+        centerTitle: true,
         title: Text(
           AppConstant.wordsPage,
-          style: TextStyle(color: Color(0xFF0A151F)),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Column(

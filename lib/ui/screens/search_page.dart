@@ -1,9 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:algolia/algolia.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
@@ -25,52 +24,39 @@ class _SearchWordsState extends State<SearchWords> {
   FocusNode _searchNode = FocusNode();
   DataHelper _dataHelper = DataHelper();
 
+
   List<AlgoliaObjectSnapshot> _results = [];
   List<Favorite> favoriteList = [];
   List<Favorite> favExistsList = [];
 
   FavoriteDatabase favoriteDatabase;
   FavoriteDao favoriteDao;
-
+  bool isKeyboardVisible;
   bool _searching = false;
 
 
-  Future _search(String searchText) async{
+  Future _search() async{
     setState(() {
       _searching = true;
     });
-
     Algolia algolia = Algolia.init(
-        applicationId: AppConstant.applicationId,
-        apiKey: AppConstant.apiKey,
+      applicationId: AppConstant.applicationId,
+      apiKey: AppConstant.apiKey,
     );
 
+
     AlgoliaQuery query = algolia.instance.index('words');
+    query = query.search(_searchText.text);
+    _results =(await query.getObjects()).hits;
+    setState(() {
+      _searching = false;
 
-    if(_searchText.text !=null){
-      query = query.search(_searchText.text);
-      _results =(await query.getObjects()).hits;
-      setState(() {
-        _searching = false;
-      });
-    }
-    else{
-      setState(() {
-        _searching = false;
-
-      });
-    }
-
-    if(_searchText.text == ""){
-      setState(() {
-        _searching = false;
-
-      });
-
-    }
+    });
 
     return _results;
   }
+
+
   _builder() async{
     favoriteDatabase = await $FloorFavoriteDatabase.databaseBuilder("favorite.db").build();
     setState(() {
@@ -138,56 +124,112 @@ class _SearchWordsState extends State<SearchWords> {
 
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:  AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-              },
-            icon: Icon(
-              Icons.arrow_back_ios, color: Color(0xFF0A151F),
-            ),),
-          elevation: 0.5,
-          backgroundColor: Color(0xFFF8F8F8),
-          title: Text(
-            AppConstant.hintSearch,
-            style: TextStyle(color: Color(0xFF0A151F)),
-          ),
-    brightness: Brightness.light,
-    ),
+      appBar:  AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios, color: Colors.white,
+          ),),
+        elevation: 0.5,
+        backgroundColor: Color(0XFF78aaff),
+        centerTitle: true,
+        //backgroundColor: Color(0xFFF8F8F8),
+        title: Text(
+          AppConstant.hintSearch,
+          style: TextStyle(color: Colors.white),
+        ),
+        brightness: Brightness.light,
+      ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(left: 16.0, right:16.0, top: 10.0,bottom: 5.0),
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6.0),
-                  border: Border.all( color:Color(0XFF2A2E43)),
-                  boxShadow:[
-                    BoxShadow(color: Colors.white.withOpacity(0.1), offset: Offset(0, 0), blurRadius: 3, spreadRadius: 1)
-                  ]
-              ),
-              child: TextField(onTap: (){
-              },
-                controller: _searchText,
-                onChanged: _search,
-                focusNode: _searchNode,
-                decoration: InputDecoration(
-                  hintText: AppConstant.hintSearch,
-                  hoverColor: Color(0xff5563ff),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0XFF2A2E43)),
-                  ),
-                  prefixIcon: Icon(Icons.search,color: Color(0XFF2A2E43),),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+          Row(
+            children: <Widget>[
+              Flexible(
+                fit: FlexFit.loose,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0,bottom: 5.0),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all( color:Color(0XFF78aaff)),
+                    ),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: <Widget>[
+                        Flexible(
+                          child: TextFormField(
+                            controller: _searchText,
+                            focusNode: _searchNode,
+                            decoration: InputDecoration(
+                              hintText: 'Arama',
+                              hintStyle: TextStyle(fontSize: 14, color: AppConstant.darkBG),
+                              //
+                              filled: true,
+                              fillColor: Colors.white,
+                              prefixIcon: Container(
+                                margin: EdgeInsets.only(bottom: 0),
+                                child: Icon(
+                                  Icons.search,
+                                  color: AppConstant.darkBG,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                  width: 0,
+                                  color: Colors.transparent,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.close,
+                            color: AppConstant.darkBG,
+                            size: 20,
+                          ),
+                          onPressed: () {
+                            _searching = !_searching;
+                            _searchText.text = "";
+                            setState(() {
+                              _results.clear();
+                            });
+                          },
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
+             Padding(
+               padding: EdgeInsets.only(right: 16.0),
+               child: ButtonTheme(
+                 height: 40,
+                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                 child: RaisedButton(
+                   onPressed: _search,
+                   color: Color(0XFF78aaff),
+                   child: Text('Ara', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 1.3),),
+                 ),
+               ),
+             )
+            ],
           ),
           Container(
             child: Expanded(
@@ -210,7 +252,7 @@ class _SearchWordsState extends State<SearchWords> {
                     Text(AppConstant.defaultSearch, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),)
                   ],
                 ),
-              )
+                )
                   : ListView.builder(
                 itemCount: _results.length,
                 itemBuilder: (BuildContext ctx, int index){
@@ -228,7 +270,7 @@ class _SearchWordsState extends State<SearchWords> {
                           BottomSheetWidget().settingModalBottomSheet(
                               context: context,
                               word: snap.data['turkish'],
-                              title: snap.data['turkish'],
+                              title: snap.data['english'],
                               onPressed: (){Navigator.pop(context);},
                               onTapVoice: () => _dataHelper.speak(snap.data['english']),
                               onTapFav: (bool isLiked) async {
@@ -240,7 +282,7 @@ class _SearchWordsState extends State<SearchWords> {
                                 _wordExists(patient, favId);
                                 return !isLiked;
                               }
-                            );
+                          );
 
                         },
                         child: Container(
@@ -261,7 +303,7 @@ class _SearchWordsState extends State<SearchWords> {
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                color: AppConstant.lightAccent,
+                                color: Colors.black,
                                 size: 18,
                               )
                             ],
@@ -279,3 +321,4 @@ class _SearchWordsState extends State<SearchWords> {
     );
   }
 }
+

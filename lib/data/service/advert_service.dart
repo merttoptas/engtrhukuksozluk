@@ -40,18 +40,6 @@ class AdvertService {
   }
   static final _controller = NativeAdmobController();
 
-  var nativeAdmob = NativeAdmob(
-    adUnitID:"ca-app-pub-3940256099942544/8135179316",
-    loading: Center(child: CircularProgressIndicator(),),
-    error: null,
-    controller: _controller,
-    type: NativeAdmobType.banner,
-    options: NativeAdmobOptions(
-        ratingColor: Colors.white
-    ),
-
-  );
-
   nativeAd(NativeAdmobType type){
     return  NativeAdmob(
       adUnitID:"ca-app-pub-3940256099942544/8135179316",

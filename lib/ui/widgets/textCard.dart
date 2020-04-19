@@ -13,10 +13,11 @@ class TextCard extends StatelessWidget {
 
       padding: EdgeInsets.only(right: 30.0, left: 30.0, top: 30.0,bottom: 30.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0XFF78aaff),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Container(
+        color: Color(0XFF78aaff),
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -43,7 +44,8 @@ class TitleValueWidget extends StatelessWidget {
           title,
           style: TextStyle(
             fontSize: 20.0,
-            fontWeight: FontWeight.w500,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
             letterSpacing: 1.2
         ),
         ),
@@ -56,7 +58,8 @@ class TitleValueWidget extends StatelessWidget {
             value.toString(),
             style: TextStyle(
                 fontSize: 20.0,
-                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
                 letterSpacing: 1.2
             ),
           ),

@@ -20,6 +20,7 @@ class BackendFlipCard extends StatelessWidget {
             cardKey.currentState.toggleCard();
           },
           child: Card(
+            color: Color(0XFF78aaff),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
@@ -45,6 +46,7 @@ class BackendFlipCard extends StatelessWidget {
                               fit: BoxFit.fitWidth,
                               child: Text(text,
                                 style: TextStyle(
+                                  color: Colors.white,
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w900
                                 ),
@@ -57,7 +59,7 @@ class BackendFlipCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 10.0),
                       child: Divider(
-                        color: Colors.grey,
+                        color: Colors.white,
                       ),
                     ),
                     Padding(
@@ -86,7 +88,7 @@ class BackendFlipCard extends StatelessWidget {
 addButton(String label, Function onPressed){
   return FlatButton(
     onPressed: onPressed,
-    child: Text(label, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500, color: Colors.black, letterSpacing: 1.2
+    child: Text(label, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500, color: Colors.white, letterSpacing: 1.2
     ) ),
   );
 }

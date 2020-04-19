@@ -21,7 +21,7 @@ class ListTileCard extends StatelessWidget {
               height: 40,
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Color(0XFF2A2E43), radius:14, child:icon,),
+                    backgroundColor: Color(0XFF78aaff), radius:14, child:icon,),
                   title:Text(text, style: GoogleFonts.openSans(textStyle:
                         TextStyle(fontSize: 12.0,fontWeight: FontWeight.w500,
                             color: Colors.black,letterSpacing: 1.2),

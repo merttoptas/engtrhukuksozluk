@@ -5,6 +5,7 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/dot_animation_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:flutter/cupertino.dart';
 
 
 class IntroScreen extends StatefulWidget {
@@ -84,7 +85,7 @@ class _IntroScreenState extends State<IntroScreen> {
     setState(() {
       prefs.setBool('boolValue', true);
       Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),);
+        CupertinoPageRoute(builder: (context) => HomeScreen()),);
     });
 
 
@@ -100,11 +101,8 @@ class _IntroScreenState extends State<IntroScreen> {
       checkValue = prefs.getBool("boolValue");
       if(checkValue !=null){
         checkValue = prefs.getBool("boolValue");
-
         Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),);
-
-
+          CupertinoPageRoute(builder: (context) => HomeScreen()),);
       }
       return checkValue;
     });
