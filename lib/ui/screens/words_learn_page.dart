@@ -29,6 +29,16 @@ class _WordsLearnState extends State<WordsLearn> {
   String string;
   List<Words> wordsList;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+
+  double heightSize(double value){
+    value /= 100;
+    return MediaQuery.of(context).size.height * value;
+  }
+
+  double widthSize(double value ){
+    value /=100;
+    return MediaQuery.of(context).size.width * value;
+  }
   
 @override
   void initState() {
@@ -45,7 +55,6 @@ class _WordsLearnState extends State<WordsLearn> {
   }
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
     return  Scaffold(
       appBar:  AppBar(
         leading: IconButton(
@@ -63,73 +72,67 @@ class _WordsLearnState extends State<WordsLearn> {
         ),
         brightness: Brightness.light,
       ),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            child: Column(
-              children: <Widget>[
-                FutureBuilder<List<Words>>(
-                  future: GetWordsCloud().getRandomWords(),
-                  builder: (context, wordsList){
-                    if(!wordsList.hasData){
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            FutureBuilder<List<Words>>(
+              future: GetWordsCloud()?.getRandomWords(),
+              builder: (context, wordsList){
+                if(!wordsList.hasData){
+                  return FlipCard(
+                    key: cardKey,
+                    back: BackendFlipCard(cardKey: cardKey,text: "",),
+                    front: FrontFlipCard(cardKey: cardKey,text: "",),
+                  );
+                }
+                else{
+                  var allWordsList= wordsList.data;
+                  return ListView.builder(
+                    itemBuilder: (context, index){
+                      var currentWords = allWordsList[index];
+                      if(!wordsList.hasData){
+                        return Center(
+                          child:CircularProgressIndicator(backgroundColor: Color(0XFF2A2E43),),);
+                      }
                       return FlipCard(
                         key: cardKey,
-                        back: BackendFlipCard(cardKey: cardKey,text: "",),
-                        front: FrontFlipCard(cardKey: cardKey,text: "",),
-                      );
-                    }
-                    else{
-                      var allWordsList= wordsList.data;
-                      return ListView.builder(
-                        itemBuilder: (context, index){
-                          var currentWords = allWordsList[index];
-                          if(!wordsList.hasData){
-                            return Center(
-                              child:CircularProgressIndicator(backgroundColor: Color(0XFF2A2E43),),);
-                          }
-                          return FlipCard(
-                            key: cardKey,
-                            flipOnTouch: true,
-                            back: BackendFlipCard(cardKey: cardKey, text: currentWords.turkish, onButton2Press: (){
-                              setState(() {
-                                model.value2++;
-                                cardKey.currentState.toggleCard();
-                              });
+                        flipOnTouch: true,
+                        back: BackendFlipCard(cardKey: cardKey, text: currentWords.turkish, onButton2Press: (){
+                          setState(() {
+                            model.value2++;
+                            cardKey.currentState.toggleCard();
+                          });
 
-                            }, onButton3Press: (){
-                              setState(() {
-                                model.value1++;
-                                cardKey.currentState.toggleCard();
-                              });
-                            },),
-                            front: FrontFlipCard(cardKey: cardKey, text: currentWords.english,),
-                          );
-                        },
-                        itemCount:1,
-                        shrinkWrap: true,
+                        }, onButton3Press: (){
+                          setState(() {
+                            model.value1++;
+                            cardKey.currentState.toggleCard();
+                          });
+                        },),
+                        front: FrontFlipCard(cardKey: cardKey, text: currentWords.english,),
                       );
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: TextCard(
-                    valueNotifier1: model.onValue1Change,
-                    valueNotifier2: model.onValue2Change,
-                  ),
-                ),
-                SizedBox(height: 30,),
-                  Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: AdsWidget(borderRadius: BorderRadius.circular(12), height: 200.0,type: NativeAdmobType.full,),
-                ),
-              ],
+                    },
+                    itemCount:1,
+                    shrinkWrap: true,
+                  );
+                }
+              },
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 32,right: 32),
+              child: TextCard(
+                valueNotifier1: model.onValue1Change,
+                valueNotifier2: model.onValue2Change,
+              ),
+            ),
+              Spacer(),
+              Padding(
+              padding: const EdgeInsets.only(left: 32,right: 32,bottom: 32),
+              child: AdsWidget(borderRadius: BorderRadius.circular(12), height: heightSize(20),type: NativeAdmobType.full,),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -17,6 +17,7 @@ class SearchService {
      Algolia algolia = Algolia.init(
        applicationId: AppConstant.applicationId,
        apiKey: AppConstant.apiKey,
+
      );
 
      return algolia;

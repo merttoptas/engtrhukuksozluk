@@ -9,9 +9,9 @@ class TextCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
 
-      padding: EdgeInsets.only(right: 30.0, left: 30.0, top: 30.0,bottom: 30.0),
+    return Container(
+      padding: EdgeInsets.only(right: 20.0, left: 20.0, bottom: 20,top: 20),
       decoration: BoxDecoration(
         color: Color(0XFF78aaff),
         borderRadius: BorderRadius.circular(15),
@@ -37,13 +37,22 @@ class TitleValueWidget extends StatelessWidget {
       : super(key: key);
 
   Widget build(BuildContext context) {
+    double heightSize(double value){
+      value /= 100;
+      return MediaQuery.of(context).size.height * value;
+    }
+
+    double widthSize(double value ){
+      value /=100;
+      return MediaQuery.of(context).size.width * value;
+    }
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
           title,
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: heightSize(2),
               color: Colors.white,
               fontWeight: FontWeight.w600,
             letterSpacing: 1.2
@@ -57,7 +66,7 @@ class TitleValueWidget extends StatelessWidget {
           builder: (ctx, value, __) => Text(
             value.toString(),
             style: TextStyle(
-                fontSize: 20.0,
+                fontSize: heightSize(2),
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 1.2

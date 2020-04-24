@@ -1,5 +1,6 @@
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
@@ -19,8 +20,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
           ),
           child: Align(
           alignment: Alignment.center,
-            child: Padding(padding: const EdgeInsets.only(top: 40), child: Text(AppConstant.homeTitle, style: TextStyle(fontSize: 30, color: Colors.black54,
-                letterSpacing: 1.3, fontWeight: FontWeight.w600),),),
+            child: Padding(padding: const EdgeInsets.only(top: 40), child: Text(AppConstant.homeTitle,
+              style: GoogleFonts.pacifico(fontSize: 35,
+                  letterSpacing: 3.5, color: Colors.black54),),),
         ),
         ),
     );
@@ -28,4 +30,3 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Size get preferredSize => Size.fromHeight(70.0);
 }
-

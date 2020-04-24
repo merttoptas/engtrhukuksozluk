@@ -12,7 +12,7 @@ class BottomSheetWidget {
         backgroundColor: Colors.transparent,
         builder: (context) {
           return Container(
-            height: MediaQuery.of(context).size.height * 0.45,
+            height: MediaQuery.of(context).size.height * 0.50,
             child: Container(child: _buildDetailItem(word: word,title: title,
                 onTapVoice: onTapVoice, onTapFav: onTapFav, onPressed: onPressed ),
                 decoration: _bottomSheetBoxDecoration),
@@ -22,7 +22,7 @@ class BottomSheetWidget {
 
   Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav,
     Function onTapVoice, Function onPressed}) => Padding(
-    padding: const EdgeInsets.only(top: 30.0),
+    padding: const EdgeInsets.only(top: 25),
       child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,9 +123,7 @@ class BottomSheetWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
+
             Material(
               color: Colors.white,
               elevation: 4,
@@ -135,7 +133,7 @@ class BottomSheetWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: double.infinity,
+                    width: double.infinity ,
                     padding: EdgeInsets.all(12),
                     child: Column(
                       children: <Widget>[
@@ -160,7 +158,6 @@ class BottomSheetWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 8,),
                         Divider(),
                       ],
 
@@ -172,7 +169,7 @@ class BottomSheetWidget {
             SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: AdsWidget(borderRadius: BorderRadius.circular(12), height: 80,type: NativeAdmobType.banner,),
+              child: AdsWidget(borderRadius: BorderRadius.circular(12), height:150,type: NativeAdmobType.banner,),
             ),
           ],
         ),

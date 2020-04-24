@@ -12,8 +12,17 @@ class BackendFlipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double heightSize(double value){
+      value /= 100;
+      return MediaQuery.of(context).size.height * value;
+    }
+
+    double widthSize(double value ){
+      value /=100;
+      return MediaQuery.of(context).size.width * value;
+    }
     return Padding(
-      padding: const EdgeInsets.only(top:80.0, left: 30.0,right: 30.0, bottom: 20.0),
+      padding: const EdgeInsets.only(top:50.0, left: 30.0,right: 30.0, bottom: 10.0),
       child: GestureDetector(
         child: InkWell(
           onTap: (){
@@ -28,7 +37,7 @@ class BackendFlipCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: 150.0,
+                height: heightSize(16),
                 decoration: BoxDecoration(
                 ),
                 child: Column(
@@ -40,16 +49,13 @@ class BackendFlipCard extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: FittedBox(
-                              fit: BoxFit.fitWidth,
+                              FittedBox(
+                            fit: BoxFit.fitWidth,
                               child: Text(text,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w900
-                                ),
+                              style: TextStyle(
+                                color: Colors.white,
+                                  fontSize: heightSize(2.5),
+                                  fontWeight: FontWeight.w900
                               ),
                             ),
                           ),
@@ -57,19 +63,19 @@ class BackendFlipCard extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 10.0),
+                      padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 5.0),
                       child: Divider(
                         color: Colors.white,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
+                      padding: const EdgeInsets.only(top: 5.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          addButton(AppConstant.btnLearn, onButton3Press),
+                          addButton(AppConstant.btnLearn, onButton3Press, heightSize(2)),
                           Spacer(),
-                          addButton(AppConstant.notLearnWord, onButton2Press),
+                          addButton(AppConstant.btnNotLearn, onButton2Press, heightSize(2)),
 
                         ],
                       ),
@@ -85,10 +91,10 @@ class BackendFlipCard extends StatelessWidget {
   }
 }
 
-addButton(String label, Function onPressed){
+addButton(String label, Function onPressed, double height){
   return FlatButton(
     onPressed: onPressed,
-    child: Text(label, style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500, color: Colors.white, letterSpacing: 1.2
+    child: Text(label, style: TextStyle(fontSize: height, fontWeight: FontWeight.w500, color: Colors.white, letterSpacing: 1.2
     ) ),
   );
 }

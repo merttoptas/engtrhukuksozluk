@@ -6,9 +6,11 @@ class ListTileCard extends StatelessWidget {
   final Function onPressed;
   final String text;
   final Icon icon;
+  MediaQueryData queryData;
 
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
     return  GestureDetector(
       onTap: onPressed,
       child: Column(
@@ -18,7 +20,7 @@ class ListTileCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(2.0),
             child: Container(
-              height: 40,
+              height: 35,
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundColor: Color(0XFF78aaff), radius:14, child:icon,),

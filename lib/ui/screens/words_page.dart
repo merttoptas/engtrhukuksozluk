@@ -140,7 +140,6 @@ class _WordsPageState extends State<WordsPage> {
                                 var patient = Favorite(turkish: turkish, english: english, favId: favId);
                                 wordExists(patient, favId);
                                   return !isLiked;
-
                               }
                           );
                         },
@@ -149,7 +148,7 @@ class _WordsPageState extends State<WordsPage> {
                           String english = currentWords.english;
                           String turkish = currentWords.turkish;
                           int favId = currentWords.id;
-
+                          
                           var patient = Favorite(turkish: turkish, english: english, favId: favId);
                           wordExists(patient, favId);
                           return !isLiked;

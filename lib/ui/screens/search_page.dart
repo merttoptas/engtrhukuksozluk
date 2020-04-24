@@ -47,11 +47,13 @@ class _SearchWordsState extends State<SearchWords> {
 
     AlgoliaQuery query = algolia.instance.index('words');
     query = query.search(_searchText.text);
+    query.setMinWordSizeFor1Typo(1);
     _results =(await query.getObjects()).hits;
     setState(() {
       _searching = false;
 
     });
+
 
     return _results;
   }
@@ -155,7 +157,6 @@ class _SearchWordsState extends State<SearchWords> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 10.0,bottom: 5.0),
                   child: Container(
-                    height: 50,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),

@@ -97,8 +97,8 @@ class AppConstant{
   //strings
   static final String btnLearn ='BİLİYORUM';
   static final String btnNotLearn = 'BİLMİYORUM';
-  static final String learnWord = "Öğrenilen";
-  static final String notLearnWord = 'Bilinmeyen';
+  static final String learnWord = "Biliyorum";
+  static final String notLearnWord = 'Bilmiyorum';
   static final String btn  ="ANLAMI GÖRMEK İÇİN DOKUN!";
   static final String favSnackBarNegative = "Favorilerimde Zaten Var";
   static final String favSnackBarPositive = "Favorilerime Eklendi";

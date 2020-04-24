@@ -20,8 +20,12 @@ class _AboutUsState extends State<AboutUs> {
     }
   }
 
+  MediaQueryData queryData;
+
   @override
   Widget build(BuildContext context) {
+    queryData = MediaQuery.of(context);
+
     return Stack(
       overflow: Overflow.visible,
       children: <Widget>[
@@ -36,8 +40,8 @@ class _AboutUsState extends State<AboutUs> {
                     width: MediaQuery.of(context).size.width,
                     color: Colors.transparent,
                   ),
-                  Positioned(
-                    top: 85.0,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 80),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -51,23 +55,25 @@ class _AboutUsState extends State<AboutUs> {
                     ),
                   ),
                   Positioned(
-                    top: 25.0,
+                    top: 10.0,
                     left: (MediaQuery.of(context).size.width/2)-100,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(AppConstant.svgAbout),
-                          fit: BoxFit.cover,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(AppConstant.svgAbout),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          height: queryData.size.height * 0.25,
+                          width: 200,
                         ),
-                      ),
-                      height: 200.0,
-                      width: 200.0,
+                      ],
                     ),
                   ),
-                  Positioned(
-                    top: 240.0,
-                    left: 25.0,
-                    right: 25.0,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 230,left: 25,right: 25),
                     child: Column(
                       children: <Widget>[
                         Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
