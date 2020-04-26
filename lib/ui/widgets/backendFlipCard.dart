@@ -1,4 +1,5 @@
 import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
@@ -9,18 +10,10 @@ class BackendFlipCard extends StatelessWidget {
   final Function onButton2Press,onButton3Press;
   final String text;
   final GlobalKey<FlipCardState> cardKey;
+  SizeConfig _sizeConfig = SizeConfig();
 
   @override
   Widget build(BuildContext context) {
-    double heightSize(double value){
-      value /= 100;
-      return MediaQuery.of(context).size.height * value;
-    }
-
-    double widthSize(double value ){
-      value /=100;
-      return MediaQuery.of(context).size.width * value;
-    }
     return Padding(
       padding: const EdgeInsets.only(top:50.0, left: 30.0,right: 30.0, bottom: 10.0),
       child: GestureDetector(
@@ -37,7 +30,7 @@ class BackendFlipCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: heightSize(16),
+                height: _sizeConfig.heightSize(context, 16),
                 decoration: BoxDecoration(
                 ),
                 child: Column(
@@ -54,7 +47,7 @@ class BackendFlipCard extends StatelessWidget {
                               child: Text(text,
                               style: TextStyle(
                                 color: Colors.white,
-                                  fontSize: heightSize(2.5),
+                                  fontSize: _sizeConfig.heightSize(context, 2.5),
                                   fontWeight: FontWeight.w900
                               ),
                             ),
@@ -73,9 +66,9 @@ class BackendFlipCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          addButton(AppConstant.btnLearn, onButton3Press, heightSize(2)),
+                          addButton(AppConstant.btnLearn, onButton3Press, _sizeConfig.heightSize(context,2)),
                           Spacer(),
-                          addButton(AppConstant.btnNotLearn, onButton2Press, heightSize(2)),
+                          addButton(AppConstant.btnNotLearn, onButton2Press, _sizeConfig.heightSize(context,2)),
 
                         ],
                       ),

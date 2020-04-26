@@ -1,6 +1,7 @@
+import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
+import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
-
 import 'package:engtrhukuksozluk/ui/screens/aboutus_page.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/ui/screens/favorite_page.dart';
@@ -54,35 +55,49 @@ class _WordsScreenState extends State<WordsScreen> {
 
       ),
       
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.red,
-        items:  <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            title: Text(AppConstant.pageWords),
+      bottomNavigationBar: CircleBottomNavigation(
+        textColor: Colors.black,
+        barHeight: 60,
+        circleColor: Color(0XFF78aaff),
+        inactiveIconColor: Colors.grey,
+        circleSize: 42,
+        arcHeight:30,
+        circleOutline:10,
+        hasElevationShadows: true,
+        tabs: [
+          TabData(
+            icon: Icons.list,
+            iconSize: 30,
+            title: AppConstant.pageWords,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              title: Text(AppConstant.pageSearch)
+          TabData(
+            icon: Icons.search,
+            iconSize: 30,
+            title: AppConstant.pageSearch,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            title: Text(AppConstant.pageFavorite),
-            activeIcon: Icon(Icons.favorite),
+          TabData(
+            icon: Icons.favorite_border,
+            iconSize: 30,
+            title: AppConstant.pageFavorite,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text(AppConstant.pageAbout),
+          TabData(
+            icon: Icons.account_circle,
+            iconSize: 30,
+            title: AppConstant.pageAbout,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ],
-        currentIndex: selectIndexId,
-        selectedItemColor: Color(0XFF2A2E43),
-        onTap: (value){
-          selectIndexId=value;
-          setState(() {
-          });
-        },
-        unselectedItemColor: Colors.grey,
+        initialSelection: selectIndexId,
+        onTabChangedListener: (value){ selectIndexId=value;
+        setState(() {
+        }); },
       ),
     );
   }

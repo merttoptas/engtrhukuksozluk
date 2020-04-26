@@ -1,3 +1,4 @@
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 
@@ -33,26 +34,19 @@ class TextCard extends StatelessWidget {
 class TitleValueWidget extends StatelessWidget {
   final String title;
   final ValueNotifier valueNotifier;
-  const TitleValueWidget({Key key, this.title, this.valueNotifier})
+  SizeConfig _sizeConfig = SizeConfig();
+   TitleValueWidget({Key key, this.title, this.valueNotifier})
       : super(key: key);
 
-  Widget build(BuildContext context) {
-    double heightSize(double value){
-      value /= 100;
-      return MediaQuery.of(context).size.height * value;
-    }
 
-    double widthSize(double value ){
-      value /=100;
-      return MediaQuery.of(context).size.width * value;
-    }
+  Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
           title,
           style: TextStyle(
-            fontSize: heightSize(2),
+            fontSize: _sizeConfig.heightSize(context, 2),
               color: Colors.white,
               fontWeight: FontWeight.w600,
             letterSpacing: 1.2
@@ -66,7 +60,7 @@ class TitleValueWidget extends StatelessWidget {
           builder: (ctx, value, __) => Text(
             value.toString(),
             style: TextStyle(
-                fontSize: heightSize(2),
+                fontSize:_sizeConfig.heightSize(context, 2),
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 1.2

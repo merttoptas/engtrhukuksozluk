@@ -1,4 +1,5 @@
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
@@ -19,6 +20,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   Function goToTab;
   SharedPreferences sharedPreferences;
+  SizeConfig _sizeConfig = SizeConfig();
 
   @override
   void initState() {
@@ -144,14 +146,11 @@ class _IntroScreenState extends State<IntroScreen> {
           child: ListView(
             children: <Widget>[
               GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Image.asset(
-                      currentSlide.pathImage,
-                      width: 300.0,
-                      height: 300.0,
-                      fit: BoxFit.contain,
-                    ),
+                  child: Image.asset(
+                    currentSlide.pathImage,
+                    width: _sizeConfig.widthSize(context, 50),
+                    height: _sizeConfig.heightSize(context, 50),
+                    fit: BoxFit.contain,
                   )),
               Container(
                 child: Text(
@@ -159,7 +158,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   style: currentSlide.styleTitle,
                   textAlign: TextAlign.center,
                 ),
-                margin: EdgeInsets.only(top: 20.0),
+                margin: EdgeInsets.only(top: 10.0),
               ),
               Container(
                 child: Text(

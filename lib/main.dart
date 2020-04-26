@@ -1,4 +1,4 @@
-import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/ui/screens/intro_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -11,6 +11,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
 
 void main() async{
+  //firebase crash
+  Crashlytics.instance.enableInDevMode = true;
+  FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   WidgetsFlutterBinding.ensureInitialized();
 

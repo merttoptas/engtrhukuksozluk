@@ -1,3 +1,4 @@
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 import 'package:engtrhukuksozluk/utils/app_const.dart';
@@ -7,19 +8,10 @@ class FrontFlipCard extends StatelessWidget {
   FrontFlipCard({Key key, this.text, this.cardKey}): super(key:key);
   final String text;
   final GlobalKey<FlipCardState> cardKey;
+  SizeConfig _sizeConfig = SizeConfig();
 
   @override
   Widget build(BuildContext context) {
-
-    double heightSize(double value){
-      value /= 100;
-      return MediaQuery.of(context).size.height * value;
-    }
-
-    double widthSize(double value ){
-      value /=100;
-      return MediaQuery.of(context).size.width * value;
-    }
     return Padding(
       padding: const EdgeInsets.only(top:50.0, left: 30.0,right: 30.0, bottom: 20.0),
       child: GestureDetector(
@@ -36,7 +28,7 @@ class FrontFlipCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: heightSize(16),
+                height: _sizeConfig.heightSize(context, 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +42,7 @@ class FrontFlipCard extends StatelessWidget {
                             fit: BoxFit.fitWidth,
                             child: Text(text,
                               style: TextStyle(
-                                  fontSize: heightSize(2.5),
+                                  fontSize: _sizeConfig.heightSize(context, 2.5),
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900
                               ),
@@ -72,7 +64,7 @@ class FrontFlipCard extends StatelessWidget {
                         children: <Widget>[
                           Text(AppConstant.btnMeaning,
                             style: TextStyle(
-                              fontSize: heightSize(2),
+                              fontSize: _sizeConfig.heightSize(context, 2),
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
                             ),

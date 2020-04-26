@@ -72,67 +72,65 @@ class _WordsLearnState extends State<WordsLearn> {
         ),
         brightness: Brightness.light,
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            FutureBuilder<List<Words>>(
-              future: GetWordsCloud()?.getRandomWords(),
-              builder: (context, wordsList){
-                if(!wordsList.hasData){
-                  return FlipCard(
-                    key: cardKey,
-                    back: BackendFlipCard(cardKey: cardKey,text: "",),
-                    front: FrontFlipCard(cardKey: cardKey,text: "",),
-                  );
-                }
-                else{
-                  var allWordsList= wordsList.data;
-                  return ListView.builder(
-                    itemBuilder: (context, index){
-                      var currentWords = allWordsList[index];
-                      if(!wordsList.hasData){
-                        return Center(
-                          child:CircularProgressIndicator(backgroundColor: Color(0XFF2A2E43),),);
-                      }
-                      return FlipCard(
-                        key: cardKey,
-                        flipOnTouch: true,
-                        back: BackendFlipCard(cardKey: cardKey, text: currentWords.turkish, onButton2Press: (){
-                          setState(() {
-                            model.value2++;
-                            cardKey.currentState.toggleCard();
-                          });
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          FutureBuilder<List<Words>>(
+            future: GetWordsCloud()?.getRandomWords(),
+            builder: (context, wordsList){
+              if(!wordsList.hasData){
+                return FlipCard(
+                  key: cardKey,
+                  back: BackendFlipCard(cardKey: cardKey,text: "",),
+                  front: FrontFlipCard(cardKey: cardKey,text: "",),
+                );
+              }
+              else{
+                var allWordsList= wordsList.data;
+                return ListView.builder(
+                  itemBuilder: (context, index){
+                    var currentWords = allWordsList[index];
+                    if(!wordsList.hasData){
+                      return Center(
+                        child:CircularProgressIndicator(backgroundColor: Color(0XFF2A2E43),),);
+                    }
+                    return FlipCard(
+                      key: cardKey,
+                      flipOnTouch: true,
+                      back: BackendFlipCard(cardKey: cardKey, text: currentWords.turkish, onButton2Press: (){
+                        setState(() {
+                          model.value2++;
+                          cardKey.currentState.toggleCard();
+                        });
 
-                        }, onButton3Press: (){
-                          setState(() {
-                            model.value1++;
-                            cardKey.currentState.toggleCard();
-                          });
-                        },),
-                        front: FrontFlipCard(cardKey: cardKey, text: currentWords.english,),
-                      );
-                    },
-                    itemCount:1,
-                    shrinkWrap: true,
-                  );
-                }
-              },
+                      }, onButton3Press: (){
+                        setState(() {
+                          model.value1++;
+                          cardKey.currentState.toggleCard();
+                        });
+                      },),
+                      front: FrontFlipCard(cardKey: cardKey, text: currentWords.english,),
+                    );
+                  },
+                  itemCount:1,
+                  shrinkWrap: true,
+                );
+              }
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 32,right: 32),
+            child: TextCard(
+              valueNotifier1: model.onValue1Change,
+              valueNotifier2: model.onValue2Change,
             ),
+          ),
+            Spacer(),
             Padding(
-              padding: const EdgeInsets.only(left: 32,right: 32),
-              child: TextCard(
-                valueNotifier1: model.onValue1Change,
-                valueNotifier2: model.onValue2Change,
-              ),
-            ),
-              Spacer(),
-              Padding(
-              padding: const EdgeInsets.only(left: 32,right: 32,bottom: 32),
-              child: AdsWidget(borderRadius: BorderRadius.circular(12), height: heightSize(20),type: NativeAdmobType.full,),
-            ),
-          ],
-        ),
+            padding: const EdgeInsets.only(left: 32,right: 32,bottom: 32),
+            child: AdsWidget(borderRadius: BorderRadius.circular(12), height: heightSize(20),type: NativeAdmobType.full,),
+          ),
+        ],
       ),
     );
   }

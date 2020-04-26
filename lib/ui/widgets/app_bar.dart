@@ -15,14 +15,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color(0xffa1c4fd), Color(0xffc2e9fb)]),
+                colors: [Color(0xFFF8F8F8), Color(0xFFF8F8F8)]),
             boxShadow: [BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)],
           ),
           child: Align(
           alignment: Alignment.center,
-            child: Padding(padding: const EdgeInsets.only(top: 40), child: Text(AppConstant.homeTitle,
-              style: GoogleFonts.pacifico(fontSize: 35,
-                  letterSpacing: 3.5, color: Colors.black54),),),
+            child: Padding(padding: const EdgeInsets.only(top: 30), child: Text(AppConstant.homeTitle,
+              style: GoogleFonts.pacifico(fontSize: 30, fontWeight: FontWeight.w100,
+                  letterSpacing: 3.5, color: Colors.black),),),
         ),
         ),
     );

@@ -1,3 +1,4 @@
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +22,7 @@ class _AboutUsState extends State<AboutUs> {
   }
 
   MediaQueryData queryData;
-
+  SizeConfig _sizeConfig = SizeConfig();
   @override
   Widget build(BuildContext context) {
     queryData = MediaQuery.of(context);
@@ -73,16 +74,17 @@ class _AboutUsState extends State<AboutUs> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 230,left: 25,right: 25),
+                    padding: const EdgeInsets.only(left: 25,right: 25),
                     child: Column(
                       children: <Widget>[
-                        Text('Hakkımızda', style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
-                        SizedBox(height: 15.0,),
+                        SizedBox(height: _sizeConfig.heightSize(context, 30),),
+                        Text(AppConstant.pageAbout, style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: _sizeConfig.heightSize(context, 2.4), color: Colors.black, fontWeight: FontWeight.w600, letterSpacing: 1.4)),),
+                        SizedBox(height:_sizeConfig.heightSize(context, 2),),
                         Text(AppConstant.aboutText,
                           textAlign: TextAlign.justify,
-                          style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: 14.0, color: Colors.black,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
+                          style: GoogleFonts.openSans(textStyle: TextStyle(fontSize: _sizeConfig.heightSize(context, 2.0), color: Colors.black,fontWeight: FontWeight.w500,letterSpacing: 1.1)),
                         ),
-                        SizedBox(height: 10.0,),
+                        SizedBox(height: _sizeConfig.heightSize(context, 2),),
                         Padding(
                           padding: const EdgeInsets.only(top:15.0, left: 24.0,right: 24.0),
                           child: Card(

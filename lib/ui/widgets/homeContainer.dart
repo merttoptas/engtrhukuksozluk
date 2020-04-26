@@ -1,24 +1,22 @@
-import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeContainerWidget extends StatelessWidget {
-  HomeContainerWidget({this.startColour, this.endColour,this.titleText, this.subtitleText, this.assetImage});
+  HomeContainerWidget({this.startColour, this.endColour,this.titleText, this.subtitleText, this.assetImage,this.height});
   final Color startColour, endColour;
   final String titleText, subtitleText;
   final AssetImage assetImage;
+  final double height;
   MediaQueryData queryData;
-  
-  static ScreenUtil _instance;
+
 
   @override
   Widget build(BuildContext context) {
     queryData = MediaQuery.of(context);
-    ScreenUtil.init(context, height:queryData.size.height, width: queryData.size.width,allowFontScaling: false);
-
     return  Container(
-        height:  ScreenUtil().setHeight(130),
+        height:  height,
         decoration: BoxDecoration(
           boxShadow:[
             BoxShadow(
@@ -35,25 +33,31 @@ class HomeContainerWidget extends StatelessWidget {
               colors: [startColour, endColour]),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 10.0, top:30.0),
-              child: Column(
+              padding: EdgeInsets.only(left:10),
+              child:
+                Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
+                  Flexible(
                     child: Text(titleText,
-                      style: GoogleFonts.openSans(textStyle: TextStyle(color: Colors.white, fontSize:20, fontWeight: FontWeight.w600,)),),
+                      style: TextStyle(fontSize: queryData.size.width  * 0.066, fontWeight: FontWeight.w500, color: Colors.white),),
                   ),
-                  SizedBox(height: 10.0),
-                  Text(subtitleText,
-                    style: GoogleFonts.openSans(textStyle:TextStyle(color: Colors.white, fontSize:18, fontWeight: FontWeight.w600) ),),
+                  SizedBox(height: 3.0),
+                  Flexible(
+                    child: Text(subtitleText,
+                      style: GoogleFonts.openSans(textStyle:TextStyle(color: Colors.white, fontSize:queryData.size.width  * 0.040, fontWeight: FontWeight.w500) ),),
+                  ),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
+              padding: const EdgeInsets.only(right:10.0),
               child: Container(
-                width:  ScreenUtil().setWidth(130),
+                width:  queryData.size.height *0.15,
                 foregroundDecoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.fitWidth,

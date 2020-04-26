@@ -6,15 +6,15 @@ import 'package:like_button/like_button.dart';
 
 class BottomSheetWidget {
   void settingModalBottomSheet({BuildContext context,String word, String title,
-    Function onTapFav, Function onTapVoice, Function onPressed}){
+    Function onTapFav, Function onTapVoice, Function onPressed, double adsHeight}){
     showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
         builder: (context) {
           return Container(
-            height: MediaQuery.of(context).size.height * 0.50,
+            height: MediaQuery.of(context).size.height * 0.49,
             child: Container(child: _buildDetailItem(word: word,title: title,
-                onTapVoice: onTapVoice, onTapFav: onTapFav, onPressed: onPressed ),
+                onTapVoice: onTapVoice, onTapFav: onTapFav, onPressed: onPressed, adsHeight: adsHeight ),
                 decoration: _bottomSheetBoxDecoration),
           );
         });
@@ -22,7 +22,7 @@ class BottomSheetWidget {
 
   Widget _itemTopMenu({BuildContext context, String heading, Function onTapFav,
     Function onTapVoice, Function onPressed}) => Padding(
-    padding: const EdgeInsets.only(top: 25),
+    padding: const EdgeInsets.only(top: 30),
       child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,67 +113,72 @@ class BottomSheetWidget {
     ),
   );
 
-  Widget _buildDetailItem({String title, String word, Function onTapFav, Function onTapVoice, Function onPressed, BuildContext context}) => Column(
+  Widget _buildDetailItem({String title, String word, Function onTapFav, Function onTapVoice, Function onPressed, BuildContext context, double adsHeight}) =>
+      Column(
     children: <Widget>[
       _pullDown(Colors.black45),
       _itemTopMenu(heading: title, onTapFav: onTapFav, onTapVoice: onTapVoice, onPressed: onPressed),
       Divider(),
-      Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-
-            Material(
-              color: Colors.white,
-              elevation: 4,
-              shadowColor: Colors.black38,
-              borderRadius: BorderRadius.circular(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: double.infinity ,
-                    padding: EdgeInsets.all(12),
-                    child: Column(
-                      children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+      Spacer(),
+      Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Material(
+                  color: Colors.white,
+                  elevation: 4,
+                  shadowColor: Colors.black38,
+                  borderRadius: BorderRadius.circular(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity ,
+                        padding: EdgeInsets.all(12),
+                        child: Column(
                           children: <Widget>[
-                            SizedBox(
-                              height: 12,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
+                            Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 9,
                                 ),
-                                children: <TextSpan>[
-                                  TextSpan(text: word ,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black ),),
-                                ],
-                              ),
+                                RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(text: word ,style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black ),),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
+                            Divider(),
                           ],
                         ),
-                        Divider(),
-                      ],
-
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(height: 10,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AdsWidget(borderRadius: BorderRadius.circular(12), height:150,type: NativeAdmobType.banner,),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
+      Spacer(),
+      Padding(
+        padding: const EdgeInsets.only(left: 10,right: 10,bottom: 15),
+        child: AdsWidget(borderRadius: BorderRadius.circular(8), height:adsHeight,type: NativeAdmobType.banner,),
+      ),
+
     ],
   );
 

@@ -10,7 +10,7 @@ import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/ui/widgets/wordsRow.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
-import 'package:engtrhukuksozluk/data/service/data.dart';
+import 'package:engtrhukuksozluk/data/service/DataHelper.dart';
 import 'package:provider/provider.dart';
 
 
@@ -83,6 +83,15 @@ class _WordsPageState extends State<WordsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double heightSize(double value){
+      value /= 100;
+      return MediaQuery.of(context).size.height * value;
+    }
+
+    double widthSize(double value ){
+      value /=100;
+      return MediaQuery.of(context).size.width * value;
+    }
     return Scaffold(
       appBar:  AppBar(
         leading: IconButton(
@@ -129,6 +138,7 @@ class _WordsPageState extends State<WordsPage> {
                           BottomSheetWidget().settingModalBottomSheet(context: context,
                               word: currentWords.turkish,
                               title: currentWords.english,
+                              adsHeight: heightSize(11),
                               onTapVoice: () => _dataHelper.speak(currentWords.english),
                               onPressed: (){Navigator.pop(context);},
                               onTapFav: (bool isLiked) async {

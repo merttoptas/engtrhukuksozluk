@@ -67,7 +67,7 @@ class AppConstant{
 
   static final String aboutText = 'JusTerm bir Hukuk Fakültesi öğrencisi tarafından, hukuk insanlarına yardımcı olmak  '
       'amacıyla geliştirişmiş bir hukuk terimleri sözlüğü uygulamasıdır. '
-      'Gün geçtikte kendini yenileyen bu sözlüğün, kelime haznesinin geliştirmesinde'
+      '\nGün geçtikte kendini yenileyen bu sözlüğün, kelime haznesinin geliştirmesinde'
       ' siz de yardımcı olmak isterseniz e-posta göndererek katkıda bulunabilirsiniz.';
 
 
