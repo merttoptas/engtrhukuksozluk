@@ -15,7 +15,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color(0xFFF8F8F8), Color(0xFFF8F8F8)]),
+                colors: [AppConstant.lightAccent, AppConstant.lightAccent]),
             boxShadow: [BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)],
           ),
           child: Align(

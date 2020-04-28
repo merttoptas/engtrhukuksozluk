@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppConstant{
 
   //Colors for theme
-  static final Color lightPrimary = Color(0XFF2A2E43);
+  static final Color lightPrimary = Color(0XFF78aaff);
   static final Color darkPrimary = Color(0xFF0A151F);
   static final Color lightAccent = Color(0xFFF8F8F8);
   static final Color darkAccent = Color(0XFF2A2E43);

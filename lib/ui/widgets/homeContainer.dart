@@ -55,12 +55,12 @@ class HomeContainerWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right:10.0),
+              padding: const EdgeInsets.only(right:5.0),
               child: Container(
                 width:  queryData.size.height *0.15,
                 foregroundDecoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.contain,
                         image: assetImage,
                         alignment: Alignment.centerRight
                     )

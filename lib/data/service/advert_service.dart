@@ -29,7 +29,7 @@ class AdvertService {
 
   showBanner(){
      return BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: _bannerId,
       size: AdSize.smartBanner,
       targetingInfo:targetingInfo,
       listener: (MobileAdEvent event) {
@@ -42,7 +42,7 @@ class AdvertService {
 
   nativeAd(NativeAdmobType type){
     return  NativeAdmob(
-      adUnitID:"ca-app-pub-3940256099942544/8135179316",
+      adUnitID:_bannerId,
       loading: Center(child: CircularProgressIndicator(),),
       error: null,
       controller: _controller,

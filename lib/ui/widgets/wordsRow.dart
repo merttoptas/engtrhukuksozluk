@@ -48,7 +48,7 @@ class WordsRowWidget extends StatelessWidget {
                               child: Container(
                                 child: Icon(
                                   Icons.arrow_forward_ios,
-                                  color: AppConstant.lightAccent,
+                                  color: Colors.black,
                                   size: 18,
                                 )
                               ),

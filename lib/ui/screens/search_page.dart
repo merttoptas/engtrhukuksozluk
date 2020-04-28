@@ -139,7 +139,7 @@ class _SearchWordsState extends State<SearchWords> {
               Icons.arrow_back_ios, color: Colors.white,
             ),),
           elevation: 0.5,
-          backgroundColor: Color(0XFF78aaff),
+          backgroundColor: AppConstant.lightPrimary,
           centerTitle: true,
           //backgroundColor: Color(0xFFF8F8F8),
           title: Text(
