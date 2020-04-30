@@ -27,17 +27,6 @@ class AdvertService {
     nonPersonalizedAds: true,
   );
 
-  showBanner(){
-     return BannerAd(
-      adUnitId: _bannerId,
-      size: AdSize.smartBanner,
-      targetingInfo:targetingInfo,
-      listener: (MobileAdEvent event) {
-        print("BannerAd event is $event");
-      },
-    );
-
-  }
   static final _controller = NativeAdmobController();
 
   nativeAd(NativeAdmobType type){
