@@ -49,7 +49,6 @@ class AppConstant{
     ),
   );
 
-
   static const double fontSizeBody2 = 14;
   static const double fontSizeBody = 16;
   static const double fontSizeDisplay = 28;
@@ -100,6 +99,7 @@ class AppConstant{
   static final String learnWord = "Biliyorum";
   static final String notLearnWord = 'Bilmiyorum';
   static final String btn  ="ANLAMI GÖRMEK İÇİN DOKUN!";
+  static final String btnSearch = "Ara";
   static final String favSnackBarNegative = "Favorilerimde Zaten Var";
   static final String favSnackBarPositive = "Favorilerime Eklendi";
   static final String snackBarDelete = "Başarıyla Silindi";
@@ -111,6 +111,13 @@ class AppConstant{
   static final String hintSearching ="Aranıyor bekleyin..";
   static final String defaultSearch = "Henüz arama yapılmadı.";
   static final String btnMeaning = 'ANLAMI GÖRMEK İÇİN DOKUN!';
+  static final String slideOneTitle = "Hukuk Sözlüğü";
+  static final String slideOneDescription= "Yüzlerce İngilizce - Türkçe hukuk kelimeleri sayesinde hukuk literatürü bilgini geliştirebilirsin.";
+  static final String slideTwoTitle = "Arama Yap";
+  static final String slideTwoDescription= "Arama özelliği sayesinde, Hukuk sözlüğünde dilediğin gibi kelimeleri arayabilirsin.";
+  static final String slideThreeTitle = "Favorile";
+  static final String slideThreeDescription= "Tekrar bakman gereken kelimeler olursa, favorileyebilir ve tekrar bakabilirsin.";
+
 
 
   //image Assets
@@ -123,9 +130,11 @@ class AppConstant{
   static final String svgSliderOne = 'images/slider1.png';
   static final String svgSliderSecond = 'images/slider2.png';
   static final String svgAppIcon = 'images/icon2.png';
+  static final String svgAppFavorites = 'images/home_favorites.png';
 
 
-    //page
+
+  //page
   static final String pageWords = 'Kelimeler';
   static final String pageSearch = 'Arama';
   static final String pageFavorite = 'Favoriler';

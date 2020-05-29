@@ -1,50 +1,37 @@
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
-import 'package:flutter_native_admob/native_admob_options.dart';
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-import 'dart:io' show Platform;
 
 class AdvertService {
-  //static final AdvertService _instance = AdvertService._internal();
-  //MobileAdTargetingInfo targetingInfo;
-  static String _bannerId =   Platform.isAndroid
-      ? 'ca-app-pub-1002372938729651/1201753809'
-      : 'ca-app-pub-1002372938729651/7102657602';
-  static BannerAd _bannerAd;
-  final String testDevice = 'YOUR_DEVICE_ID';
+  final _nativeAdController = NativeAdmobController();
 
-    initialize() {
-     var nativeAdmob = NativeAdmob(adUnitID: _bannerId);
-
-  }
-
-  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>['foo', 'bar'],
-    contentUrl: 'http://foo.com/bar.html',
-    childDirected: true,
-    nonPersonalizedAds: true,
-  );
-
-  static final _controller = NativeAdmobController();
-
-  nativeAd(NativeAdmobType type){
-    return  NativeAdmob(
-      adUnitID:_bannerId,
-      loading: Center(child: CircularProgressIndicator(),),
+  nativeAds(NativeAdmobType type){
+   return  NativeAdmob(
+      adUnitID: getBannerAdUnitId(),
+      controller: _nativeAdController,
+      type:type,
       error: null,
-      controller: _controller,
-      type: type,
-      options: NativeAdmobOptions(
-          ratingColor: Colors.white
-      ),
+      loading: null,
+    );
+  }
 
-    );
+  String getAppId() {
+    if (Platform.isIOS) {
+      return 'ca-app-pub-1002372938729651~1668657668';
+    } else if (Platform.isAndroid) {
+      return 'ca-app-pub-1002372938729651~1668657668';
+    }
+    return null;
   }
-  showInterstitial(){
-   return  FirebaseAdMob.instance.initialize(
-        appId: _bannerId
-    );
+
+  String getBannerAdUnitId() {
+    if (Platform.isIOS) {
+      return 'ca-app-pub-1002372938729651/8875741991';
+    } else if (Platform.isAndroid) {
+      return 'ca-app-pub-1002372938729651/8354577796';
+    }
+    return null;
   }
+
 }

@@ -170,7 +170,7 @@ class _SearchWordsState extends State<SearchWords> {
                               controller: _searchText,
                               focusNode: _searchNode,
                               decoration: InputDecoration(
-                                hintText: 'Arama',
+                                hintText: AppConstant.hintSearch,
                                 hintStyle: TextStyle(fontSize: 14, color: AppConstant.darkBG),
                                 //
                                 filled: true,
@@ -226,7 +226,7 @@ class _SearchWordsState extends State<SearchWords> {
                    child: RaisedButton(
                      onPressed: _search,
                      color: Color(0XFF78aaff),
-                     child: Text('Ara', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 1.3),),
+                     child: Text(AppConstant.btnSearch, style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600, letterSpacing: 1.3),),
                    ),
                  ),
                )
@@ -288,25 +288,23 @@ class _SearchWordsState extends State<SearchWords> {
 
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
                             width: double.infinity,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.start  ,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(
-                                      snap.data['english'],
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-                                    ),
+                                    Text(snap.data['english'], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),),
+                                    SizedBox(height: 3.0,),
+                                    Text(snap.data['turkish'], style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.w500),),
                                   ],
                                 ),
                                 Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black,
-                                  size: 18,
+                                  Icons.arrow_forward_ios, color: Colors.black, size: 18,
                                 )
                               ],
                             ),

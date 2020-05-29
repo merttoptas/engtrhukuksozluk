@@ -11,11 +11,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
   //firebase crash
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
-  WidgetsFlutterBinding.ensureInitialized();
 
   final favoriteDatabase = await $FloorFavoriteDatabase
         .databaseBuilder('favorite.db')
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-    //theme: isDark ? Constants.darkTheme: Constants.lightTheme,
+
       theme: ThemeData(
         brightness: Brightness.light,
         backgroundColor: AppConstant.lightBG,
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         ),
         fontFamily: GoogleFonts.openSans().fontFamily,
      ),
+
       debugShowCheckedModeBanner: false,
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),

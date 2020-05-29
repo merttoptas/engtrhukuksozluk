@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
@@ -64,7 +63,14 @@ class _FavoriteWordsState extends State<FavoriteWords> {
                   }else
                     {
                     final favorite = snapshot.data;
-                    return ListView.builder(
+                    return favorite.length ==0 ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(AppConstant.svgSliderOne,height: 350,width: 350,),
+                        ],
+                      ),
+                    ) : ListView.builder(
                         itemCount: favorite.length,
                         itemBuilder: (_, index) {
                           return ListFavorite(

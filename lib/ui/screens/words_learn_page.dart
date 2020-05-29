@@ -1,4 +1,5 @@
 import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
@@ -29,17 +30,9 @@ class _WordsLearnState extends State<WordsLearn> {
   String string;
   List<Words> wordsList;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+  SizeConfig  _sizeConfig = SizeConfig();
 
-  double heightSize(double value){
-    value /= 100;
-    return MediaQuery.of(context).size.height * value;
-  }
 
-  double widthSize(double value ){
-    value /=100;
-    return MediaQuery.of(context).size.width * value;
-  }
-  
 @override
   void initState() {
   setState(() {
@@ -128,7 +121,7 @@ class _WordsLearnState extends State<WordsLearn> {
             Spacer(),
             Padding(
             padding: const EdgeInsets.only(left: 32,right: 32,bottom: 32),
-            child: AdsWidget(borderRadius: BorderRadius.circular(12), height: heightSize(20),type: NativeAdmobType.full,),
+            child: AdsWidget(borderRadius: BorderRadius.circular(12), height: _sizeConfig.heightSize(context,20),type: NativeAdmobType.banner,),
           ),
         ],
       ),

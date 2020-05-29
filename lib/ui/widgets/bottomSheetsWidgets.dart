@@ -143,9 +143,7 @@ class BottomSheetWidget {
                           children: <Widget>[
                             Column(
                               children: <Widget>[
-                                SizedBox(
-                                  height: 9,
-                                ),
+                                SizedBox(height: 9,),
                                 RichText(
                                   textAlign: TextAlign.center,
                                   text: TextSpan(

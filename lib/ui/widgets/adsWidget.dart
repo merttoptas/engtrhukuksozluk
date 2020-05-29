@@ -9,6 +9,7 @@ class AdsWidget extends StatelessWidget {
   final double height;
   final BorderRadius borderRadius;
   final NativeAdmobType type;
+
   @override
   Widget build(BuildContext context) {
     AdvertService _advertService = AdvertService();
@@ -19,7 +20,7 @@ class AdsWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.all(10),
       height: height,
-      child:_advertService.nativeAd(type),
+      child:_advertService.nativeAds(type),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
+import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,9 +13,8 @@ import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/ui/widgets/wordsRow.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
 import 'package:engtrhukuksozluk/data/service/DataHelper.dart';
-import 'package:provider/provider.dart';
-
-
+import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class WordsPage extends StatefulWidget {
   const WordsPage({Key key}): super(key:key);
@@ -30,7 +31,7 @@ class _WordsPageState extends State<WordsPage> {
   List<Favorite> favExistsList = [];
   GetWordsCloud _getWordsCloud = GetWordsCloud();
   DataHelper _dataHelper = DataHelper();
-
+  SizeConfig _sizeConfig = SizeConfig();
 
 
   @override
@@ -83,15 +84,6 @@ class _WordsPageState extends State<WordsPage> {
 
   @override
   Widget build(BuildContext context) {
-    double heightSize(double value){
-      value /= 100;
-      return MediaQuery.of(context).size.height * value;
-    }
-
-    double widthSize(double value ){
-      value /=100;
-      return MediaQuery.of(context).size.width * value;
-    }
     return Scaffold(
       appBar:  AppBar(
         leading: IconButton(
@@ -130,7 +122,18 @@ class _WordsPageState extends State<WordsPage> {
                 }
                 else{
                   var allWordsList= wordsList.data;
-                  return ListView.builder(
+                  return ListView.separated(
+                    itemCount: allWordsList.length,
+                    separatorBuilder: (context, int index){
+                      if(index %20==0){
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 3,right:3),
+                          child: Container( height:ScreenUtil().setHeight(100),
+                           child: AdsWidget( borderRadius: BorderRadius.circular(15), type: NativeAdmobType.banner,)),
+                        );
+                      }
+                      return Container(height: 0,width: 0,);
+                    },
                     itemBuilder: (context, index){
                       var currentWords = allWordsList[index];
                       return WordsRowWidget(
@@ -138,18 +141,16 @@ class _WordsPageState extends State<WordsPage> {
                           BottomSheetWidget().settingModalBottomSheet(context: context,
                               word: currentWords.turkish,
                               title: currentWords.english,
-                              adsHeight: heightSize(11),
+                              adsHeight: _sizeConfig.heightSize(context,11),
                               onTapVoice: () => _dataHelper.speak(currentWords.english),
                               onPressed: (){Navigator.pop(context);},
                               onTapFav: (bool isLiked) async {
-
                                 String english = currentWords.english;
                                 String turkish =currentWords.turkish;
                                 int favId = currentWords.id;
-
                                 var patient = Favorite(turkish: turkish, english: english, favId: favId);
                                 wordExists(patient, favId);
-                                  return !isLiked;
+                                return !isLiked;
                               }
                           );
                         },
@@ -158,14 +159,14 @@ class _WordsPageState extends State<WordsPage> {
                           String english = currentWords.english;
                           String turkish = currentWords.turkish;
                           int favId = currentWords.id;
-                          
+
                           var patient = Favorite(turkish: turkish, english: english, favId: favId);
                           wordExists(patient, favId);
                           return !isLiked;
                         },
                       );
+
                     },
-                    itemCount: allWordsList.length,
                   );
                 }
               },

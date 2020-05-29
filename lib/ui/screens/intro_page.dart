@@ -29,14 +29,14 @@ class _IntroScreenState extends State<IntroScreen> {
 
     slides.add(
       new Slide(
-        title: "Hukuk Sözlüğü",
+        title: AppConstant.slideOneTitle,
         styleTitle: TextStyle(
             color: AppConstant.lightPrimary,
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
-        "Yüzlerce İngilizce - Türkçe hukuk kelimeleri sayesinde hukuk literatürü bilgini geliştirebilirsin.",
+        AppConstant.slideOneDescription,
         styleDescription: TextStyle(
             color: AppConstant.darkPrimary,
             fontSize: 20.0,
@@ -46,14 +46,14 @@ class _IntroScreenState extends State<IntroScreen> {
     );
     slides.add(
       new Slide(
-        title: "Arama Yap",
+        title: AppConstant.slideTwoTitle,
         styleTitle: TextStyle(
             color: AppConstant.lightPrimary,
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
-        "Arama özelliği sayesinde, Hukuk sözlüğünde dilediğin gibi kelimeleri arayabilirsin.",
+        AppConstant.slideTwoDescription,
         styleDescription: TextStyle(
           color: AppConstant.darkPrimary,
           fontSize: 20.0,
@@ -63,14 +63,14 @@ class _IntroScreenState extends State<IntroScreen> {
     );
     slides.add(
       new Slide(
-        title: "Favorile",
+        title: AppConstant.slideThreeTitle,
         styleTitle: TextStyle(
             color: AppConstant.lightPrimary,
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
         description:
-        "Tekrar bakman gereken kelimeler olursa, favorileyebilir ve tekrar bakabilirsin. ",
+       AppConstant.slideThreeDescription,
         styleDescription: TextStyle(
           color: AppConstant.darkPrimary,
           fontSize: 20.0,

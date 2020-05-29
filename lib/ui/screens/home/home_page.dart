@@ -21,15 +21,20 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-
 class _HomeScreenState extends State<HomeScreen> {
 
   final AdvertService advertService = AdvertService();
   MediaQueryData queryData;
+
   @override
   void initState() {
     PushNotificationService().initialise();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
     int selectIndexId;
 
     return Scaffold(
-
         appBar: HomeAppBar(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -133,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: AdsWidget(
                   borderRadius: BorderRadius.circular(15),
                   height:ScreenUtil().setHeight(130),
-                  type: NativeAdmobType.banner,),
+                  type: NativeAdmobType.full,),
               ),
             ),
 
