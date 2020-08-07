@@ -10,59 +10,73 @@ import 'package:engtrhukuksozluk/ui/screens/splash_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
 
-void main() async{
+import 'data/db/dao/HistoryDao.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   //firebase crash
   Crashlytics.instance.enableInDevMode = true;
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
+  final favoriteDatabase =
+      await $FloorFavoriteDatabase.databaseBuilder('favorite.db').build();
 
-  final favoriteDatabase = await $FloorFavoriteDatabase
-        .databaseBuilder('favorite.db')
-        .build();
+  final historyDatabase =
+      await $FloorHistoryDatabase.databaseBuilder('history.db').build();
 
   final favoriteDao = favoriteDatabase.favoriteDao;
-  runApp(MyApp(favoriteDao: favoriteDao,));
+  final historyDao = historyDatabase.historyDao;
+  runApp(MyApp(
+    favoriteDao: favoriteDao,
+    historyDao: historyDao,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({this.favoriteDao, Key key}): super(key:key);
+  MyApp({this.favoriteDao, this.historyDao, Key key}) : super(key: key);
   final FavoriteDao favoriteDao;
+  final HistoryDao historyDao;
 
   final FirebaseAnalytics analytics = FirebaseAnalytics();
   final bool isDark = false;
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-
       theme: ThemeData(
         brightness: Brightness.light,
         backgroundColor: AppConstant.lightBG,
         textTheme: TextTheme(
-          body1: TextStyle(fontSize: AppConstant.fontSizeBody),
-          body2: TextStyle(fontSize: AppConstant.fontSizeBody2,fontWeight: FontWeight.bold),
-          caption: TextStyle(fontSize: AppConstant.fontSizeCaption, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
-          display1: TextStyle(fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
-
+          headline1: TextStyle(fontSize: AppConstant.fontSizeBody),
+          headline2: TextStyle(
+              fontSize: AppConstant.fontSizeBody2, fontWeight: FontWeight.bold),
+          caption: TextStyle(
+              fontSize: AppConstant.fontSizeCaption,
+              fontWeight: FontWeight.bold),
+          headline4: TextStyle(
+              fontSize: AppConstant.fontSizeDisplay,
+              fontWeight: FontWeight.bold),
+          headline5: TextStyle(
+              fontSize: AppConstant.fontSizeDisplay,
+              fontWeight: FontWeight.bold),
         ),
         fontFamily: GoogleFonts.openSans().fontFamily,
-     ),
-
+      ),
       debugShowCheckedModeBanner: false,
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
       initialRoute: AppConstant.pageSplash,
       routes: {
-        AppConstant.pageSplash: (context) => SplashScreen(favoriteDao),
+        AppConstant.pageSplash: (context) =>
+            SplashScreen(favoriteDao, historyDao),
         AppConstant.pageIntro: (context) => IntroScreen(),
-        AppConstant.pageHome: (context) => HomeScreen(favoriteDao: favoriteDao,),
+        AppConstant.pageHome: (context) => HomeScreen(
+              favoriteDao: favoriteDao,
+              historyDao: historyDao,
+            ),
       },
-
     );
   }
 }

@@ -1,18 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'dart:io';
 
-
 class AdvertService {
-  final _nativeAdController = NativeAdmobController();
-
-  nativeAds(NativeAdmobType type){
-   return  NativeAdmob(
-      adUnitID: getBannerAdUnitId(),
-      controller: _nativeAdController,
-      type:type,
+  nativeAds(NativeAdmobType type, NativeAdmobController admobController) {
+    return NativeAdmob(
+      adUnitID: _getBannerAdUnitId(),
+      controller: admobController,
+      type: type,
       error: null,
-      loading: null,
+      loading: Center(child: Opacity(opacity: 1.0, child: Container( decoration: BoxDecoration(
+        color: Colors.white.withOpacity(1.0),
+     )))),
     );
   }
 
@@ -25,7 +25,7 @@ class AdvertService {
     return null;
   }
 
-  String getBannerAdUnitId() {
+  String _getBannerAdUnitId() {
     if (Platform.isIOS) {
       return 'ca-app-pub-1002372938729651/8875741991';
     } else if (Platform.isAndroid) {
@@ -33,5 +33,4 @@ class AdvertService {
     }
     return null;
   }
-
 }

@@ -1,8 +1,10 @@
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+// ignore: must_be_immutable
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  CustomAppBar({this.title});
+  String title;
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
@@ -14,7 +16,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [AppConstant.lightAccent, AppConstant.lightAccent]),
+              colors: [AppConstant.lightPrimary, AppConstant.lightPrimary]),
           boxShadow: [
             BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)
           ],
@@ -24,12 +26,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Padding(
             padding: const EdgeInsets.only(top: 30),
             child: Text(
-              AppConstant.homeTitle,
-              style: GoogleFonts.pacifico(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w100,
-                  letterSpacing: 3.5,
-                  color: Colors.black),
+              title,
+              style: TextStyle(color: Colors.white, fontSize: 25),
             ),
           ),
         ),
@@ -38,5 +36,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(70.0);
+  Size get preferredSize => Size.fromHeight(60.0);
 }

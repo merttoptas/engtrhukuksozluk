@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:engtrhukuksozluk/utils/app_const.dart';
-
 class WordsRowWidget extends StatelessWidget {
- const WordsRowWidget({Key key, this.text,this.onButtonPress, this.onTap}):super(key:key);
+  const WordsRowWidget({Key key, this.text, this.onButtonPress, this.onTap})
+      : super(key: key);
 
   final String text;
   final Function onButtonPress, onTap;
@@ -30,7 +29,7 @@ class WordsRowWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: InkWell(
-                    onTap:onTap,
+                    onTap: onTap,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -39,19 +38,26 @@ class WordsRowWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.only(top: 10,left: 10.0),
-                              child: Text(text,
-                                style: Theme.of(context).textTheme.body1.copyWith(color: Colors.black, fontWeight: FontWeight.normal),),
+                              padding: EdgeInsets.only(top: 10, left: 10.0),
+                              child: Text(
+                                text,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal),
+                              ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 10.0,top: 10.0),
+                              padding:
+                                  const EdgeInsets.only(right: 10.0, top: 10.0),
                               child: Container(
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black,
-                                  size: 18,
-                                )
-                              ),
+                                  child: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.black,
+                                size: 18,
+                              )),
                             ),
                           ],
                         ),

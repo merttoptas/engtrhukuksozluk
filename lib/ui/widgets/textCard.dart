@@ -31,6 +31,7 @@ class TextCard extends StatelessWidget {
     );
   }
 }
+// ignore: must_be_immutable
 class TitleValueWidget extends StatelessWidget {
   final String title;
   final ValueNotifier valueNotifier;

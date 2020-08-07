@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flutter/cupertino.dart';
 
-
 class IntroScreen extends StatefulWidget {
   @override
   _IntroScreenState createState() => _IntroScreenState();
@@ -35,12 +34,12 @@ class _IntroScreenState extends State<IntroScreen> {
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
-        description:
-        AppConstant.slideOneDescription,
+        description: AppConstant.slideOneDescription,
         styleDescription: TextStyle(
-            color: AppConstant.darkPrimary,
-            fontSize: 20.0,
-            fontStyle: FontStyle.normal,),
+          color: AppConstant.darkPrimary,
+          fontSize: 20.0,
+          fontStyle: FontStyle.normal,
+        ),
         pathImage: AppConstant.svgSlider,
       ),
     );
@@ -52,12 +51,12 @@ class _IntroScreenState extends State<IntroScreen> {
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
-        description:
-        AppConstant.slideTwoDescription,
+        description: AppConstant.slideTwoDescription,
         styleDescription: TextStyle(
           color: AppConstant.darkPrimary,
           fontSize: 20.0,
-          fontStyle: FontStyle.normal,),
+          fontStyle: FontStyle.normal,
+        ),
         pathImage: AppConstant.svgSliderOne,
       ),
     );
@@ -69,14 +68,13 @@ class _IntroScreenState extends State<IntroScreen> {
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
             fontFamily: 'RobotoMono'),
-        description:
-       AppConstant.slideThreeDescription,
+        description: AppConstant.slideThreeDescription,
         styleDescription: TextStyle(
           color: AppConstant.darkPrimary,
           fontSize: 20.0,
-          fontStyle: FontStyle.normal,),
+          fontStyle: FontStyle.normal,
+        ),
         pathImage: AppConstant.svgSliderSecond,
-
       ),
     );
   }
@@ -86,30 +84,32 @@ class _IntroScreenState extends State<IntroScreen> {
     // Back to the first tab
     setState(() {
       prefs.setBool('boolValue', true);
-      Navigator.pushReplacement(context,
-        CupertinoPageRoute(builder: (context) => HomeScreen()),);
+      Navigator.pushReplacement(
+        context,
+        CupertinoPageRoute(builder: (context) => HomeScreen()),
+      );
     });
-
 
     this.goToTab(0);
   }
+
   void onTabChangeCompleted(index) {
     // Index of current tab is focused
   }
   restorePrefData() async {
-    SharedPreferences prefs =  await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return bool
     setState(() {
       checkValue = prefs.getBool("boolValue");
-      if(checkValue !=null){
+      if (checkValue != null) {
         checkValue = prefs.getBool("boolValue");
-        Navigator.pushReplacement(context,
-          CupertinoPageRoute(builder: (context) => HomeScreen()),);
+        Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(builder: (context) => HomeScreen()),
+        );
       }
       return checkValue;
     });
-
-
   }
 
   Widget renderNextBtn() {
@@ -147,11 +147,11 @@ class _IntroScreenState extends State<IntroScreen> {
             children: <Widget>[
               GestureDetector(
                   child: Image.asset(
-                    currentSlide.pathImage,
-                    width: _sizeConfig.widthSize(context, 50),
-                    height: _sizeConfig.heightSize(context, 50),
-                    fit: BoxFit.contain,
-                  )),
+                currentSlide.pathImage,
+                width: _sizeConfig.widthSize(context, 50),
+                height: _sizeConfig.heightSize(context, 50),
+                fit: BoxFit.contain,
+              )),
               Container(
                 child: Text(
                   currentSlide.title,
@@ -196,7 +196,7 @@ class _IntroScreenState extends State<IntroScreen> {
       renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
       colorDoneBtn: AppConstant.lightBG,
-      highlightColorDoneBtn:AppConstant.lightBG,
+      highlightColorDoneBtn: AppConstant.lightBG,
 
       // Dot indicator
       colorDot: AppConstant.lightPrimary,
@@ -216,5 +216,4 @@ class _IntroScreenState extends State<IntroScreen> {
       onTabChangeCompleted: this.onTabChangeCompleted,
     );
   }
-
 }

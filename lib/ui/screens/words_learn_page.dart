@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
+import 'package:engtrhukuksozluk/ui/widgets/customAppBar.dart';
 import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
@@ -10,17 +13,18 @@ import 'package:engtrhukuksozluk/model/valueModel.dart';
 import 'package:engtrhukuksozluk/ui/widgets/textCard.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 
 class WordsLearn extends StatefulWidget {
-  const WordsLearn({Key key}):super(key:key);
+  const WordsLearn({Key key}) : super(key: key);
   @override
   _WordsLearnState createState() => _WordsLearnState();
-
 }
 
 typedef void StringCallback(int val);
+
 class _WordsLearnState extends State<WordsLearn> {
-  _WordsLearnState({this.callback,this.valueNotifier2, this.valueNotifier1});
+  _WordsLearnState({this.callback, this.valueNotifier2, this.valueNotifier1});
   final StringCallback callback;
   final ValueNotifier valueNotifier1;
   final ValueNotifier valueNotifier2;
@@ -30,102 +34,144 @@ class _WordsLearnState extends State<WordsLearn> {
   String string;
   List<Words> wordsList;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
-  SizeConfig  _sizeConfig = SizeConfig();
+  SizeConfig _sizeConfig = SizeConfig();
+  double _height = 0;
+  bool isCompleted = false;
+  final _nativeAdController = NativeAdmobController();
+  // ignore: cancel_subscriptions
+  StreamSubscription subscription;
 
+  void _onStateChanged(AdLoadState state) {
+    switch (state) {
+      case AdLoadState.loading:
+        setState(() {
+          _height = 0;
+          isCompleted = false;
+        });
+        break;
 
-@override
+      case AdLoadState.loadCompleted:
+        setState(() {
+          _height = _sizeConfig.heightSize(context, 20);
+          isCompleted = true;
+        });
+        break;
+
+      case AdLoadState.loadError:
+        setState(() {
+          _height = 0;
+          isCompleted = false;
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  @override
   void initState() {
-  setState(() {
-     model.value1 = 0;
-     model.value2 = 0;
+    subscription = _nativeAdController.stateChanged.listen(_onStateChanged);
+    setState(() {
+      model.value1 = 0;
+      model.value2 = 0;
     });
 
-  super.initState();
+    super.initState();
   }
+
   @override
   void dispose() {
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar:  AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios, color: Colors.white,
-          ),),
-        elevation: 0,
-        backgroundColor: Color(0XFF78aaff),
-        title: Text(
-          AppConstant.hintSearch,
-          style: TextStyle(color: Colors.white),
-        ),
-        brightness: Brightness.light,
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: AppConstant.wordLearnTitle,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           FutureBuilder<List<Words>>(
             future: GetWordsCloud()?.getRandomWords(),
-            builder: (context, wordsList){
-              if(!wordsList.hasData){
+            builder: (context, wordsList) {
+              if (!wordsList.hasData) {
                 return FlipCard(
                   key: cardKey,
-                  back: BackendFlipCard(cardKey: cardKey,text: "",),
-                  front: FrontFlipCard(cardKey: cardKey,text: "",),
+                  back: BackendFlipCard(
+                    cardKey: cardKey,
+                    text: "",
+                  ),
+                  front: FrontFlipCard(
+                    cardKey: cardKey,
+                    text: "",
+                  ),
                 );
-              }
-              else{
-                var allWordsList= wordsList.data;
-                return ListView.builder(
-                  itemBuilder: (context, index){
-                    var currentWords = allWordsList[index];
-                    if(!wordsList.hasData){
-                      return Center(
-                        child:CircularProgressIndicator(backgroundColor: Color(0XFF2A2E43),),);
-                    }
-                    return FlipCard(
-                      key: cardKey,
-                      flipOnTouch: true,
-                      back: BackendFlipCard(cardKey: cardKey, text: currentWords.turkish, onButton2Press: (){
-                        setState(() {
-                          model.value2++;
-                          cardKey.currentState.toggleCard();
-                        });
-
-                      }, onButton3Press: (){
-                        setState(() {
-                          model.value1++;
-                          cardKey.currentState.toggleCard();
-                        });
-                      },),
-                      front: FrontFlipCard(cardKey: cardKey, text: currentWords.english,),
-                    );
-                  },
-                  itemCount:1,
-                  shrinkWrap: true,
+              } else {
+                var allWordsList = wordsList.data;
+                return Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      var currentWords = allWordsList[index];
+                      if (!wordsList.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Color(0XFF2A2E43),
+                          ),
+                        );
+                      }
+                      return FlipCard(
+                        key: cardKey,
+                        flipOnTouch: true,
+                        back: BackendFlipCard(
+                          cardKey: cardKey,
+                          text: currentWords.turkish,
+                          onButton2Press: () {
+                            setState(() {
+                              model.value2++;
+                              cardKey.currentState.toggleCard();
+                            });
+                          },
+                          onButton3Press: () {
+                            setState(() {
+                              model.value1++;
+                              cardKey.currentState.toggleCard();
+                            });
+                          },
+                        ),
+                        front: FrontFlipCard(
+                          cardKey: cardKey,
+                          text: currentWords.english,
+                        ),
+                      );
+                    },
+                    itemCount: 1,
+                    shrinkWrap: true,
+                  ),
                 );
               }
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 32,right: 32),
+            padding: const EdgeInsets.only(left: 32, right: 32),
             child: TextCard(
               valueNotifier1: model.onValue1Change,
               valueNotifier2: model.onValue2Change,
             ),
           ),
-            Spacer(),
-            Padding(
-            padding: const EdgeInsets.only(left: 32,right: 32,bottom: 32),
-            child: AdsWidget(borderRadius: BorderRadius.circular(12), height: _sizeConfig.heightSize(context,20),type: NativeAdmobType.banner,),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(left: 32, right: 32, bottom: 32),
+            child: AdsWidget(
+              admobController: _nativeAdController,
+              borderRadius: BorderRadius.circular(12),
+              height: _height,
+              type: NativeAdmobType.banner,
+            ),
           ),
         ],
       ),
     );
   }
 }
-

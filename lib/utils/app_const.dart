@@ -12,23 +12,6 @@ class AppConstant{
   static final Color darkBG = Color(0xFF183148);
   static final Color transparent = Colors.transparent;
 
-  static ThemeData lightTheme = ThemeData(
-    fontFamily: GoogleFonts.openSans().fontFamily,
-    backgroundColor: lightBG,
-    primaryColor: lightPrimary,
-    accentColor: lightAccent,
-    cursorColor: lightAccent,
-    scaffoldBackgroundColor: lightBG,
-    appBarTheme: AppBarTheme(
-      textTheme: TextTheme(
-        title: TextStyle(
-          color: lightBG,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
-    ),
-  );
 
   static ThemeData darkTheme = ThemeData(
     fontFamily: GoogleFonts.openSans().fontFamily,
@@ -117,6 +100,8 @@ class AppConstant{
   static final String slideTwoDescription= "Arama özelliği sayesinde, Hukuk sözlüğünde dilediğin gibi kelimeleri arayabilirsin.";
   static final String slideThreeTitle = "Favorile";
   static final String slideThreeDescription= "Tekrar bakman gereken kelimeler olursa, favorileyebilir ve tekrar bakabilirsin.";
+  static final String historyTitle  = "SON ARAMALAR";
+  static final String historyBtn = "TEMİZLE";
 
 
 

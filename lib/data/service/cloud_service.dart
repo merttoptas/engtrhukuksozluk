@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
-import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:flutter/material.dart';
 final _firestore = Firestore.instance;
 FavoriteDao favoriteDao;
 Favorite favorite;

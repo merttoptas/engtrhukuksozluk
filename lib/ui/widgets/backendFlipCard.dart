@@ -3,6 +3,7 @@ import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
+// ignore: must_be_immutable
 class BackendFlipCard extends StatelessWidget {
 
   BackendFlipCard({@required this.cardKey,this.text,this.onButton2Press,this.onButton3Press});
