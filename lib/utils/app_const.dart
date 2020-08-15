@@ -117,6 +117,12 @@ class AppConstant{
   static final String svgAppIcon = 'images/icon2.png';
   static final String svgAppFavorites = 'images/home_favorites.png';
 
+  //database
+  static final String historyDatabase = "history.db";
+  static final String favoriteDatabase = "favorite.db";
+
+  //version
+  static final String appVersion = "1.0.6";
 
 
   //page

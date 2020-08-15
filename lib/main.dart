@@ -20,10 +20,10 @@ void main() async {
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
 
   final favoriteDatabase =
-      await $FloorFavoriteDatabase.databaseBuilder('favorite.db').build();
+      await $FloorFavoriteDatabase.databaseBuilder(AppConstant.favoriteDatabase).build();
 
   final historyDatabase =
-      await $FloorHistoryDatabase.databaseBuilder('history.db').build();
+      await $FloorHistoryDatabase.databaseBuilder(AppConstant.historyDatabase).build();
 
   final favoriteDao = favoriteDatabase.favoriteDao;
   final historyDao = historyDatabase.historyDao;
