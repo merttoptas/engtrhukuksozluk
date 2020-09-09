@@ -21,7 +21,6 @@ dependencies:
   firebase_messaging: ^6.0.13
   flip_card: ^0.4.4
   cloud_firestore: ^0.13.4
-  provider: ^4.0.4
   algolia: ^0.1.7
   floor: ^0.11.0
   sqflite: any
@@ -38,6 +37,7 @@ dependencies:
   circle_bottom_navigation: ^1.0.5
   auto_size_text: ^2.1.0
   simple_animations: ^1.3.3
+  get: ^3.8.0
 
 dev_dependencies:
   flutter_test:

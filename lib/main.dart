@@ -7,6 +7,7 @@ import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/ui/screens/splash_page.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
 
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
         backgroundColor: AppConstant.lightBG,
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
       initialRoute: AppConstant.pageSplash,
+     
       routes: {
         AppConstant.pageSplash: (context) =>
             SplashScreen(favoriteDao, historyDao),

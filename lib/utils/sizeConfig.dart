@@ -8,7 +8,7 @@ class SizeConfig{
     return MediaQuery.of(context).size.height * value;
   }
 
-  double widthSize(BuildContext context,double value ){
+  double widthSize(BuildContext context,double value){
     value /=100;
     return MediaQuery.of(context).size.width * value;
   }

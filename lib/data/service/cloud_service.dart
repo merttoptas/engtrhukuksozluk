@@ -48,4 +48,21 @@ class GetWordsCloud {
     }
     return randomList;
   }
+
+  Future<List<Words>> onPressed() async {
+    List<Words> wordsList = [];
+    await _firestore
+        .collection("words")
+        .orderBy('english')
+        .getDocuments()
+        .then((querySnapshot) {
+      querySnapshot.documents.forEach((result) {
+        print(result.data);
+        Words _wordsList = Words.fromMap(result.data);
+        wordsList.add(_wordsList);
+      });
+    });
+
+    return wordsList;
+  }
 }

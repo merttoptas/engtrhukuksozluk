@@ -1,16 +1,15 @@
 import 'dart:async';
 
+import 'package:engtrhukuksozluk/data/service/db_controller_service.dart';
 import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
 import 'package:engtrhukuksozluk/ui/widgets/customAppBar.dart';
 import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
-
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/ui/widgets/wordsRow.dart';
@@ -19,28 +18,27 @@ import 'package:engtrhukuksozluk/data/service/DataHelper.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:get/get.dart';
 
 class WordsPage extends StatefulWidget {
-  const WordsPage({Key key}) : super(key: key);
+  final FavoriteDao favoriteDao;
+  const WordsPage({Key key, this.favoriteDao}) : super(key: key);
   @override
   _WordsPageState createState() => _WordsPageState();
 }
 
 class _WordsPageState extends State<WordsPage> {
   Favorite favorite;
-  FavoriteDao favoriteDao;
   QuerySnapshot cache;
   FavoriteDatabase favoriteDatabase;
-  List<Favorite> favoriteList = [];
-  List<Favorite> favExistsList = [];
   GetWordsCloud _getWordsCloud = GetWordsCloud();
   DataHelper _dataHelper = DataHelper();
   SizeConfig _sizeConfig = SizeConfig();
-  List<Words> wordsList;
   double _height = 0;
   final _nativeAdController = NativeAdmobController();
   // ignore: cancel_subscriptions
   StreamSubscription subscription;
+  final controllers = Get.put(DBController(favoriteDao));
 
   @override
   void initState() {
@@ -77,45 +75,6 @@ class _WordsPageState extends State<WordsPage> {
     });
   }
 
-  Future wordExists(Favorite patient, int favId) async {
-    await favoriteDao.getAllFavoriteWords().then((list) {
-      favoriteList.addAll(list);
-    });
-    favoriteList.toList();
-
-    await favoriteDao.getId(favId).then((list) {
-      favExistsList.addAll(list);
-    });
-
-    if (favExistsList.toList().isNotEmpty) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppConstant.favSnackBarPositive),
-          duration: Duration(milliseconds: 1500),
-          behavior: SnackBarBehavior.floating,
-          elevation: 2.0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-        ),
-      );
-    } else {
-      insertWord(patient);
-    }
-  }
-
-  Future insertWord(Favorite favorite) async {
-    await favoriteDao.insertFavoriteWord(favorite);
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text(AppConstant.favSnackBarPositive),
-        duration: Duration(milliseconds: 1500),
-        behavior: SnackBarBehavior.floating,
-        elevation: 2.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,7 +93,7 @@ class _WordsPageState extends State<WordsPage> {
         Expanded(
           flex: 1,
           child: FutureBuilder<List<Words>>(
-            future: _getWordsCloud.getAllWords(),
+            future: _getWordsCloud.onPressed(),
             builder: (context, wordsList) {
               if (!wordsList.hasData) {
                 return Center(
@@ -185,7 +144,7 @@ class _WordsPageState extends State<WordsPage> {
                                   turkish: turkish,
                                   english: english,
                                   favId: favId);
-                              wordExists(patient, favId);
+                              controllers.wordExists(patient, favId, context);
                               return !isLiked;
                             });
                       },
@@ -197,7 +156,7 @@ class _WordsPageState extends State<WordsPage> {
 
                         var patient = Favorite(
                             turkish: turkish, english: english, favId: favId);
-                        wordExists(patient, favId);
+                        controllers.wordExists(patient, favId, context);
                         return !isLiked;
                       },
                     );

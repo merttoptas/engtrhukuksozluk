@@ -1,4 +1,6 @@
 import 'package:engtrhukuksozluk/data/db/dao/HistoryDao.dart';
+import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
+import 'package:engtrhukuksozluk/data/service/db_controller_service.dart';
 import 'package:engtrhukuksozluk/data/service/search_service.dart';
 import 'package:engtrhukuksozluk/model/History.dart';
 import 'package:engtrhukuksozluk/ui/widgets/customSearchAppBar.dart';
@@ -15,9 +17,11 @@ import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
 import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/data/service/DataHelper.dart';
+import 'package:get/get.dart';
 
 class SearchWords extends StatefulWidget {
-  const SearchWords({Key key}) : super(key: key);
+  final FavoriteDao favoriteDao;
+  const SearchWords({Key key, this.favoriteDao}) : super(key: key);
 
   @override
   _SearchWordsState createState() => _SearchWordsState();
@@ -29,18 +33,14 @@ class _SearchWordsState extends State<SearchWords> {
   DataHelper _dataHelper = DataHelper();
 
   List<AlgoliaObjectSnapshot> _results = [];
-  List<Favorite> favoriteList = [];
-  List<Favorite> favExistsList = [];
-  List<History> historyList = [];
-
   FavoriteDatabase favoriteDatabase;
-  FavoriteDao favoriteDao;
   HistoryDatabase historyDatabase;
   History history;
   HistoryDao historyDao;
   bool isKeyboardVisible;
   bool _searching = false;
   SizeConfig sizeConfig = SizeConfig();
+  final controllers = Get.put(DBController(favoriteDao));
 
   Future _search() async {
     setState(() {
@@ -60,7 +60,7 @@ class _SearchWordsState extends State<SearchWords> {
 
     var historyWordDb = History(historyWord: _searchText.text.toString());
 
-    await insertHistoryWord(historyWordDb);
+    await controllers.insertHistoryWord(historyWordDb);
 
     return _results;
   }
@@ -100,52 +100,6 @@ class _SearchWordsState extends State<SearchWords> {
         _searching = false;
       });
     }
-  }
-
-  Future _deleteHistory() async {
-    await historyDao.deleteHistoryWord();
-    setState(() {});
-  }
-
-  Future _wordExists(Favorite patient, int favId) async {
-    await favoriteDao.getAllFavoriteWords().then((list) {
-      favoriteList.addAll(list);
-    });
-    favoriteList.toList();
-
-    await favoriteDao.getId(favId).then((list) {
-      favExistsList.addAll(list);
-    });
-
-    if (favExistsList.toList().isNotEmpty) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppConstant.favSnackBarNegative),
-          duration: Duration(milliseconds: 1500),
-          behavior: SnackBarBehavior.floating,
-          elevation: 2.0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-        ),
-      );
-    } else {
-      _insertWord(patient);
-    }
-  }
-
-  Future _insertWord(Favorite favorite) async {
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text(AppConstant.favSnackBarPositive),
-      behavior: SnackBarBehavior.floating,
-      elevation: 2.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
-      duration: Duration(milliseconds: 1500),
-    ));
-    return await favoriteDao.insertFavoriteWord(favorite);
-  }
-
-  Future insertHistoryWord(History history) async {
-    return await historyDao.insertHistoryWord(history);
   }
 
   @override
@@ -190,10 +144,12 @@ class _SearchWordsState extends State<SearchWords> {
                                       height: 10,
                                     ),
                                     HistoryBodyList(
-                                      history: history,
-                                      historyDao: historyDao,
-                                      onPressed: _deleteHistory,
-                                    )
+                                        history: history,
+                                        historyDao: historyDao,
+                                        onPressed: () {
+                                          controllers.deleteHistory();
+                                          setState(() {});
+                                        })
                                   ],
                                 )
                               ],
@@ -234,8 +190,8 @@ class _SearchWordsState extends State<SearchWords> {
                                               turkish: turkish,
                                               english: english,
                                               favId: favId);
-
-                                          _wordExists(patient, favId);
+                                          controllers.wordExists(
+                                              patient, favId, context);
                                           return !isLiked;
                                         });
                                   },

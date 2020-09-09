@@ -4,8 +4,13 @@ import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 
 class AdsWidget extends StatelessWidget {
-
-  const AdsWidget({Key key, this.height,this.borderRadius, @required this.type,this.admobController}): super(key:key);
+  const AdsWidget(
+      {Key key,
+      this.height,
+      this.borderRadius,
+      @required this.type,
+      this.admobController})
+      : super(key: key);
 
   final double height;
   final BorderRadius borderRadius;
@@ -21,7 +26,7 @@ class AdsWidget extends StatelessWidget {
       ),
       padding: EdgeInsets.all(10),
       height: height,
-      child:_advertService.nativeAds(type,admobController),
+      child: _advertService.nativeAds(type, admobController),
     );
   }
 }

@@ -6,29 +6,33 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size.fromHeight(100),
+      preferredSize: Size.fromHeight(AppConstant.appBarHeight),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0XFF3CA3C5),
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
+          color: AppConstant.appBarBg,
+          borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(AppConstant.appBarCircularSize)),
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [AppConstant.lightAccent, AppConstant.lightAccent]),
           boxShadow: [
-            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)
+            BoxShadow(
+                color: Colors.black38,
+                spreadRadius: 0,
+                blurRadius: AppConstant.appBarBlurRadius)
           ],
         ),
         child: Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: EdgeInsets.only(top: AppConstant.appBarPaddingTop),
             child: Text(
               AppConstant.homeTitle,
               style: GoogleFonts.pacifico(
-                  fontSize: 30,
+                  fontSize: AppConstant.appBarFontSize,
                   fontWeight: FontWeight.w100,
-                  letterSpacing: 3.5,
+                  letterSpacing: AppConstant.appBarLetterSpacing,
                   color: Colors.black),
             ),
           ),
@@ -38,5 +42,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(70.0);
+  Size get preferredSize => Size.fromHeight(AppConstant.appBarPreffedSize);
 }

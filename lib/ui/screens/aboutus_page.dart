@@ -12,6 +12,10 @@ class AboutUs extends StatefulWidget {
 }
 
 class _AboutUsState extends State<AboutUs> {
+  MediaQueryData queryData;
+
+  SizeConfig _sizeConfig = SizeConfig();
+
   _launchURL(url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -20,8 +24,6 @@ class _AboutUsState extends State<AboutUs> {
     }
   }
 
-  MediaQueryData queryData;
-  SizeConfig _sizeConfig = SizeConfig();
   @override
   Widget build(BuildContext context) {
     queryData = MediaQuery.of(context);
@@ -30,13 +32,14 @@ class _AboutUsState extends State<AboutUs> {
       overflow: Overflow.visible,
       children: <Widget>[
         Container(
-          color: Color(0XFF78aaff),
+          color: AppConstant.aboutUsBg,
           child: ListView(
             children: <Widget>[
               Stack(
                 children: <Widget>[
                   Container(
-                    height: MediaQuery.of(context).size.height - 82.0,
+                    height: MediaQuery.of(context).size.height -
+                        AppConstant.aboutStackHeight,
                     width: MediaQuery.of(context).size.width,
                     color: Colors.transparent,
                   ),
@@ -73,24 +76,28 @@ class _AboutUsState extends State<AboutUs> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
+                    padding: EdgeInsets.only(
+                        left: AppConstant.aboutPaddingLeftRight,
+                        right: AppConstant.aboutPaddingLeftRight),
                     child: Column(
                       children: <Widget>[
                         SizedBox(
-                          height: _sizeConfig.heightSize(context, 30),
+                          height: _sizeConfig.heightSize(
+                              context, AppConstant.aboutSizedBoxHeight),
                         ),
                         Text(
                           AppConstant.pageAbout,
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                   fontSize:
-                                      _sizeConfig.heightSize(context, 2.4),
+                                      _sizeConfig.heightSize(context, AppConstant.aboutUsTextHeight),
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
-                                  letterSpacing: 1.4)),
+                                  letterSpacing: AppConstant.aboutUsLetterSpacing)),
                         ),
                         SizedBox(
-                          height: _sizeConfig.heightSize(context, 2),
+                          height: _sizeConfig.heightSize(
+                              context, AppConstant.aboutSizedBoxHeight),
                         ),
                         Text(
                           AppConstant.aboutText,
@@ -98,13 +105,14 @@ class _AboutUsState extends State<AboutUs> {
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(
                                   fontSize:
-                                      _sizeConfig.heightSize(context, 2.0),
+                                      _sizeConfig.heightSize(context, AppConstant.aboutTextHeight),
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
-                                  letterSpacing: 1.1)),
+                                  letterSpacing:
+                                      AppConstant.aboutLetterSpacing)),
                         ),
                         SizedBox(
-                          height: _sizeConfig.heightSize(context, 0.5),
+                          height: _sizeConfig.heightSize(context, AppConstant.aboutSizedBoxTextHeight),
                         ),
                         Row(
                           children: [
@@ -113,35 +121,41 @@ class _AboutUsState extends State<AboutUs> {
                               textAlign: TextAlign.start,
                               style: GoogleFonts.openSans(
                                   textStyle: TextStyle(
-                                      fontSize:
-                                          _sizeConfig.heightSize(context, 2.0),
+                                      fontSize: _sizeConfig.heightSize(
+                                          context, AppConstant.aboutTextHeight),
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,
-                                      letterSpacing: 1.1)),
+                                      letterSpacing:
+                                          AppConstant.aboutLetterSpacing)),
                             ),
                             Text(
                               AppConstant.appVersion,
                               style: GoogleFonts.openSans(
                                   textStyle: TextStyle(
-                                      fontSize:
-                                          _sizeConfig.heightSize(context, 2.0),
+                                      fontSize: _sizeConfig.heightSize(
+                                          context, AppConstant.aboutTextHeight),
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: 1.1)),
-                            )
+                                      letterSpacing:
+                                          AppConstant.aboutLetterSpacing)),
+                            ),
                           ],
                         ),
                         SizedBox(
-                          height: _sizeConfig.heightSize(context, 2),
+                          height: _sizeConfig.heightSize(
+                              context, AppConstant.aboutTextHeight),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 15.0, left: 24.0, right: 24.0),
+                          padding: EdgeInsets.only(
+                              top: AppConstant.aboutPaddingTop,
+                              left: AppConstant.aboutPaddingLeft,
+                              right: AppConstant.aboutPaddingRight),
                           child: Card(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
+                              borderRadius: BorderRadius.circular(
+                                  AppConstant.aboutCirculerSize),
                             ),
-                            elevation: 5.0,
+                            elevation: AppConstant.aboutElevotion,
                             child: Column(
                               children: <Widget>[
                                 ListTileCard(
@@ -149,7 +163,7 @@ class _AboutUsState extends State<AboutUs> {
                                   icon: Icon(
                                     Icons.home,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size: AppConstant.aboutCardSize,
                                   ),
                                   onPressed: () {
                                     _launchURL(AppConstant.webSite);
@@ -160,7 +174,7 @@ class _AboutUsState extends State<AboutUs> {
                                   icon: Icon(
                                     Icons.star,
                                     color: Colors.white,
-                                    size: 20.0,
+                                    size: AppConstant.aboutCardSize,
                                   ),
                                   onPressed: () {
                                     _launchURL(AppConstant.github);
@@ -168,11 +182,9 @@ class _AboutUsState extends State<AboutUs> {
                                 ),
                                 ListTileCard(
                                   text: AppConstant.mailText,
-                                  icon: Icon(
-                                    Icons.alternate_email,
-                                    color: Colors.white,
-                                    size: 20.0,
-                                  ),
+                                  icon: Icon(Icons.alternate_email,
+                                      color: Colors.white,
+                                      size: AppConstant.aboutCardSize),
                                   onPressed: () {
                                     _launchURL(AppConstant.mail);
                                   },

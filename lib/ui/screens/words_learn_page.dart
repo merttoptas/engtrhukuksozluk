@@ -9,11 +9,12 @@ import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/ui/widgets/backendFlipCard.dart';
 import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
 import 'package:engtrhukuksozluk/ui/widgets/frontFlipCard.dart';
-import 'package:engtrhukuksozluk/model/valueModel.dart';
+import 'package:engtrhukuksozluk/data/service/value_controller.dart';
 import 'package:engtrhukuksozluk/ui/widgets/textCard.dart';
 import 'package:engtrhukuksozluk/model/Words.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
+import 'package:get/get.dart';
 
 class WordsLearn extends StatefulWidget {
   const WordsLearn({Key key}) : super(key: key);
@@ -24,13 +25,9 @@ class WordsLearn extends StatefulWidget {
 typedef void StringCallback(int val);
 
 class _WordsLearnState extends State<WordsLearn> {
-  _WordsLearnState({this.callback, this.valueNotifier2, this.valueNotifier1});
+  _WordsLearnState({this.callback});
   final StringCallback callback;
-  final ValueNotifier valueNotifier1;
-  final ValueNotifier valueNotifier2;
   var size;
-  int value1 = 0;
-  int value2 = 0;
   String string;
   List<Words> wordsList;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
@@ -40,6 +37,8 @@ class _WordsLearnState extends State<WordsLearn> {
   final _nativeAdController = NativeAdmobController();
   // ignore: cancel_subscriptions
   StreamSubscription subscription;
+  final controller = Get.put(ValueController());
+  final ValueController ctrl = Get.find();
 
   void _onStateChanged(AdLoadState state) {
     switch (state) {
@@ -71,17 +70,14 @@ class _WordsLearnState extends State<WordsLearn> {
   @override
   void initState() {
     subscription = _nativeAdController.stateChanged.listen(_onStateChanged);
-    setState(() {
-      model.value1 = 0;
-      model.value2 = 0;
-    });
-
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
+    ctrl.countLearn = 0.obs;
+    ctrl.countNotLearn = 0.obs;
   }
 
   @override
@@ -117,34 +113,11 @@ class _WordsLearnState extends State<WordsLearn> {
                       if (!wordsList.hasData) {
                         return Center(
                           child: CircularProgressIndicator(
-                            backgroundColor: Color(0XFF2A2E43),
+                            backgroundColor: AppConstant.darkAccent,
                           ),
                         );
                       }
-                      return FlipCard(
-                        key: cardKey,
-                        flipOnTouch: true,
-                        back: BackendFlipCard(
-                          cardKey: cardKey,
-                          text: currentWords.turkish,
-                          onButton2Press: () {
-                            setState(() {
-                              model.value2++;
-                              cardKey.currentState.toggleCard();
-                            });
-                          },
-                          onButton3Press: () {
-                            setState(() {
-                              model.value1++;
-                              cardKey.currentState.toggleCard();
-                            });
-                          },
-                        ),
-                        front: FrontFlipCard(
-                          cardKey: cardKey,
-                          text: currentWords.english,
-                        ),
-                      );
+                      return buildFlipCard(currentWords);
                     },
                     itemCount: 1,
                     shrinkWrap: true,
@@ -154,23 +127,56 @@ class _WordsLearnState extends State<WordsLearn> {
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 32, right: 32),
-            child: TextCard(
-              valueNotifier1: model.onValue1Change,
-              valueNotifier2: model.onValue2Change,
-            ),
+            padding: EdgeInsets.only(
+                left: AppConstant.cardPaddingLeftRight,
+                right: AppConstant.cardPaddingLeftRight),
+            child: TextCard(),
           ),
           Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(left: 32, right: 32, bottom: 32),
-            child: AdsWidget(
-              admobController: _nativeAdController,
-              borderRadius: BorderRadius.circular(12),
-              height: _height,
-              type: NativeAdmobType.banner,
-            ),
-          ),
+          buildNativeBanner(),
         ],
+      ),
+    );
+  }
+
+  FlipCard buildFlipCard(Words currentWords) {
+    return FlipCard(
+      key: cardKey,
+      flipOnTouch: true,
+      back: BackendFlipCard(
+        cardKey: cardKey,
+        text: currentWords.turkish,
+        onButton2Press: () {
+          setState(() {
+            controller.incrementNotLearn();
+            cardKey.currentState.toggleCard();
+          });
+        },
+        onButton3Press: () {
+          setState(() {
+            controller.incrementLearn();
+            cardKey.currentState.toggleCard();
+          });
+        },
+      ),
+      front: FrontFlipCard(
+        cardKey: cardKey,
+        text: currentWords.english,
+      ),
+    );
+  }
+
+  Padding buildNativeBanner() {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: AppConstant.cardPaddingLeftRight,
+          right: AppConstant.cardPaddingLeftRight,
+          bottom: AppConstant.cardPaddingLeftRight),
+      child: AdsWidget(
+        admobController: _nativeAdController,
+        borderRadius: BorderRadius.circular(12),
+        height: _height,
+        type: NativeAdmobType.banner,
       ),
     );
   }

@@ -1,8 +1,9 @@
 import 'package:engtrhukuksozluk/model/Favorite.dart';
 import 'package:floor/floor.dart';
+import 'package:get/get.dart';
 
 @dao
-abstract class FavoriteDao {
+abstract class FavoriteDao extends GetxController {
   @Query('SELECT * FROM favorite')
   Future<List<Favorite>> getAllFavoriteWords();
 
@@ -13,7 +14,7 @@ abstract class FavoriteDao {
   Stream<List<Favorite>> findAllFavoriteStream();
 
   @Query('SELECT * FROM favorite WHERE favWordsEng = :favWordsEng')
-  Future<List<Favorite>> findFavoriteWord(String favWordsEng );
+  Future<List<Favorite>> findFavoriteWord(String favWordsEng);
 
   @insert
   Future<void> insertFavoriteWord(Favorite favorite);
@@ -23,5 +24,4 @@ abstract class FavoriteDao {
 
   @delete
   Future<void> deleteFavWords(List<Favorite> favorite);
-
 }

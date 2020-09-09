@@ -10,9 +10,13 @@ class AdvertService {
       controller: admobController,
       type: type,
       error: null,
-      loading: Center(child: Opacity(opacity: 1.0, child: Container( decoration: BoxDecoration(
-        color: Colors.white.withOpacity(1.0),
-     )))),
+      loading: Center(
+          child: Opacity(
+              opacity: 1.0,
+              child: Container(
+                  decoration: BoxDecoration(
+                color: Colors.white.withOpacity(1.0),
+              )))),
     );
   }
 

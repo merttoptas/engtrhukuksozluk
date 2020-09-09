@@ -15,6 +15,7 @@ import 'package:engtrhukuksozluk/data/service/advert_service.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.favoriteDao, this.historyDao}) : super(key: key);
@@ -98,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
               child: InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      CupertinoPageRoute(builder: (context) => WordsLearn()));
+                  Get.to(WordsLearn(),
+                      transition: Transition.rightToLeftWithFade);
                 },
                 child: HomeContainerWidget(
                   startColour: Color(0XFFFF416C),
@@ -118,12 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: InkWell(
                 onTap: () {
                   selectIndexId = 1;
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => WordsScreen(
-                                selectIndexId: selectIndexId,
-                              )));
+                  Get.to(
+                      WordsScreen(
+                        selectIndexId: selectIndexId,
+                      ),
+                      transition: Transition.cupertino);
                 },
                 child: HomeContainerWidget(
                   startColour: Color(0XFF8A52E9),
@@ -142,12 +142,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: InkWell(
                 onTap: () {
                   selectIndexId = 2;
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => WordsScreen(
-                                selectIndexId: selectIndexId,
-                              )));
+                  Get.to(
+                      WordsScreen(
+                        selectIndexId: selectIndexId,
+                      ),
+                      transition: Transition.rightToLeftWithFade);
                 },
                 child: HomeContainerWidget(
                   startColour: Color(0XFFFFC92B),
@@ -166,12 +165,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: InkWell(
                 onTap: () {
                   selectIndexId = 3;
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => WordsScreen(
-                                selectIndexId: selectIndexId,
-                              )));
+                  Get.to(
+                      WordsScreen(
+                        selectIndexId: selectIndexId,
+                      ),
+                      transition: Transition.rightToLeftWithFade);
                 },
                 child: HomeContainerWidget(
                   startColour: Color(0XFF21e8ac),
