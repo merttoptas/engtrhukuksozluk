@@ -1,17 +1,20 @@
+import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
+import 'package:engtrhukuksozluk/data/service/db_controller_service.dart';
+import 'package:engtrhukuksozluk/data/service/value_controller.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/ui/screens/intro_page.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
 import 'package:engtrhukuksozluk/ui/screens/splash_page.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
 
-import 'data/db/dao/HistoryDao.dart';
+import 'data/db/dao/historyDao.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,7 +72,11 @@ class MyApp extends StatelessWidget {
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
       initialRoute: AppConstant.pageSplash,
-     
+      getPages: [
+        GetPage(name: AppConstant.pageSplash, page: () => SplashScreen(favoriteDao, historyDao), binding: SampleBind() 
+
+        )
+      ],
       routes: {
         AppConstant.pageSplash: (context) =>
             SplashScreen(favoriteDao, historyDao),
@@ -80,5 +87,12 @@ class MyApp extends StatelessWidget {
             ),
       },
     );
+  }
+}
+class SampleBind extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<ValueController>(() => ValueController());
+    Get.lazyPut<DBController>(() => DBController(favoriteDao));
   }
 }

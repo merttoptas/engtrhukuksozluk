@@ -1,5 +1,5 @@
 import 'package:engtrhukuksozluk/ui/screens/home/home_page.dart';
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';

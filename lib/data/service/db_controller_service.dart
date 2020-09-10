@@ -1,7 +1,7 @@
-import '../../model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import '../../model/favorite.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
-import 'package:engtrhukuksozluk/model/History.dart';
+import 'package:engtrhukuksozluk/model/history.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

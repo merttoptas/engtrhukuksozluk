@@ -1,17 +1,17 @@
 import 'dart:async';
 
-import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
-import 'package:engtrhukuksozluk/ui/widgets/customAppBar.dart';
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
+import 'package:engtrhukuksozluk/ui/widgets/ads_widget.dart';
+import 'package:engtrhukuksozluk/ui/widgets/custom_app_bar.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/ui/widgets/backendFlipCard.dart';
+import 'package:engtrhukuksozluk/ui/widgets/backend_flip_card.dart';
 import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
-import 'package:engtrhukuksozluk/ui/widgets/frontFlipCard.dart';
+import 'package:engtrhukuksozluk/ui/widgets/front_flip_card.dart';
 import 'package:engtrhukuksozluk/data/service/value_controller.dart';
-import 'package:engtrhukuksozluk/ui/widgets/textCard.dart';
-import 'package:engtrhukuksozluk/model/Words.dart';
+import 'package:engtrhukuksozluk/ui/widgets/text_card.dart';
+import 'package:engtrhukuksozluk/model/words.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:get/get.dart';

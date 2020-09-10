@@ -1,12 +1,17 @@
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
-import 'package:flutter/material.dart';
-
 import 'package:engtrhukuksozluk/utils/app_const.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
+import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
 // ignore: must_be_immutable
-class FrontFlipCard extends StatelessWidget {
-  FrontFlipCard({Key key, this.text, this.cardKey}) : super(key: key);
+class BackendFlipCard extends StatelessWidget {
+  BackendFlipCard(
+      {@required this.cardKey,
+      this.text,
+      this.onButton2Press,
+      this.onButton3Press});
+
+  final Function onButton2Press, onButton3Press;
   final String text;
   final GlobalKey<FlipCardState> cardKey;
   SizeConfig _sizeConfig = SizeConfig();
@@ -15,7 +20,7 @@ class FrontFlipCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-          top: 50.0, left: 30.0, right: 30.0, bottom: 20.0),
+          top: 50.0, left: 30.0, right: 30.0, bottom: 10.0),
       child: GestureDetector(
         child: InkWell(
           onTap: () {
@@ -31,13 +36,14 @@ class FrontFlipCard extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: _sizeConfig.heightSize(context, 16),
+                decoration: BoxDecoration(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width - 10,
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           FittedBox(
@@ -45,9 +51,9 @@ class FrontFlipCard extends StatelessWidget {
                             child: Text(
                               text,
                               style: TextStyle(
+                                  color: Colors.white,
                                   fontSize:
                                       _sizeConfig.heightSize(context, 2.5),
-                                  color: Colors.white,
                                   fontWeight: FontWeight.w900),
                             ),
                           ),
@@ -56,24 +62,21 @@ class FrontFlipCard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 8.0, right: 8.0, top: 10.0),
+                          left: 8.0, right: 8.0, top: 5.0),
                       child: Divider(
                         color: Colors.white,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
+                      padding: const EdgeInsets.only(top: 5.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            AppConstant.btnMeaning,
-                            style: TextStyle(
-                              fontSize: _sizeConfig.heightSize(context, 2),
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          addButton(AppConstant.btnLearn, onButton3Press,
+                              _sizeConfig.heightSize(context, 2)),
+                          Spacer(),
+                          addButton(AppConstant.btnNotLearn, onButton2Press,
+                              _sizeConfig.heightSize(context, 2)),
                         ],
                       ),
                     ),
@@ -86,4 +89,16 @@ class FrontFlipCard extends StatelessWidget {
       ),
     );
   }
+}
+
+addButton(String label, Function onPressed, double height) {
+  return FlatButton(
+    onPressed: onPressed,
+    child: Text(label,
+        style: TextStyle(
+            fontSize: height,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+            letterSpacing: 1.2)),
+  );
 }

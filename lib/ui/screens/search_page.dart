@@ -1,22 +1,22 @@
-import 'package:engtrhukuksozluk/data/db/dao/HistoryDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/historyDao.dart';
 import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
 import 'package:engtrhukuksozluk/data/service/db_controller_service.dart';
 import 'package:engtrhukuksozluk/data/service/search_service.dart';
-import 'package:engtrhukuksozluk/model/History.dart';
-import 'package:engtrhukuksozluk/ui/widgets/customSearchAppBar.dart';
-import 'package:engtrhukuksozluk/ui/widgets/historyWidget.dart';
+import 'package:engtrhukuksozluk/model/history.dart';
+import 'package:engtrhukuksozluk/ui/widgets/custom_search_app_bar.dart';
+import 'package:engtrhukuksozluk/ui/widgets/history_widget.dart';
 import 'package:engtrhukuksozluk/utils/fade_animation.dart';
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:algolia/algolia.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/model/favorite.dart';
+import 'package:engtrhukuksozluk/ui/widgets/bottom_sheets.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
-import 'package:engtrhukuksozluk/data/service/DataHelper.dart';
+import 'package:engtrhukuksozluk/data/service/text_to_speech_helper.dart';
 import 'package:get/get.dart';
 
 class SearchWords extends StatefulWidget {
@@ -118,130 +118,140 @@ class _SearchWordsState extends State<SearchWords> {
         },
         btnFunction: _search,
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            child: Expanded(
-              flex: 1,
-              child: _searching == true
-                  ? Center(
-                      child: FadeAnimatedTextKit(
-                        text: [AppConstant.hintSearching],
-                        textStyle: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w400),
-                        textAlign: TextAlign.start,
-                      ),
-                    )
-                  : _results.length == 0
-                      ? Center(
-                          child: FadeAnimation(
-                            delay: 0.3,
-                            child: Stack(
-                              children: [
-                                Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    HistoryBodyList(
-                                        history: history,
-                                        historyDao: historyDao,
-                                        onPressed: () {
-                                          controllers.deleteHistory();
-                                          setState(() {});
-                                        })
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: _results.length,
-                          itemBuilder: (BuildContext ctx, int index) {
-                            AlgoliaObjectSnapshot snap = _results[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16, right: 16.0, bottom: 8, top: 8),
-                              child: Material(
-                                color: Colors.white,
-                                elevation: 4,
-                                shadowColor: Colors.black26,
-                                borderRadius: BorderRadius.circular(6),
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(6),
-                                  onTap: () async {
-                                    BottomSheetWidget().settingModalBottomSheet(
-                                        context: context,
-                                        adsHeight:
-                                            sizeConfig.heightSize(context, 11),
-                                        word: snap.data['turkish'],
-                                        title: snap.data['english'],
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        onTapVoice: () => _dataHelper
-                                            .speak(snap.data['english']),
-                                        onTapFav: (bool isLiked) async {
-                                          String english = snap.data['english'];
-                                          String turkish = snap.data['turkish'];
-                                          int favId = snap.data['id'];
-                                          var patient = Favorite(
-                                              turkish: turkish,
-                                              english: english,
-                                              favId: favId);
-                                          controllers.wordExists(
-                                              patient, favId, context);
-                                          return !isLiked;
-                                        });
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 15, horizontal: 15),
-                                    width: double.infinity,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(
-                                              snap.data['english'],
-                                              style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            SizedBox(
-                                              height: 3.0,
-                                            ),
-                                            Text(
-                                              snap.data['turkish'],
-                                              style: TextStyle(
-                                                  fontSize: 13.0,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ],
-                                        ),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.black,
-                                          size: 18,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+      body: buildBody(context),
+    );
+  }
+
+  Column buildBody(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Container(
+          child: Expanded(
+            flex: 1,
+            child: _searching == true
+                ? Center(
+                    child: FadeAnimatedTextKit(
+                      text: [AppConstant.hintSearching],
+                      textStyle: TextStyle(
+                          fontSize: AppConstant.fontSizeBody2,
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.start,
+                    ),
+                  )
+                : _results.length == 0 ? buildCenter() : buildListView(context),
+          ),
+        )
+      ],
+    );
+  }
+
+  ListView buildListView(BuildContext context) {
+    return ListView.builder(
+      itemCount: _results.length,
+      itemBuilder: (BuildContext ctx, int index) {
+        AlgoliaObjectSnapshot snap = _results[index];
+        return Padding(
+          padding: EdgeInsets.only(
+              left: AppConstant.searchPaddingLeftRight,
+              right: AppConstant.searchPaddingLeftRight,
+              bottom: AppConstant.searchPaddingTopBottom,
+              top: AppConstant.searchPaddingTopBottom),
+          child: Material(
+            color: Colors.white,
+            elevation: 4,
+            shadowColor: Colors.black26,
+            borderRadius: BorderRadius.circular(AppConstant.borderCircular),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(AppConstant.borderCircular),
+              onTap: () async {
+                BottomSheetWidget().settingModalBottomSheet(
+                    context: context,
+                    adsHeight: sizeConfig.heightSize(context, 11),
+                    word: snap.data['turkish'],
+                    title: snap.data['english'],
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    onTapVoice: () => _dataHelper.speak(snap.data['english']),
+                    onTapFav: (bool isLiked) async {
+                      String english = snap.data['english'];
+                      String turkish = snap.data['turkish'];
+                      int favId = snap.data['id'];
+                      var patient = Favorite(
+                          turkish: turkish, english: english, favId: favId);
+                      controllers.wordExists(patient, favId, context);
+                      return !isLiked;
+                    });
+              },
+              child: buildContainerText(snap),
             ),
+          ),
+        );
+      },
+    );
+  }
+
+  Center buildCenter() {
+    return Center(
+      child: FadeAnimation(
+        delay: 0.3,
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  height: AppConstant.searchSizedHeightList,
+                ),
+                HistoryBodyList(
+                    history: history,
+                    historyDao: historyDao,
+                    onPressed: () {
+                      controllers.deleteHistory();
+                      setState(() {});
+                    })
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container buildContainerText(AlgoliaObjectSnapshot snap) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+          vertical: AppConstant.searchSymmetric,
+          horizontal: AppConstant.searchSymmetric),
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                snap.data['english'],
+                style: TextStyle(
+                    fontSize: AppConstant.fontSizeBody,
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: AppConstant.searchSizedHeight,
+              ),
+              Text(
+                snap.data['turkish'],
+                style: TextStyle(
+                    fontSize: AppConstant.searchTextSize,
+                    fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.black,
+            size: AppConstant.searchIconSize,
           )
         ],
       ),

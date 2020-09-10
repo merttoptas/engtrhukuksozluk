@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:engtrhukuksozluk/data/db/dao/HistoryDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/historyDao.dart';
 import 'package:flutter/material.dart';
 
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

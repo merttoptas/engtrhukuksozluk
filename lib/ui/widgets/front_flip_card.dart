@@ -1,14 +1,12 @@
-import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
 import 'package:flutter/material.dart';
+
+import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flip_card/flip_card.dart';
 
 // ignore: must_be_immutable
-class BackendFlipCard extends StatelessWidget {
-
-  BackendFlipCard({@required this.cardKey,this.text,this.onButton2Press,this.onButton3Press});
-
-  final Function onButton2Press,onButton3Press;
+class FrontFlipCard extends StatelessWidget {
+  FrontFlipCard({Key key, this.text, this.cardKey}) : super(key: key);
   final String text;
   final GlobalKey<FlipCardState> cardKey;
   SizeConfig _sizeConfig = SizeConfig();
@@ -16,10 +14,11 @@ class BackendFlipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:50.0, left: 30.0,right: 30.0, bottom: 10.0),
+      padding: const EdgeInsets.only(
+          top: 50.0, left: 30.0, right: 30.0, bottom: 20.0),
       child: GestureDetector(
         child: InkWell(
-          onTap: (){
+          onTap: () {
             cardKey.currentState.toggleCard();
           },
           child: Card(
@@ -32,45 +31,49 @@ class BackendFlipCard extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: _sizeConfig.heightSize(context, 16),
-                decoration: BoxDecoration(
-                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      width: MediaQuery.of(context).size.width -10,
-                      child: Column(
+                      width: MediaQuery.of(context).size.width - 10,
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                              FittedBox(
+                          FittedBox(
                             fit: BoxFit.fitWidth,
-                              child: Text(text,
+                            child: Text(
+                              text,
                               style: TextStyle(
-                                color: Colors.white,
-                                  fontSize: _sizeConfig.heightSize(context, 2.5),
-                                  fontWeight: FontWeight.w900
-                              ),
+                                  fontSize:
+                                      _sizeConfig.heightSize(context, 2.5),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 5.0),
+                      padding: const EdgeInsets.only(
+                          left: 8.0, right: 8.0, top: 10.0),
                       child: Divider(
                         color: Colors.white,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          addButton(AppConstant.btnLearn, onButton3Press, _sizeConfig.heightSize(context,2)),
-                          Spacer(),
-                          addButton(AppConstant.btnNotLearn, onButton2Press, _sizeConfig.heightSize(context,2)),
-
+                          Text(
+                            AppConstant.btnMeaning,
+                            style: TextStyle(
+                              fontSize: _sizeConfig.heightSize(context, 2),
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -83,12 +86,4 @@ class BackendFlipCard extends StatelessWidget {
       ),
     );
   }
-}
-
-addButton(String label, Function onPressed, double height){
-  return FlatButton(
-    onPressed: onPressed,
-    child: Text(label, style: TextStyle(fontSize: height, fontWeight: FontWeight.w500, color: Colors.white, letterSpacing: 1.2
-    ) ),
-  );
 }

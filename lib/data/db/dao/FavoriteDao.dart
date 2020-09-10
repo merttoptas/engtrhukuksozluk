@@ -1,4 +1,4 @@
-import 'package:engtrhukuksozluk/model/Favorite.dart';
+import 'package:engtrhukuksozluk/model/favorite.dart';
 import 'package:floor/floor.dart';
 import 'package:get/get.dart';
 

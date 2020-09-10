@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/ui/screens/aboutus_page.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/ui/screens/favorite_page.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 import 'package:engtrhukuksozluk/ui/screens/search_page.dart';
 import 'package:engtrhukuksozluk/ui/screens/words_page.dart';
 

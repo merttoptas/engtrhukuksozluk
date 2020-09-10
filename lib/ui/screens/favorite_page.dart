@@ -1,10 +1,10 @@
-import 'package:engtrhukuksozluk/ui/widgets/customAppBar.dart';
+import 'package:engtrhukuksozluk/ui/widgets/custom_app_bar.dart';
 import 'package:engtrhukuksozluk/utils/fade_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
-import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/model/favorite.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 
 class FavoriteWords extends StatefulWidget {
   @override
@@ -55,8 +55,8 @@ class _FavoriteWordsState extends State<FavoriteWords> {
                               children: <Widget>[
                                 Image.asset(
                                   AppConstant.svgSliderOne,
-                                  height: 350,
-                                  width: 350,
+                                  height: AppConstant.favoriteImageSize,
+                                  width: AppConstant.favoriteImageSize,
                                 ),
                               ],
                             ),
@@ -90,71 +90,15 @@ class ListFavorite extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key('${favorite.hashCode}'),
-      background: Padding(
-        padding:
-            const EdgeInsets.only(left: 16, right: 16.0, bottom: 8, top: 8),
-        child: Container(
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-            color: Colors.red),
-      ),
+      background: buildDismissibleBackground(),
       direction: DismissDirection.endToStart,
-      child: Padding(
-        padding:
-            const EdgeInsets.only(left: 16, right: 16.0, bottom: 8, top: 8),
-        child: Material(
-          color: Colors.white,
-          elevation: 4,
-          shadowColor: Colors.black26,
-          borderRadius: BorderRadius.circular(6),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6.0),
-            ),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: 5.0, left: 10.0, bottom: 3.0),
-                      child: Text(
-                        favorite.english,
-                        style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 3.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
-                      child: Text(
-                        favorite.turkish,
-                        style: TextStyle(
-                            fontSize: 12.0, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      child: buildDismissibleBody(context),
       onDismissed: (_) async {
         await dao.deleteFavWord(favorite);
         Scaffold.of(context).showSnackBar(
           SnackBar(
             content: Text(AppConstant.snackBarDelete),
-            duration: Duration(milliseconds: 1500),
+            duration: Duration(milliseconds: AppConstant.snackBarDuration),
             action: SnackBarAction(
               label: AppConstant.backup,
               onPressed: () {
@@ -162,12 +106,89 @@ class ListFavorite extends StatelessWidget {
               },
             ),
             behavior: SnackBarBehavior.floating,
-            elevation: 2.0,
+            elevation: AppConstant.snackBarElevotion,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6.0)),
+                borderRadius:
+                    BorderRadius.circular(AppConstant.snackBarRadius)),
           ),
         );
       },
+    );
+  }
+
+  Padding buildDismissibleBody(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: AppConstant.favoritePaddingLeftRight,
+          right: AppConstant.favoritePaddingLeftRight,
+          bottom: AppConstant.favoritePaddingTopBottom,
+          top: AppConstant.favoritePaddingTopBottom),
+      child: Material(
+        color: Colors.white,
+        elevation: AppConstant.favoriteElevation,
+        shadowColor: Colors.black26,
+        borderRadius: BorderRadius.circular(AppConstant.borderCircular),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppConstant.borderCircular),
+          ),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: AppConstant.favoritePaddingTextTop,
+                        left: AppConstant.favoritePaddingTextLeft,
+                        bottom: AppConstant.favoritePaddingTextBottom),
+                    child: Text(
+                      favorite.english,
+                      style: TextStyle(
+                          fontSize: AppConstant.favoriteTextFontSize,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: AppConstant.favoriteSizedHeight,
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: AppConstant.favoritePaddingTextLeft,
+                        bottom: AppConstant.favoritePaddingTextLeft),
+                    child: Text(
+                      favorite.turkish,
+                      style: TextStyle(
+                          fontSize: AppConstant.favoriteTextRowFontSize,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding buildDismissibleBackground() {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: AppConstant.favoritePaddingLeftRight,
+          right: AppConstant.favoritePaddingLeftRight,
+          bottom: AppConstant.favoritePaddingTopBottom,
+          top: AppConstant.favoritePaddingTopBottom),
+      child: Container(
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+          color: Colors.red),
     );
   }
 }

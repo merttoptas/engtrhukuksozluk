@@ -1,20 +1,20 @@
 import 'dart:async';
 
 import 'package:engtrhukuksozluk/data/service/db_controller_service.dart';
-import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
-import 'package:engtrhukuksozluk/ui/widgets/customAppBar.dart';
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
+import 'package:engtrhukuksozluk/ui/widgets/ads_widget.dart';
+import 'package:engtrhukuksozluk/ui/widgets/custom_app_bar.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:engtrhukuksozluk/data/service/cloud_service.dart';
 import 'package:engtrhukuksozluk/data/db/database/database.dart';
-import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
+import 'package:engtrhukuksozluk/model/favorite.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
-import 'package:engtrhukuksozluk/ui/widgets/bottomSheetsWidgets.dart';
-import 'package:engtrhukuksozluk/ui/widgets/wordsRow.dart';
-import 'package:engtrhukuksozluk/model/Words.dart';
-import 'package:engtrhukuksozluk/data/service/DataHelper.dart';
+import 'package:engtrhukuksozluk/ui/widgets/bottom_sheets.dart';
+import 'package:engtrhukuksozluk/ui/widgets/words_row.dart';
+import 'package:engtrhukuksozluk/model/words.dart';
+import 'package:engtrhukuksozluk/data/service/text_to_speech_helper.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -93,7 +93,7 @@ class _WordsPageState extends State<WordsPage> {
         Expanded(
           flex: 1,
           child: FutureBuilder<List<Words>>(
-            future: _getWordsCloud.onPressed(),
+            future: _getWordsCloud.getAllWords(),
             builder: (context, wordsList) {
               if (!wordsList.hasData) {
                 return Center(

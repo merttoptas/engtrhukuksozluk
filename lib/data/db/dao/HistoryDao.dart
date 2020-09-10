@@ -1,4 +1,4 @@
-import 'package:engtrhukuksozluk/model/History.dart';
+import 'package:engtrhukuksozluk/model/history.dart';
 import 'package:floor/floor.dart';
 
 @dao

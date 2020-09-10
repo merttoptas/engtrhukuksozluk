@@ -1,5 +1,5 @@
-import 'package:engtrhukuksozluk/data/db/dao/HistoryDao.dart';
-import 'package:engtrhukuksozluk/model/History.dart';
+import 'package:engtrhukuksozluk/data/db/dao/historyDao.dart';
+import 'package:engtrhukuksozluk/model/history.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:flutter/material.dart';
 

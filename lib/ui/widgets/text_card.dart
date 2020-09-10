@@ -1,5 +1,5 @@
 import 'package:engtrhukuksozluk/data/service/value_controller.dart';
-import 'package:engtrhukuksozluk/utils/sizeConfig.dart';
+import 'package:engtrhukuksozluk/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:engtrhukuksozluk/utils/app_const.dart';
 import 'package:get/get.dart';

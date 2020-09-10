@@ -39,6 +39,15 @@ class AppConstant {
   static const double fontSizeSliderDescription = 20;
   static const double fontSizeIdiomCardContent = 12;
 
+  //Snackbar
+  static final int snackBarDuration = 1500;
+  static final double snackBarRadius = 6.0;
+  static final double snackBarElevotion = 2.0;
+
+  // Border Radius
+  static final double borderCircular = 6.0;
+  static final double borderCircular45 = 45.0;
+
   // Algolia id
   static final String applicationId = "WZFSBELAA6";
   static final String apiKey = '4c14584cc213e038c3cd6a24650bda91';
@@ -175,7 +184,30 @@ class AppConstant {
   static final double aboutUsTextHeight = 2.4;
   static final double aboutSizedBoxTextHeight = 0.5;
   static final double aboutUsLetterSpacing = 1.4;
+  static final double aboutUsContainerBgTop = 80;
+  static final double aboutUsContainerBgHeight = 100;
+  static final double aboutUsImageHeight = 200;
+  static final double aboutPositioned = 10;
 
   //Favorite Page
+  static final double favoritePaddingLeftRight = 16.0;
+  static final double favoritePaddingTopBottom = 8.0;
+  static final double favoritePaddingTextTop = 5.0;
+  static final double favoritePaddingTextLeft = 10.0;
+  static final double favoritePaddingTextBottom = 3.0;
+  static final double favoriteTextFontSize = 16.0;
+  static final double favoriteTextRowFontPadding = 10.0;
+  static final double favoriteTextRowFontSize = 12.0;
+  static final double favoriteImageSize = 350.0;
+  static final double favoriteElevation = 4.0;
+  static final double favoriteSizedHeight = 3.0;
 
+  //Search page
+  static final double searchSymmetric = 15.0;
+  static final double searchTextSize = 13.0;
+  static final double searchSizedHeight = 3.0;
+  static final double searchIconSize = 18.0;
+  static final double searchSizedHeightList = 10.0;
+  static final double searchPaddingLeftRight = 16.0;
+  static final double searchPaddingTopBottom = 8.0;
 }

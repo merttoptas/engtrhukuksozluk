@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:engtrhukuksozluk/model/Favorite.dart';
-import 'package:engtrhukuksozluk/data/db/dao/FavoriteDao.dart';
-import 'package:engtrhukuksozluk/model/Words.dart';
+import 'package:engtrhukuksozluk/model/favorite.dart';
+import 'package:engtrhukuksozluk/data/db/dao/favoriteDao.dart';
+import 'package:engtrhukuksozluk/model/words.dart';
 
 final _firestore = Firestore.instance;
 FavoriteDao favoriteDao;
@@ -47,22 +47,5 @@ class GetWordsCloud {
       }
     }
     return randomList;
-  }
-
-  Future<List<Words>> onPressed() async {
-    List<Words> wordsList = [];
-    await _firestore
-        .collection("words")
-        .orderBy('english')
-        .getDocuments()
-        .then((querySnapshot) {
-      querySnapshot.documents.forEach((result) {
-        print(result.data);
-        Words _wordsList = Words.fromMap(result.data);
-        wordsList.add(_wordsList);
-      });
-    });
-
-    return wordsList;
   }
 }

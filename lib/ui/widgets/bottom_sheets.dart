@@ -1,4 +1,4 @@
-import 'package:engtrhukuksozluk/ui/widgets/adsWidget.dart';
+import 'package:engtrhukuksozluk/ui/widgets/ads_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:like_button/like_button.dart';
