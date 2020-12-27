@@ -16,9 +16,8 @@ class WordsRowWidget extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(3.0),
+              padding: const EdgeInsets.only(left: 15,right: 15,top: 5,bottom: 5),
               child: Material(
-                color: Colors.white,
                 elevation: 4,
                 shadowColor: Colors.black26,
                 borderRadius: BorderRadius.circular(6),
@@ -44,9 +43,6 @@ class WordsRowWidget extends StatelessWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1
-                                    .copyWith(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.normal),
                               ),
                             ),
                             Padding(
@@ -55,7 +51,6 @@ class WordsRowWidget extends StatelessWidget {
                               child: Container(
                                   child: Icon(
                                 Icons.arrow_forward_ios,
-                                color: Colors.black,
                                 size: 18,
                               )),
                             ),

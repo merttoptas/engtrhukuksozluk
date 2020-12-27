@@ -21,7 +21,6 @@ class AdsWidget extends StatelessWidget {
     AdvertService _advertService = AdvertService();
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: borderRadius,
       ),
       padding: EdgeInsets.all(10),

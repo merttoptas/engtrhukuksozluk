@@ -11,23 +11,60 @@ class AppConstant {
   static final Color darkBG = Color(0xFF183148);
   static final Color transparent = Colors.transparent;
 
-  static ThemeData darkTheme = ThemeData(
+  static ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    backgroundColor: AppConstant.lightBG,
+    primaryColor: lightPrimary,
+    accentColor: lightAccent,
+    colorScheme: ColorScheme.light(
+      primary: lightAccent,
+      secondary: lightAccent,
+    ),
+    bottomNavigationBarTheme:
+        BottomNavigationBarThemeData(backgroundColor: Colors.white),
+    cardColor: Colors.white,
+    appBarTheme: AppBarTheme(color: Color(0XFF3CA3C5)),
+    textTheme: TextTheme(
+      headline1: TextStyle(fontSize: AppConstant.fontSizeBody),
+      headline2: TextStyle(
+          fontSize: AppConstant.fontSizeBody2, fontWeight: FontWeight.bold),
+      caption: TextStyle(
+          fontSize: AppConstant.fontSizeCaption, fontWeight: FontWeight.bold),
+      headline4: TextStyle(
+          fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
+      headline5: TextStyle(
+          fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
+    ),
     fontFamily: GoogleFonts.openSans().fontFamily,
+  );
+
+  static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(color: darkBG),
     backgroundColor: darkBG,
+    bottomNavigationBarTheme:
+        BottomNavigationBarThemeData(backgroundColor: darkBG),
+    cardColor: darkBG,
     primaryColor: darkPrimary,
     accentColor: darkAccent,
+    colorScheme: ColorScheme.dark(
+      primary: darkAccent,
+      secondary: darkAccent,
+    ),
+    textTheme: TextTheme(
+      headline1: TextStyle(fontSize: AppConstant.fontSizeBody),
+      headline2: TextStyle(
+          fontSize: AppConstant.fontSizeBody2, fontWeight: FontWeight.bold),
+      caption: TextStyle(
+          fontSize: AppConstant.fontSizeCaption, fontWeight: FontWeight.bold),
+      headline4: TextStyle(
+          fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
+      headline5: TextStyle(
+          fontSize: AppConstant.fontSizeDisplay, fontWeight: FontWeight.bold),
+    ),
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
-    appBarTheme: AppBarTheme(
-      textTheme: TextTheme(
-        title: TextStyle(
-          color: lightBG,
-          fontSize: 18.0,
-          fontWeight: FontWeight.w800,
-        ),
-      ),
-    ),
+    fontFamily: GoogleFonts.openSans().fontFamily,
   );
 
   static const double fontSizeBody2 = 14;
@@ -158,7 +195,7 @@ class AppConstant {
   static final double appBarCircularSize = 50;
   static final double appBarBlurRadius = 10;
   static final double appBarPaddingTop = 30;
-  static final double appBarFontSize = 30;
+  static final double appBarFontSize = 25;
   static final double appBarPreffedSize = 70;
   static final double appBarLetterSpacing = 3.5;
 
@@ -167,7 +204,6 @@ class AppConstant {
 
   //Colors
   static final Color aboutUsBg = Color(0XFF78aaff);
-  static final Color appBarBg = Color(0XFF3CA3C5);
 
   //About Us Page
   static final double aboutCardSize = 20;

@@ -9,13 +9,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: Size.fromHeight(AppConstant.appBarHeight),
       child: Container(
         decoration: BoxDecoration(
-          color: AppConstant.appBarBg,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(AppConstant.appBarCircularSize)),
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [AppConstant.lightAccent, AppConstant.lightAccent]),
+              colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary]),
           boxShadow: [
             BoxShadow(
                 color: Colors.black38,
@@ -32,8 +32,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: GoogleFonts.pacifico(
                   fontSize: AppConstant.appBarFontSize,
                   fontWeight: FontWeight.w100,
-                  letterSpacing: AppConstant.appBarLetterSpacing,
-                  color: Colors.black),
+                  letterSpacing: AppConstant.appBarLetterSpacing),
             ),
           ),
         ),

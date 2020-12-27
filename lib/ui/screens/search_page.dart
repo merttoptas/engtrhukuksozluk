@@ -157,7 +157,6 @@ class _SearchWordsState extends State<SearchWords> {
               bottom: AppConstant.searchPaddingTopBottom,
               top: AppConstant.searchPaddingTopBottom),
           child: Material(
-            color: Colors.white,
             elevation: 4,
             shadowColor: Colors.black26,
             borderRadius: BorderRadius.circular(AppConstant.borderCircular),
@@ -217,43 +216,45 @@ class _SearchWordsState extends State<SearchWords> {
     );
   }
 
-  Container buildContainerText(AlgoliaObjectSnapshot snap) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: AppConstant.searchSymmetric,
-          horizontal: AppConstant.searchSymmetric),
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                snap.data['english'],
-                style: TextStyle(
-                    fontSize: AppConstant.fontSizeBody,
-                    fontWeight: FontWeight.w600),
-              ),
-              SizedBox(
-                height: AppConstant.searchSizedHeight,
-              ),
-              Text(
-                snap.data['turkish'],
-                style: TextStyle(
-                    fontSize: AppConstant.searchTextSize,
-                    fontWeight: FontWeight.w500),
-              ),
-            ],
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.black,
-            size: AppConstant.searchIconSize,
-          )
-        ],
+  Material buildContainerText(AlgoliaObjectSnapshot snap) {
+    return Material(
+      borderRadius: BorderRadius.circular(AppConstant.borderCircular),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            vertical: AppConstant.searchSymmetric,
+            horizontal: AppConstant.searchSymmetric),
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  snap.data['english'],
+                  style: TextStyle(
+                      fontSize: AppConstant.fontSizeBody,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: AppConstant.searchSizedHeight,
+                ),
+                Text(
+                  snap.data['turkish'],
+                  style: TextStyle(
+                      fontSize: AppConstant.searchTextSize,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: AppConstant.searchIconSize,
+            )
+          ],
+        ),
       ),
     );
   }

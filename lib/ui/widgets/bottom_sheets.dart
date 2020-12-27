@@ -26,7 +26,7 @@ class BottomSheetWidget {
                     onTapFav: onTapFav,
                     onPressed: onPressed,
                     adsHeight: adsHeight),
-                decoration: _bottomSheetBoxDecoration),
+                decoration: _bottomSheetBoxDecoration(context)),
           );
         });
   }
@@ -48,7 +48,6 @@ class BottomSheetWidget {
               onPressed: onPressed,
               child: new Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black,
                 size: 15.0,
               ),
               elevation: 0,
@@ -64,7 +63,6 @@ class BottomSheetWidget {
                   heading,
                   style: TextStyle(
                       fontSize: 16,
-                      color: Colors.black,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -79,7 +77,6 @@ class BottomSheetWidget {
                   children: <Widget>[
                     Material(
                       borderRadius: BorderRadius.circular(24),
-                      color: Colors.white,
                       elevation: 4,
                       shadowColor: Colors.black38,
                       child: InkWell(
@@ -97,7 +94,6 @@ class BottomSheetWidget {
                     ),
                     Material(
                       borderRadius: BorderRadius.circular(24),
-                      color: Colors.white,
                       elevation: 4,
                       shadowColor: Colors.black38,
                       child: Container(
@@ -109,7 +105,7 @@ class BottomSheetWidget {
                             likeBuilder: (bool isLiked) {
                               return Icon(
                                 Icons.favorite,
-                                color: isLiked ? Colors.red : Colors.black,
+                                color: isLiked ? Colors.red : Colors.grey,
                                 size: 26.0,
                               );
                             },
@@ -165,7 +161,6 @@ class BottomSheetWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Material(
-                      color: Colors.white,
                       elevation: 4,
                       shadowColor: Colors.black38,
                       borderRadius: BorderRadius.circular(8),
@@ -182,24 +177,11 @@ class BottomSheetWidget {
                                     SizedBox(
                                       height: 9,
                                     ),
-                                    RichText(
-                                      textAlign: TextAlign.center,
-                                      text: TextSpan(
-                                        style: TextStyle(
+                                    Text(
+                                      word,
+                                      style: TextStyle(
                                           fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black,
-                                        ),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: word,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black),
-                                          ),
-                                        ],
-                                      ),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -227,8 +209,9 @@ class BottomSheetWidget {
         ],
       );
 
-  static BoxDecoration get _bottomSheetBoxDecoration => BoxDecoration(
-        color: Colors.white,
+  static BoxDecoration _bottomSheetBoxDecoration(BuildContext context) =>
+      BoxDecoration(
+        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(15.0),
           topRight: const Radius.circular(15.0),

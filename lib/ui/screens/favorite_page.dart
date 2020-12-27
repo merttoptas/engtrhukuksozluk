@@ -124,7 +124,6 @@ class ListFavorite extends StatelessWidget {
           bottom: AppConstant.favoritePaddingTopBottom,
           top: AppConstant.favoritePaddingTopBottom),
       child: Material(
-        color: Colors.white,
         elevation: AppConstant.favoriteElevation,
         shadowColor: Colors.black26,
         borderRadius: BorderRadius.circular(AppConstant.borderCircular),

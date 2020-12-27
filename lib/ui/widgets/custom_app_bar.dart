@@ -11,12 +11,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: Size.fromHeight(100),
       child: Container(
         decoration: BoxDecoration(
-          color: Color(0XFF3CA3C5),
+          color: Theme.of(context).appBarTheme.color,
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(50)),
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [AppConstant.lightPrimary, AppConstant.lightPrimary]),
+              colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary]),
           boxShadow: [
             BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)
           ],
@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.only(top: 30),
             child: Text(
               title,
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ),

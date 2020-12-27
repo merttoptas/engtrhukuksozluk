@@ -48,25 +48,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.light,
-        backgroundColor: AppConstant.lightBG,
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: AppConstant.fontSizeBody),
-          headline2: TextStyle(
-              fontSize: AppConstant.fontSizeBody2, fontWeight: FontWeight.bold),
-          caption: TextStyle(
-              fontSize: AppConstant.fontSizeCaption,
-              fontWeight: FontWeight.bold),
-          headline4: TextStyle(
-              fontSize: AppConstant.fontSizeDisplay,
-              fontWeight: FontWeight.bold),
-          headline5: TextStyle(
-              fontSize: AppConstant.fontSizeDisplay,
-              fontWeight: FontWeight.bold),
-        ),
-        fontFamily: GoogleFonts.openSans().fontFamily,
-      ),
+      theme: AppConstant.lightTheme,
+      darkTheme: AppConstant.darkTheme,
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),

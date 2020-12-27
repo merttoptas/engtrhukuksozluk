@@ -20,6 +20,7 @@ class _WordsScreenState extends State<WordsScreen> {
   int selectIndexId;
   int currentIndex = 0;
   FavoriteDao favoriteDao;
+
   _WordsScreenState(this.selectIndexId);
 
   Widget routerPage(int selectIndexId) {
@@ -46,12 +47,12 @@ class _WordsScreenState extends State<WordsScreen> {
     return Scaffold(
       body: routerPage(selectIndexId),
       bottomNavigationBar: CircleBottomNavigation(
-        textColor: Colors.black,
         barHeight: AppConstant.barHeight,
-        circleColor: AppConstant.circleColor,
+        circleColor: Theme.of(context).primaryColor,
         inactiveIconColor: Colors.grey,
         circleSize: AppConstant.circleSize,
         arcHeight: AppConstant.archHeight,
+        barBackgroundColor:  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         circleOutline: AppConstant.circleOutline,
         hasElevationShadows: true,
         tabs: [

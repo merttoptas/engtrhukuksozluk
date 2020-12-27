@@ -59,7 +59,7 @@ class _AboutUsState extends State<AboutUs> {
             topLeft: Radius.circular(AppConstant.borderCircular45),
             topRight: Radius.circular(AppConstant.borderCircular45),
           ),
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
         ),
         height: MediaQuery.of(context).size.height -
             AppConstant.aboutUsContainerBgHeight,

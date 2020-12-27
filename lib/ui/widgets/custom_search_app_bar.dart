@@ -25,7 +25,7 @@ class CustomSearchAppBar extends StatelessWidget
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [AppConstant.lightPrimary, AppConstant.lightPrimary]),
+              colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary]),
           boxShadow: [
             BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10)
           ],
@@ -34,14 +34,14 @@ class CustomSearchAppBar extends StatelessWidget
           padding:
               const EdgeInsets.only(top: 40.0, bottom: 8, right: 10, left: 35),
           child: Row(
-            children: <Widget>[buildContainer(), buildPaddingButton()],
+            children: <Widget>[buildContainer(context), buildPaddingButton(context)],
           ),
         ),
       ),
     );
   }
 
-  Flexible buildContainer() {
+  Flexible buildContainer(BuildContext context) {
     return Flexible(
       fit: FlexFit.loose,
       child: Padding(
@@ -54,23 +54,22 @@ class CustomSearchAppBar extends StatelessWidget
           ),
           margin: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
-            children: <Widget>[buildFlexible(), buildIconButton()],
+            children: <Widget>[buildFlexible(context), buildIconButton()],
           ),
         ),
       ),
     );
   }
 
-  Padding buildPaddingButton() {
+  Padding buildPaddingButton(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 16.0),
       child: FlatButton(
         onPressed: btnFunction,
-        color: Color(0XFF78aaff),
+        color: Theme.of(context).accentColor,
         child: Text(
           AppConstant.btnSearch,
           style: TextStyle(
-              color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.w600,
               letterSpacing: 1.3),
@@ -90,9 +89,10 @@ class CustomSearchAppBar extends StatelessWidget
     );
   }
 
-  Flexible buildFlexible() {
+  Flexible buildFlexible(BuildContext context) {
     return Flexible(
       child: TextFormField(
+        style: TextStyle(color: Theme.of(context).primaryColor),
         controller: controller,
         focusNode: focusNode,
         decoration: InputDecoration(
